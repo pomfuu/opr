@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operation Flow — BCA Finance</title>
+  <style>
+    :root {
+      --green-dark:#00573F; --green-mid:#008552; --green-light:#00A86B;
+      --green-pale:#E6F4EE; --gold:#F5A623; --red:#E63946;
+      --blue:#2176FF; --gray-bg:#F4F6FB; --gray-text:#6B7280;
+      --white:#FFFFFF; --shadow:0 4px 24px rgba(0,87,63,.10); --r:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--gray-bg);color:#1a2e28;line-height:1.6}
+
+    /* NAV */
+    nav{background:var(--green-dark);position:sticky;top:0;z-index:100;display:flex;
+        align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px;
+        box-shadow:0 2px 12px rgba(0,0,0,.3);flex-wrap:wrap}
+    .logo{color:#fff;font-weight:800;font-size:1.05rem;white-space:nowrap} .logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:.75rem;list-style:none;flex-wrap:wrap}
+    .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.78rem;font-weight:500;
+                 padding:.25rem .4rem;border-radius:4px;transition:all .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(255,255,255,.1)}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--green-dark),var(--green-mid) 55%,var(--green-light));
+          color:#fff;text-align:center;padding:5rem 1.5rem 3.5rem}
+    .badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+           border-radius:999px;padding:.25rem .9rem;font-size:.75rem;letter-spacing:1px;
+           text-transform:uppercase;margin-bottom:.8rem}
+    .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.5rem}
+    .hero h1 span{color:var(--gold)}
+    .hero p{font-size:1rem;opacity:.85;max-width:560px;margin:0 auto 2rem}
+    .hero-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+    .hstat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+           border-radius:10px;padding:.9rem 1.6rem;min-width:120px}
+    .hstat .n{font-size:1.7rem;font-weight:800}
+    .hstat .l{font-size:.75rem;opacity:.75}
+
+    /* SECTION WRAPPERS */
+    .section{padding:3rem 1.5rem;max-width:1120px;margin:0 auto}
+    .section-alt{background:var(--white);border-top:1px solid #d8ede4}
+    .section-green{background:var(--green-pale);border-top:1px solid #c2ddd4}
+    .st{text-align:center;margin-bottom:2rem}
+    .st h2{font-size:1.65rem;font-weight:800;color:var(--green-dark);margin-bottom:.3rem}
+    .st p{color:var(--gray-text);font-size:.93rem}
+
+    /* OVERVIEW GRID */
+    .ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem}
+    .ov-card{background:var(--white);border-radius:var(--r);padding:1.3rem 1.4rem;
+             box-shadow:var(--shadow);border-left:4px solid var(--green-light)}
+    .ov-card.gold{border-color:var(--gold)} .ov-card.blue{border-color:var(--blue)}
+    .ov-card.red{border-color:var(--red)} .ov-card.dark{border-color:var(--green-dark)}
+    .ov-card .icon{font-size:1.7rem;margin-bottom:.5rem}
+    .ov-card h4{font-size:.98rem;font-weight:700;margin-bottom:.4rem;color:var(--green-dark)}
+    .ov-card p,.ov-card ul{font-size:.87rem;color:var(--gray-text)}
+    .ov-card ul{padding-left:1rem}
+    .ov-card ul li{margin-bottom:.2rem}
+
+    /* TABLES */
+    .eco-table{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:.5rem}
+    .eco-table th{background:var(--green-dark);color:#fff;padding:.6rem .9rem;text-align:left;font-size:.8rem}
+    .eco-table td{padding:.55rem .9rem;border-bottom:1px solid #d4e8df;background:var(--white)}
+    .eco-table tr:hover td{background:var(--green-pale)}
+    .tbl-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--shadow);margin-top:1rem}
+
+    /* ACCORDION */
+    .acc-item{background:var(--white);border-radius:10px;margin-bottom:.7rem;
+              overflow:hidden;box-shadow:0 1px 6px rgba(0,87,63,.08)}
+    .acc-head{padding:.95rem 1.2rem;cursor:pointer;display:flex;justify-content:space-between;
+              align-items:center;font-weight:700;font-size:.93rem;color:var(--green-dark)}
+    .acc-head:hover{background:var(--green-pale)}
+    .acc-chevron{transition:transform .25s;color:var(--gray-text);font-size:1.1rem}
+    .acc-item.open .acc-chevron{transform:rotate(180deg)}
+    .acc-body{display:none;padding:.2rem 1.2rem 1rem;font-size:.86rem;color:#2a3a35;line-height:1.75}
+    .acc-item.open .acc-body{display:block}
+    .acc-body ul{padding-left:1.2rem;margin:.3rem 0}
+    .acc-body ul li{margin-bottom:.25rem}
+    .acc-body h5{font-size:.88rem;font-weight:700;color:var(--green-dark);margin:.7rem 0 .3rem}
+    .acc-body p{margin-bottom:.4rem}
+
+    /* INFO CARDS */
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-top:.8rem}
+    .info-card{background:var(--green-pale);border-radius:10px;padding:.9rem 1rem;border-left:3px solid var(--green-light)}
+    .info-card h5{font-size:.8rem;font-weight:700;color:var(--green-dark);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.4px}
+    .info-card ul{padding-left:1rem;font-size:.84rem;color:#2a3a35}
+    .info-card ul li{margin-bottom:.2rem}
+    .info-card p{font-size:.84rem;color:#2a3a35}
+
+    /* FLOW STEPS */
+    .flow-steps{display:flex;flex-direction:column;gap:.45rem;margin-top:.5rem}
+    .flow-step{display:flex;align-items:flex-start;gap:.7rem}
+    .flow-step .num{width:24px;height:24px;border-radius:50%;background:var(--green-mid);color:#fff;
+                    display:flex;align-items:center;justify-content:center;font-size:.72rem;
+                    font-weight:700;flex-shrink:0;margin-top:2px}
+    .flow-step p{font-size:.86rem}
+
+    /* TAGS / BADGES */
+    .tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.4rem}
+    .tag{border-radius:999px;padding:.18rem .65rem;font-size:.73rem;font-weight:600}
+    .tag.green{background:var(--green-pale);color:var(--green-dark)}
+    .tag.gold{background:#FFF8E6;color:#9a6300}
+    .tag.red{background:#FEE8EA;color:#b02030}
+    .tag.blue{background:#E8F0FE;color:#1a5cb5}
+    .tag.gray{background:#ECEFF1;color:#546E7A}
+    .tag.purple{background:#EDE7F6;color:#6A1B9A}
+
+    /* STATUS CHIPS */
+    .status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem;margin-top:.7rem}
+    .status-chip{border-radius:8px;padding:.5rem .8rem;font-size:.82rem;font-weight:600;border-left:4px solid}
+    .status-chip.approved{background:#E6F4EE;color:#00573F;border-color:var(--green-mid)}
+    .status-chip.pending{background:#FFF8E6;color:#9a6300;border-color:var(--gold)}
+    .status-chip.reject{background:#FEE8EA;color:#b02030;border-color:var(--red)}
+    .status-chip.process{background:#E8F0FE;color:#1a5cb5;border-color:var(--blue)}
+    .status-chip .code{font-size:.75rem;font-weight:800;letter-spacing:.4px;display:block}
+    .status-chip .desc{font-size:.75rem;font-weight:400;opacity:.8}
+
+    /* ENGINE SCORING */
+    .engine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem;margin-top:.9rem}
+    .engine-card{border-radius:12px;padding:1.1rem 1.2rem;border-top:4px solid}
+    .engine-card.approve{background:#E6F4EE;border-color:var(--green-mid)}
+    .engine-card.reguler{background:#FFF8E6;border-color:var(--gold)}
+    .engine-card.reject{background:#FEE8EA;border-color:var(--red)}
+    .engine-card h4{font-size:1rem;font-weight:800;margin-bottom:.4rem}
+    .engine-card.approve h4{color:var(--green-dark)}
+    .engine-card.reguler h4{color:#9a6300}
+    .engine-card.reject h4{color:#b02030}
+    .engine-card p,.engine-card ul{font-size:.84rem;color:#2a3a35}
+    .engine-card ul{padding-left:1rem}
+    .engine-card ul li{margin-bottom:.2rem}
+
+    /* FORMULA BOX */
+    .formula-box{background:var(--green-dark);color:#fff;border-radius:12px;
+                 padding:1.2rem 1.6rem;margin:1rem 0;font-family:'Courier New',monospace}
+    .formula-box h5{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;opacity:.65;margin-bottom:.4rem}
+    .formula-box .f{font-size:.97rem;font-weight:700}
+    .formula-box .vars{margin-top:.6rem;font-size:.8rem;opacity:.8;font-family:'Segoe UI',sans-serif}
+
+    /* LIMIT TABLE */
+    .limit-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.6rem}
+    .limit-table th{background:var(--green-dark);color:#fff;padding:.55rem .9rem;text-align:left}
+    .limit-table td{padding:.5rem .9rem;border-bottom:1px solid #d4e8df;background:var(--white)}
+    .limit-table tr:hover td{background:var(--green-pale)}
+
+    /* SK/SE GALLERY */
+    #skse{background:var(--white);border-top:1px solid #d8ede4}
+    .filter-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+    .ftab{background:var(--green-pale);color:var(--green-dark);border:none;cursor:pointer;
+          border-radius:999px;padding:.4rem 1.1rem;font-size:.85rem;font-weight:600;transition:.2s}
+    .ftab.active{background:var(--green-mid);color:#fff}
+    .ftab:hover:not(.active){background:#c2ddd4}
+    .doc-count{font-size:.82rem;color:var(--gray-text);margin-left:.5rem;align-self:center}
+    .doc-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem}
+    .doc-thumb{background:var(--white);border-radius:10px;overflow:hidden;position:relative;
+               box-shadow:0 2px 10px rgba(0,87,63,.09);cursor:pointer;transition:transform .2s}
+    .doc-thumb:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,87,63,.16)}
+    .doc-thumb .dt{padding:.55rem .65rem .3rem;font-size:.72rem;color:#1a2e28;font-weight:600;
+                   line-height:1.4}
+    .doc-thumb .ddesc{padding:0 .65rem .35rem;font-size:.67rem;color:var(--gray-text);
+                      line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;
+                      -webkit-box-orient:vertical;overflow:hidden}
+    .doc-thumb .btn-open{display:block;margin:.3rem .65rem .65rem;background:var(--green-mid);
+                         color:#fff;border:none;border-radius:6px;padding:.32rem .7rem;
+                         font-size:.73rem;font-weight:700;cursor:pointer;text-align:center;
+                         transition:background .2s}
+    .doc-thumb .btn-open:hover{background:var(--green-dark)}
+    .badge-type{display:inline-block;border-radius:999px;padding:.1rem .55rem;
+                font-size:.68rem;font-weight:700;margin:.45rem .65rem .1rem}
+    .badge-type.SK{background:#E6F4EE;color:var(--green-dark)}
+    .badge-type.SE{background:#FFF8E6;color:#9a6300}
+    .badge-type.Memo{background:#EDE7F6;color:#6A1B9A}
+    .badge-type.IK{background:#E8F0FE;color:#1a5cb5}
+    .group-header{grid-column:1/-1;display:flex;align-items:center;gap:.5rem;
+                  font-size:.84rem;font-weight:700;color:var(--green-dark);
+                  background:var(--green-pale);border-radius:8px;
+                  padding:.55rem .9rem;margin-top:.5rem}
+    .group-header .gh-count{font-weight:400;color:var(--gray-text);font-size:.76rem}
+
+    /* LIGHTBOX */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+              z-index:9999;flex-direction:column;padding:2.8rem .6rem .6rem}
+    .lightbox.open{display:flex}
+    .lb-iframe-wrap{flex:1;display:flex;border-radius:8px;overflow:hidden;background:#fff;min-height:0}
+    .lb-iframe-wrap iframe{width:100%;height:100%;border:none}
+    #lbClose{position:fixed;top:.55rem;right:.9rem;font-size:1.8rem;color:#fff;
+              cursor:pointer;background:rgba(255,255,255,.12);border:none;border-radius:8px;
+              padding:.1rem .6rem;line-height:1.4;z-index:10001}
+    #lbClose:hover{background:rgba(255,255,255,.28)}
+    .doc-thumb.sk-highlight{animation:skPulse 1.8s ease 1}
+    @keyframes skPulse{
+      0%,100%{box-shadow:0 2px 10px rgba(0,87,63,.09)}
+      30%,70%{box-shadow:0 0 0 5px var(--green-light),0 8px 28px rgba(0,168,107,.4)}
+    }
+
+    /* FOOTER */
+    footer{background:var(--green-dark);color:rgba(255,255,255,.65);
+           text-align:center;padding:1.3rem;font-size:.8rem}
+    footer strong{color:#fff}
+
+    /* SECTION DIVIDER LABEL */
+    .section-label{display:inline-block;background:var(--green-mid);color:#fff;
+                   border-radius:999px;padding:.22rem .85rem;font-size:.73rem;
+                   font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.6rem}
+
+    /* NOTE BOX */
+    .note-box{background:var(--green-pale);border-left:4px solid var(--green-mid);
+              border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.6rem 0;
+              font-size:.85rem;color:var(--green-dark)}
+    .warn-box{background:#FFF8E6;border-left:4px solid var(--gold);
+              border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.6rem 0;
+              font-size:.85rem;color:#7a5200}
+    .danger-box{background:#FEE8EA;border-left:4px solid var(--red);
+                border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.6rem 0;
+                font-size:.85rem;color:#8b1a22}
+
+    @media(max-width:640px){
+      .nav-links{display:none}
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">OPERATION <span>Flow</span>
+    <span style="font-size:.65rem;font-weight:400;opacity:.7;display:block;margin-top:-3px">BCA Finance · Ringkasan Catatan PDP 38</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#sigma">SIGMA Approva</a></li>
+    <li><a href="#prarealisasi">Pra Realisasi</a></li>
+    <li><a href="#app">APP/Realisasi</a></li>
+    <li><a href="#asuransi">Pasca Realisasi</a></li>
+    <li><a href="#legaladmin">Legal &amp; Fidusia</a></li>
+    <li><a href="#bpkb">BPKB &amp; Archive</a></li>
+    <li><a href="#csfront">CS Front</a></li>
+    <li><a href="#csback">CS Back</a></li>
+    <li><a href="#ctcc">CT &amp; CC</a></li>
+    <li><a href="#osd">OQA/OA/OSD</a></li>
+    <li><a href="#credset">Credit Settlement</a></li>
+    <li><a href="#skse">SK/SE</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">BCA Finance · Direktorat Operation</div>
+  <h1>OPERATION <span>Flow</span></h1>
+  <p>Panduan lengkap alur kerja Operation — dari pra-realisasi hingga pasca realisasi, DCRM, Credit Settlement, dan dokumen SK/SE resmi.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="n">86</div><div class="l">Halaman Catatan</div></div>
+    <div class="hstat"><div class="n">4</div><div class="l">Departemen</div></div>
+    <div class="hstat"><div class="n">55</div><div class="l">SK/SE Docs</div></div>
+    <div class="hstat"><div class="n">86</div><div class="l">Pages Coverage</div></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: OVERVIEW ===== -->
+<div id="overview">
+<div class="section">
+  <div class="st">
+    <h2>🏛️ Overview Departemen Operation</h2>
+    <p>Empat pilar utama Direktorat Operation BCA Finance dan kaitannya dengan ASR</p>
+  </div>
+  <div class="ov-grid">
+    <div class="ov-card">
+      <div class="icon">🏛️</div>
+      <h4>Dept. Credit Process</h4>
+      <ul>
+        <li><b>Document Support</b> — Pengecekan dokumen input awal dari CMO/Marketing</li>
+        <li><b>APP (Account Payable Payment)</b> — Realisasi pembayaran ke dealer setelah kontrak ditandatangani</li>
+        <li><b>Fidusia Management</b> — Legal admin, order notaris, sertifikat fidusia, resume AHU</li>
+      </ul>
+    </div>
+    <div class="ov-card gold">
+      <div class="icon">📋</div>
+      <h4>Dept. Account Maintenance</h4>
+      <ul>
+        <li><b>Archive Management</b> — Kelola dossier asli (AM01), copy (AM02), sertifikat fidusia (AM04)</li>
+        <li><b>BPKB Admin / Document Custodian</b> — Cek absah, blokir, follow up CN, STNK, BBN, kluis</li>
+        <li><b>Asuransi</b> — Order, upgrade, klaim, refund, endorse, rekonsiliasi asuransi kendaraan &amp; CP</li>
+      </ul>
+    </div>
+    <div class="ov-card blue">
+      <div class="icon">🤝</div>
+      <h4>Dept. Customer Relation Management (DCRM)</h4>
+      <ul>
+        <li><b>Customer Service Front &amp; Back</b> — Walk-in, email, WA Astari, Halo BCA</li>
+        <li><b>Customer Transaction (CT)</b> — Kasir, cashless, reversal, MIS/MIT</li>
+        <li><b>Customer Care</b> — Keluhan, APPK OJK, permohonan perbaikan kolektibilitas</li>
+        <li><b>CS Digital / AVA</b> — Website, email, FINA, Google Review, Virtual Assistant</li>
+      </ul>
+    </div>
+    <div class="ov-card dark">
+      <div class="icon">⚙️</div>
+      <h4>Directorate Support</h4>
+      <ul>
+        <li><b>OQA</b> — Audit internal, checklist proses/kebijakan/umum, PUT</li>
+        <li><b>OA</b> — BORC, Area Specialist, Area Multitasking, KPI cabang</li>
+        <li><b>OSD</b> — Service development, data support, people, budget, RKA</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem">
+    <h3 style="font-size:1.05rem;font-weight:700;color:var(--green-dark);margin-bottom:.5rem">🔗 Irisan dengan ASR</h3>
+    <div class="tbl-wrap">
+      <table class="eco-table">
+        <thead>
+          <tr><th>Topik</th><th>Di ASR</th><th>Di OPERATION</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>ET (Early Termination)</b></td>
+            <td>Perhitungan rumus, tarikan unit</td>
+            <td>CS Front walk-in, CS Back email, klaim CP/Kendaraan</td>
+          </tr>
+          <tr>
+            <td><b>BPKB</b></td>
+            <td>Tarikan unit jaminan</td>
+            <td>Cek absah, blokir, follow up CN, custodian kluis</td>
+          </tr>
+          <tr>
+            <td><b>Kelebihan Dana</b></td>
+            <td>Pengembalian dana ke konsumen</td>
+            <td>CS Front PPKD, refund asuransi</td>
+          </tr>
+          <tr>
+            <td><b>Kolektibilitas</b></td>
+            <td>NPL, hapus buku, Write-Off</td>
+            <td>Customer Care permohonan perbaikan kolektibilitas</td>
+          </tr>
+          <tr>
+            <td><b>Credit Settlement</b></td>
+            <td>Tarikan unit → credset</td>
+            <td>OPERATION menerima unit hari ke-16, taksasi, lelang</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 3: SIGMA APPROVA ===== -->
+<div id="sigma" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>📊 SIGMA Approva Status Based Flow</h2>
+    <p>Alur status aplikasi dari inisiasi CMO hingga realisasi cair</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="eco-table">
+      <thead>
+        <tr><th>Bucket / PIC</th><th>Status Approva</th><th>Keterangan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Marketing</td><td><span class="tag blue">Initiation</span></td><td>CMO saat membentuk APP ID</td></tr>
+        <tr><td>Docsup</td><td><span class="tag gray">Data Entry</span></td><td></td></tr>
+        <tr><td></td><td><span class="tag gray">Recommendation</span></td><td>Setelah Proceed sekali</td></tr>
+        <tr><td></td><td><span class="tag gold">Approval CC 1</span></td><td>Klik Proceed dua kali oleh checker</td></tr>
+        <tr><td>Komite Kredit</td><td><span class="tag gold">Approval CC 2</span></td><td></td></tr>
+        <tr><td></td><td><span class="tag gray">CC 2 Printing</span></td><td>Saat print kontrak (khusus print manual)</td></tr>
+        <tr><td>Marketing</td><td><span class="tag blue">Download</span></td><td>Saat download di Approva — sampai jadi PDF</td></tr>
+        <tr><td></td><td><span class="tag blue">Final Check</span></td><td>Engine printing dan sudah jadi kontrak</td></tr>
+        <tr><td>APP (Checker)</td><td><span class="tag green">Disbursement Memo</span></td><td>Setelah di-proceed oleh checker APP yang telah mengecek dokumen</td></tr>
+        <tr><td>Checker APP</td><td><span class="tag green">Approval Disbursement</span></td><td>Ngecetak Memo Disbursement</td></tr>
+        <tr><td>Approver APP</td><td><span class="tag green">Disbursement Process</span></td><td>Setelah dicek dan approve oleh approver</td></tr>
+        <tr><td>FSM / Payment</td><td><span class="tag green">Approved</span></td><td>Ketika sudah realisasi cair</td></tr>
+        <tr><td>Komite Kredit</td><td><span class="tag red">Rejected</span></td><td>Saat Komite Kredit ditolak</td></tr>
+        <tr><td></td><td><span class="tag red">Cancelled</span></td><td>Aplikasi sudah final check/sudah jadi kontrak tapi batal. Contoh: Ganti unit, inisiasi ulang</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:1.05rem;font-weight:700;color:var(--green-dark);margin:1.8rem 0 .6rem">🤖 Engine Scoring — Hasil &amp; Konsekuensi</h3>
+  <div class="engine-grid">
+    <div class="engine-card approve">
+      <h4>✅ APPROVE</h4>
+      <p>Tidak perlu cek dokumen tambahan:</p>
+      <ul>
+        <li>Slip Gaji</li>
+        <li>Mutasi Rekening</li>
+        <li>Bukti Rekening</li>
+        <li>Bukti Usaha</li>
+        <li>Mobile Survey (M Survey)</li>
+        <li>Blacklist / Watchlist</li>
+      </ul>
+    </div>
+    <div class="engine-card reguler">
+      <h4>⚡ REGULER</h4>
+      <p>Checker melakukan review 4 tahap:</p>
+      <ul>
+        <li>A. Review Capture / Blacklist</li>
+        <li>B. Review Input Data</li>
+        <li>C. Review Matching</li>
+        <li>D. Review Deviasi</li>
+      </ul>
+    </div>
+    <div class="engine-card reject">
+      <h4>❌ REJECT</h4>
+      <p>Wajib lewat Credit Analyst (CA). Flow:</p>
+      <ul>
+        <li>Checker → CA → Mobile Approval</li>
+        <li>CA memberikan analisis kredit</li>
+        <li>Keputusan final di Mobile Approval</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 4: PRA REALISASI ===== -->
+<div id="prarealisasi" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>📝 Pra Realisasi — Input &amp; Check Data</h2>
+    <p>Flow dari CMO input aplikasi hingga dokumen siap cetak kontrak</p>
+  </div>
+
+  <!-- Accordion 1: Flow Umum Input CMO -->
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      1. Flow Umum Input CMO <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p>CMO mendapatkan aplikasi dari sales, kemudian input data di <b>Mobile Entry (ME)</b>.</p>
+      <h5>Jenis Input Berdasarkan Tipe Konsumen:</h5>
+      <ul>
+        <li><b>Perorangan</b>: Aplikasi Mobile Entry (standard)</li>
+        <li><b>Perorangan &gt;3 unit / Total PH &gt;5M</b>: Non-ME, PDP dengan K3</li>
+        <li><b>Korporasi</b>: PDP dengan K3 &amp; ME Corporate</li>
+        <li><b>SHF (Showroom Financing)</b>: ME SHF / PDP SHF / WA SHF</li>
+      </ul>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Target Checker:</b> 32 aplikasi/hari &nbsp;|&nbsp;
+        <b>SLA:</b> Check-in check-out 2 jam (15 menit/aplikasi)
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion 2: Dokumen ME Perorangan -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      2. ME Perorangan — Dokumen Yang Dicek <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Dokumen Perorangan</h5>
+          <ul>
+            <li>KTP Konsumen (mandatory)</li>
+            <li>KTP Suami/Istri (mandatory)</li>
+            <li>KK Pokok (mandatory)</li>
+            <li>Akte Nikah</li>
+            <li>Bukti PBB</li>
+            <li>Rekening Listrik</li>
+            <li>Akta Jual Beli</li>
+            <li>NPWP (diskon admin)</li>
+            <li>Rekening Koran</li>
+            <li>Cover Tabungan &amp; Inquiry 2211 (KKB)</li>
+            <li>Inquiry 9433-Segmentasi (KKB)</li>
+            <li>Slip Gaji (karyawan) / SIUP (wiraswasta)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Dokumen Badan Usaha</h5>
+          <ul>
+            <li>SIUP</li>
+            <li>TDP</li>
+            <li>NIB berbasis risiko</li>
+            <li>NPWP perusahaan</li>
+            <li>Keterangan Domisili</li>
+            <li>Akte Pendirian &amp; Perubahan</li>
+            <li>SK Pengesahan Hukum &amp; HAM</li>
+            <li>SP Data</li>
+            <li>FC KTP Pengurus</li>
+            <li>Laporan Keuangan 2 Tahun</li>
+            <li>Rekening Koran 3 Bulan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion 3: 4 Tahap Review Checker -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      3. 4 Tahap Review Checker (REGULER) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>A. Review Capture / Blacklist</h5>
+      <ul>
+        <li>KTP (sesuai FAP, jelas)</li>
+        <li>NPWP (pengecekan aset −Rp300.000)</li>
+        <li>Mutasi Rekening 3 bulan</li>
+        <li>BCA Inquiry 2211 / cover (KKB)</li>
+        <li>Inquiry 9433 kluster (KKB)</li>
+        <li>FAP, KTP Pasangan</li>
+        <li>Slip Gaji (angsuran max 30% gaji)</li>
+        <li>BPKB &amp; STNK (used car)</li>
+        <li>Foto mobil &amp; gesek no rangka</li>
+        <li>Data rumah/domisili</li>
+        <li>Capture GMaps (&gt;60 km penyimpangan BOD, &gt;120 km biaya coverage 1–3 jt)</li>
+        <li>Screenshot Asset Registry (wajib used car/refinancing)</li>
+      </ul>
+
+      <h5>B. Review Input Data (10 Sub-Review)</h5>
+      <ul>
+        <li><b>A. Personal Data</b>: Nama, NIK, Alamat, TTL, Status</li>
+        <li><b>B. Occupation Data</b>: 7C (Company, Competitors, Customers, Cost, Country, Climate, Change); Economy Code penting</li>
+        <li><b>C. Spouse Data</b></li>
+        <li><b>D. Dealer dan Vehicle</b></li>
+        <li><b>E. Vehicle / Data Kendaraan</b>: Brand, Model, Type, Tahun, Warna, No. Rangka, No. Mesin, Nama BPKB (used)</li>
+        <li><b>F. General</b>: Data Sales, Paket sesuai memo, KKB ada Sales Office &amp; Agent</li>
+        <li><b>G. Loan Data</b>: DP min 25% / tujuan produktif 20%, cek flat rate, admin fee sesuai memo</li>
+        <li><b>H. Insurance</b>: Car Insurance Corp sesuai ploting, Life Insurance Full Cover</li>
+        <li><b>I. Others Data</b>: Bukti kepemilikan rumah HGM/AJB/PBB</li>
+        <li><b>J. Pending Message</b></li>
+      </ul>
+
+      <h5>C. Review Matching</h5>
+      <ul>
+        <li>Matching RO dengan Sigma Financore</li>
+        <li>Cek blacklist: overdue internal, pencucian uang eksternal, politically exposed person</li>
+        <li>Jika data matching berbeda → konfirmasi ke konsumen</li>
+      </ul>
+
+      <h5>D. Review Deviasi</h5>
+      <ul>
+        <li>Penyimpangan yang diinput CMO</li>
+        <li>Checker melakukan pending jika kekurangan penyimpangan</li>
+        <li>Checker wajib update IOM (sangat dinamis)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Accordion 4: Hasil Komite Kredit -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      4. Hasil Komite Kredit <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="engine-grid">
+        <div class="engine-card approve">
+          <h4>✅ Approve</h4>
+          <p>Masuk Engine Printing untuk cetak &amp; upload ke PDP otomatis. Jika ada Memo/Juklak Paket Free Admin / DP 0% → masuk bucket PIC Engine Printing.</p>
+        </div>
+        <div class="engine-card reguler">
+          <h4>⚡ AWC (Approve With Condition)</h4>
+          <p>Naik DP atau melampirkan dokumen tambahan. CMO pilih banding/menyetujui. Kalau setuju → buat K3, naik ke komite → Checker AWC ubah loan data → proceed.</p>
+        </div>
+        <div class="engine-card reject">
+          <h4>❌ Reject</h4>
+          <p>Ditolak oleh Komite Kredit. Status Approva berubah menjadi "Rejected".</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion 5: Dokumen Cetak Perorangan -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      5. Dokumen Cetak Perorangan — Satu Set Kontrak <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Dokumen Utama</h5>
+          <ul>
+            <li><b>PPK &amp; Ikhtisar</b> — Perjanjian kontrak mengikat BCAF–Konsumen</li>
+            <li><b>PO (Purchase Order)</b> — Bukti BCAF memberi info ke dealer atas persetujuan pembiayaan</li>
+            <li><b>RIPLAY Personal</b> — Ringkasan info produk pembiayaan</li>
+            <li><b>SP RIPLAY</b> — Pernyataan konsumen telah membaca &amp; menyetujui kontrak</li>
+            <li><b>SK Fidusia</b> — Kuasa konsumen ke BCAF atas fidusia barang jaminan</li>
+            <li><b>SKPB</b> — Surat Kuasa Pengambilan Barang Jaminan; kuasa BCAF atas kendaraan jika wanprestasi</li>
+            <li><b>Blanko Kwitansi</b> — Untuk overkredit/lelang di kemudian hari</li>
+            <li><b>DO/BAST</b> — Tanda terima kendaraan dari showroom</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Dokumen Tambahan &amp; Khusus</h5>
+          <ul>
+            <li><b>Surat Pernyataan Refinancing</b> (khusus refinancing KKB)</li>
+            <li><b>Pernyataan Non-Refinancing</b> (CS new/used &amp; overcredit)</li>
+            <li><b>Kwitansi Pelunasan</b> (refinancing KKB)</li>
+            <li><b>Surat Pelepasan Hak</b> — Jika BPKB atas nama Perusahaan</li>
+            <li><b>*Surat Persetujuan Pasangan</b> — Jika pasangan pisah harta</li>
+            <li><b>*Surat Pernyataan &amp; Kuasa</b> — Jika CN tidak ditujukan a.n BCAF</li>
+          </ul>
+          <h5 style="margin-top:.7rem">Tambahan untuk PT:</h5>
+          <ul>
+            <li>SP Direktur</li>
+            <li>SP Komisaris</li>
+            <li>Blanko Kwitansi 3 jenis: a.n BPKB perorangan, a.n Konsumen perusahaan, a.n BPKB perusahaan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion 6: ME Corporate Flow -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      6. ME Corporate Flow <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Di ME Corporate sudah ada MID dan APP ID</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Checker cek kelengkapan: NPWP, SIUP, TDP</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Field yang dicek: Corporate Data, Collateral and Loan, Matching Result, Penyimpangan, Deskripsi Pending, Field Other</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Proceed → input di Sigma Approva (akta, modal, pemegang saham, dokumen lain) → status Data Entry</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Proceed → status Rekomendasi</p></div>
+        <div class="flow-step"><div class="num">6</div><p>Input omset dan deviasi di Sigma Approva</p></div>
+        <div class="flow-step"><div class="num">7</div><p>Proceed lagi → Approval CC 1 → Checker 2 (K3 manual) → proceed → Approval CC 2</p></div>
+        <div class="flow-step"><div class="num">8</div><p>Cetak kontrak manual</p></div>
+      </div>
+      <div class="warn-box" style="margin-top:.8rem">
+        <b>Contoh penyimpangan korporasi:</b> Badan usaha tidak ada fixed line (ke DD), Badan usaha &lt;2 tahun (ke RM)
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion 7: PDP Flow -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      7. PDP Flow (Perorangan &gt;5M / PT / SHF) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>Untuk Siapa:</h5>
+      <ul>
+        <li>Perorangan PH &gt;5M / unit &gt;3 / asuransi khusus / paket juklak</li>
+        <li>Refinancing PT</li>
+        <li>SHF (DP minimum 30%)</li>
+        <li>PT dalam PT</li>
+      </ul>
+      <h5>Flow:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>CMO upload akta → Resume AHU</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Checker dibagikan APP ID</p></div>
+        <div class="flow-step"><div class="num">3</div><p>ES semua badan usaha REGULER</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Cross check data PDP → input ke Sigma Approva → Proceed → Approval CC 1</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Checker 2 → Cetak kontrak manual</p></div>
+      </div>
+      <h5>Kelengkapan Dokumen yang Dicek:</h5>
+      <ul>
+        <li>K3, FAP, Inquiry 2211 / cover klik BCA</li>
+        <li>Mutasi 3 bulan, Bukti cluster/9433 (KKB)</li>
+        <li>NPWP, NIB/TDP, SIUP, Izin Lokasi</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Accordion 8: SHF -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      8. SHF (Showroom Financing) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>CMO Upload:</h5>
+      <ul>
+        <li>FAP, Foto depan kendaraan, Scan BPKB, Faktur</li>
+        <li>Customer Inquiry, Hasil Check Asset Registry</li>
+        <li>K3 (jika ada penyimpangan)</li>
+      </ul>
+      <h5>Flow:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Data Entry</p></div>
+        <div class="flow-step"><div class="num">2</div><p>CC1 — verifikasi dokumen</p></div>
+        <div class="flow-step"><div class="num">3</div><p>CC2 — RM, Div Head SHF, Direksi jika ada penyimpangan</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Final Check — Engine Printing</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Printing — TTD konsumen</p></div>
+        <div class="flow-step"><div class="num">6</div><p>Approve survei maskapai</p></div>
+        <div class="flow-step"><div class="num">7</div><p>Check absah BPKB</p></div>
+        <div class="flow-step"><div class="num">8</div><p>Verifikasi TTD</p></div>
+        <div class="flow-step"><div class="num">9</div><p>Proceed ke bucket Disbursement (FSM)</p></div>
+      </div>
+      <h5>Dokumen Tagihan SHF:</h5>
+      <ul>
+        <li>FAP asli, Copy BPKB lengkap, Print Plafond KKB</li>
+        <li>Kwitansi jual beli dari showroom, Copy STNK</li>
+        <li>K3 (jika ada)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 5: APP / REALISASI ===== -->
+<div id="app" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>💳 Realisasi — Account Payable Payment (APP)</h2>
+    <p>Setelah CMO tandatangan kontrak → antar ke APP. SLA JABO: 2 jam, WPI only.</p>
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      1. Registrasi Dokumen &amp; Warna Map <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Warna Map</h5>
+          <ul>
+            <li><span style="background:#c8f7c5;padding:0 .4rem;border-radius:4px">Hijau</span> — KKB</li>
+            <li><span style="background:#c5d9ff;padding:0 .4rem;border-radius:4px">Biru</span> — CS Mobil &amp; SHF</li>
+            <li><span style="background:#a0b4d6;padding:0 .4rem;border-radius:4px">Biru Tua</span> — UMK3/COP</li>
+            <li><span style="background:#fff9c4;padding:0 .4rem;border-radius:4px">Kuning</span> — DS</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>4 Bucket APP</h5>
+          <ul>
+            <li><b>Kontrak In</b></li>
+            <li><b>Tagihan In</b></li>
+            <li><b>Pending Ok</b></li>
+            <li><b>Maintenance</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      2. Final Check &amp; Konfirmasi Konsumen (Status: Final Check) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Konfirmasi via telepon wajib — 10 Poin:</b></p>
+      <ol style="padding-left:1.3rem;margin-top:.4rem">
+        <li>Pengajuan pembiayaan ke BCAF</li>
+        <li>Data konsumen: nama, TTL, nama ibu, WA, email</li>
+        <li>Data unit: type, tahun, merk, warna, transmisi, BPKB a.n.</li>
+        <li>Penggunaan unit</li>
+        <li>Sudah terima unit</li>
+        <li>Yang terima / menyerahkan siapa</li>
+        <li>Sudah TTD kontrak</li>
+        <li>Jatuh tempo angsuran</li>
+        <li>Besar angsuran</li>
+        <li>Cara bayar</li>
+      </ol>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Catatan:</b> PT → telepon fixed line. Tanpa konfirmasi → penyimpangan BOD. Refinancing perorangan tidak perlu konfirmasi (WA Business). Khusus KKB: unit dikirim setelah realisasi (persetujuan BM).
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      3. Input Data Tagihan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>New Car</h5>
+          <ul>
+            <li>Tanggal DO</li>
+            <li>CN number</li>
+            <li>Tanggal CN</li>
+            <li>Masa berlaku CN (60/90/180 hari Lexus)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Used Car</h5>
+          <ul>
+            <li>PO mobil bekas</li>
+            <li>Cek Absah BPKB</li>
+            <li>SHF → hasil absah fisik</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Editing Vehicle di SIGMA</h5>
+          <ul>
+            <li>Warna</li>
+            <li>No rangka (wajib APP)</li>
+            <li>No mesin (wajib APP)</li>
+            <li>Nama BPKB</li>
+            <li>No BPKB &amp; no pol</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Pengecekan di Financore</h5>
+          <ul>
+            <li>BPKB list: no rangka &amp; mesin → cek status BPKB di docust</li>
+            <li>Specimen dealer: nama, alamat, TTD + stempel</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Cek Dokumen Konsumen</h5>
+          <ul>
+            <li>KTP: tidak expired, usia lunas &lt;65 tahun</li>
+            <li>Cover buku tabungan (cek no rek autodebet)</li>
+            <li>Form K3</li>
+            <li>Resume (PT: no akta, masa berlaku pengurus max 5 tahun, signer &amp; approval)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Cek Foto &amp; Absah</h5>
+          <ul>
+            <li>Foto TTD kontrak di Mobile Survey (konsumen pegang kontrak bagian TTD)</li>
+            <li>Cek no rangka &amp; mesin antara dok tagihan vs foto gesek Mobile Survey</li>
+            <li>Cek absah BPKB: batch 1 pkl 11.00, batch 2 pkl 13.00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      4. Control Account (CA) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Yang masuk CA:</b> Refinancing top up, Overkredit, ET, Restructure, Paket Juklak, Karoseri</p>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>SHF CA</h5>
+          <p>Akun lama showroom vs akun baru konsumen. Jika lebih → TF ke showroom. Jika kurang → showroom TF ke BCAF.</p>
+        </div>
+        <div class="info-card">
+          <h5>Refinancing CA</h5>
+          <p>ET dulu akun lama → buat akun baru untuk pencairan refinancing.</p>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        Memo disburse manual dikirim ke FSM. CA + semua nominal wajib print ke finance.
+        Kelengkapan ke FSM untuk CA: Memo Disbursement, Memo CA, Hitungan ET.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      5. Limit Kewenangan MD KP (JABO &amp; Non JABO) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="tbl-wrap">
+        <table class="limit-table">
+          <thead><tr><th>Jabatan</th><th>Limit Kewenangan</th></tr></thead>
+          <tbody>
+            <tr><td>Approver</td><td>s.d. Rp 350 Juta</td></tr>
+            <tr><td>Team Leader (TL)</td><td>s.d. Rp 500 Juta</td></tr>
+            <tr><td>Unit Head (UH)</td><td>s.d. Rp 750 Juta</td></tr>
+            <tr><td>Department Head (DH)</td><td>s.d. Rp 1 Miliar</td></tr>
+            <tr><td>Deputy Director (DD)</td><td>&gt; Rp 1 Miliar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Memo Disbursement berisi:</b> Perhitungan pembiayaan, pembayaran pertama, perintah pencairan ke FAD.<br>
+        Fisik wajib &gt;Rp 250 juta. &lt;Rp 250 juta cukup di sistem Approva.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      6. Flow Non JABO (Non WPI) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Dokumen dari cabang:</b></p>
+      <ul>
+        <li>Memo Disbursement, MA Penyimpangan, SPT (wajib), Memo CA, Lampiran request Payment</li>
+      </ul>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>&lt; Rp 250 Juta</h5>
+          <p>Bank transfer → langsung ke Payment (tidak perlu ke APP Pusat)</p>
+        </div>
+        <div class="info-card">
+          <h5>CA (Berapapun Nominal)</h5>
+          <p>Wajib ke APP Pusat dulu, baru diteruskan ke Payment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      7. Distribusi Dokumen Setelah Approve ke FAD <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>A. Fidusia Management / Legal Admin</h5>
+          <ul><li>Set Kontrak</li><li>Set Autodebet</li><li>Dossier Copy</li></ul>
+        </div>
+        <div class="info-card">
+          <h5>B. Customer Service</h5>
+          <ul><li>OTTPSB (Order &amp; Tanda Terima Pengurusan STNK/BPKB) untuk BBN</li></ul>
+        </div>
+        <div class="info-card">
+          <h5>C. BPKB Admin</h5>
+          <ul>
+            <li>Covernote / SP-BPKB</li>
+            <li>Blanko Kuitansi Mobil Baru</li>
+            <li>Surat Pelepasan Hak</li>
+            <li>Form Konfirmasi BPKB</li>
+            <li>Memo Custodian</li>
+            <li>Laporan data expired STNK used car</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>D. Asuransi</h5>
+          <ul>
+            <li>Form RIPLAY Asuransi</li>
+            <li>Form Survei Maskapai (used car)</li>
+            <li>Form CP, Cover mundur, Self cover</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>E. Document Custodian</h5>
+          <ul><li>Blanko Kuitansi Mobil Bekas</li></ul>
+        </div>
+        <div class="info-card">
+          <h5>F. FAD</h5>
+          <ul><li>Memo Disbursement + semua kelengkapan</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 6: PASCA REALISASI - ASURANSI ===== -->
+<div id="asuransi" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>🛡️ Pasca Realisasi — Asuransi</h2>
+    <p>Jenis, order, klaim, upgrade, refund, endorse, dan rekonsiliasi asuransi kendaraan &amp; CP</p>
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Jenis Asuransi Kendaraan &amp; CP <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>WAJIB</h5>
+          <ul>
+            <li><b>TLO</b> — Kerusakan &gt;75% atau hilang</li>
+            <li><b>Comprehensive</b> — All risk + TLO</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>PERLUASAN</h5>
+          <ul>
+            <li><b>RSMB</b> — Bencana alam + banjir</li>
+            <li><b>RSCC Huru-Hara</b></li>
+            <li><b>TJH 10 jt</b> — Kerugian pihak ke-3</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>PENYERTA</h5>
+          <ul>
+            <li><b>CPR Car Protection</b> — Mesin &amp; transmisi</li>
+            <li><b>TLP Total Lost Protection</b> — 20% dari OTR subsidi penggantian klaim</li>
+            <li><b>PAP Personal Accident Passenger</b></li>
+            <li><b>CFP Car Family Protection</b> — GPS</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Tiering &amp; Maskapai</h5>
+          <ul>
+            <li><b>Tiering Dep</b> (10 Jan 2023): 5% penyusutan/tahun KKB &amp; CS. 100→95→90→85→80</li>
+            <li><b>Tiering New</b> (lama): KKB depresiasi 10%/tahun</li>
+            <li><b>EV dan EV+</b>: rate premi berbeda (nilai OTR)</li>
+          </ul>
+          <h5 style="margin-top:.5rem">Maskapai:</h5>
+          <p style="font-size:.83rem">BCAI, Raksa, Aswata, ACP (Cakrawala Proteksi), Artaindo, Pan Pacific, Sinarmas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Order Asuransi Kendaraan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Otomatis B2B</h5>
+          <ul>
+            <li>API dari IT, tarik report R711 di Financore</li>
+            <li>PIC samakan B2B dengan R711</li>
+            <li>Follow up unordered &amp; unreceived</li>
+            <li>Fisik polis dikirim maskapai ke konsumen</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Manual Leasing &amp; SHF via Email</h5>
+          <ul>
+            <li>SP3 (Surat Permintaan Permohonan Pertanggungan), K3, Invoice, bukti TF → regis</li>
+            <li>Tim Eksa kirim ke maskapai</li>
+            <li>SOA feedback: data konsumen + no polis + hitungan premi</li>
+            <li>Input invoice di Financore</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Mini for Max &amp; Approval</h5>
+          <ul>
+            <li>Tenor 8 tahun: di tahun ke 5–8 di-order lagi</li>
+            <li>Kendaraan &amp; Leasing: s.d UH Pak Rahmat</li>
+            <li>SHF: s.d DH (max Rp 40 jt)</li>
+            <li>&gt;Rp 40 jt: approve DD</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Order Asuransi CP (Car Protection / Life) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Accounting kirim text file VA pencairan H-1 per maskapai</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Admin kirim text file ke maskapai via email</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Maskapai kirim feedback (text file berisi no polis)</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Admin upload ke aplikasi CP+</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Maskapai kirim fisik polis ke BCAF → CMO ke konsumen</p></div>
+      </div>
+      <div class="warn-box" style="margin-top:.7rem">
+        <b>Catatan CP:</b> Masa tunggu: tenor 1 tahun = 3 bulan, tenor &gt;1 tahun = 6 bulan. CP tidak boleh usia &gt;65 tahun. PH &gt;Rp 1M tidak bisa dicover CP.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Upgrade Asuransi Kendaraan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Input dari:</b> Telesales, Halo BCA, CRM HaloLite, customer walk-in, maskapai</p>
+      <div class="flow-steps" style="margin-top:.6rem">
+        <div class="flow-step"><div class="num">1</div><p>Form Upgrade TTD Pemohon / CS / TL CS → lihat pertanggungan sekarang</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Jika TLO/all risk sisa 14 hari → wajib survei → form hasil survei</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Hitungan premi → kirim ke konsumen via email → konsumen bayar VA</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Dana masuk H+1 → create upgrade Financore (tidak bisa back date)</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Cek selisih → buat rekap → kirim FSM → order EXA</p></div>
+        <div class="flow-step"><div class="num">6</div><p>SOA feedback → polis H+3 dari order, sampai konsumen max H+14 dari bayar</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Klaim Asuransi CP (Life) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Jenis Klaim</h5>
+          <ul>
+            <li>Meninggal (sakit / kecelakaan)</li>
+            <li>Ketidakmampuan (cacat, sakit lumpuh, stroke)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Dokumen Klaim Meninggal</h5>
+          <ul>
+            <li>K1 (ahli waris), K2 (dokter)</li>
+            <li>Akta kematian, KTP pengaju/tertanggung, KK</li>
+            <li>Resume medis, Surat kepolisian/jasamarga/kronologis</li>
+            <li><b>Batas:</b> Maksimal 90 hari dari kematian</li>
+          </ul>
+        </div>
+      </div>
+      <h5 style="margin-top:.8rem">Flow Klaim CP:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Ahli waris ke CS → form pengajuan → kelengkapan dokumen → unit asuransi → register Ms.Access → loan ledger</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Surat pengantar TTD s.d DH AcM → docusign → kirim ke maskapai → investigasi 60 hari</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Jika setuju: maskapai minta perhitungan sisa PH + bunga (max 60 hari) → TTD s.d UH</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Kirim ke maskapai → maskapai bayar H+5 → cek Engine ET</p></div>
+      </div>
+      <div class="warn-box" style="margin-top:.7rem">
+        Selama 60 hari ahli waris wajib bayar pokok hutang. Admin fee &amp; penalti tidak dicover.<br>
+        <b>Klaim ditolak:</b> Telat lapor (&gt;90 hari), Waiting period, Penyakit tertentu (HIV).
+      </div>
+      <div class="note-box" style="margin-top:.5rem">
+        <b>Kewenangan Memo ET/Form Penutupan:</b> 0–30 jt: DH Pak Ika | 30–100 jt: DD Pak Frans | 100–200 jt: 1 BOD Pak Sugito | &gt;200 jt: 2 BOD (Pak Sugito &amp; Pak Roni)
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Klaim Asuransi Kendaraan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Parsial (All Risk)</h5>
+          <p>Ke maskapai langsung atau BCAF membantu. Mobil kembali ke konsumen.</p>
+        </div>
+        <div class="info-card">
+          <h5>TLO (Kehilangan / Kerusakan &gt;75% / CTL)</h5>
+          <p>Ke maskapai atau BCAF. Mobil "dibeli" maskapai → uang ke konsumen.</p>
+        </div>
+      </div>
+      <div class="danger-box" style="margin-top:.7rem">
+        <b>Klaim ditolak:</b> Telat lapor (max 5 hari), Polis TLO tapi rusak &lt;75%, Kehilangan karena penipuan/hipnotis/penggelapan (kemungkinan ditolak), Melanggar lalu lintas (tidak ada SIM, terobos lampu merah, rel kereta).
+      </div>
+      <div class="note-box" style="margin-top:.5rem">
+        <b>SLA:</b> 90 hari sejak lapor. Banjir: denda 10% nilai pertanggungan (risiko sendiri). TLP: pengganti 20% OTR awal. Pencairan maks 14 hari sejak BCAF kirim SPNP. Dana masuk BCAF dulu.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Refund Asuransi &amp; Endorse &amp; Rekonsiliasi <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>Syarat Refund Kendaraan:</h5>
+      <ul>
+        <li>Status Financore harus Close ET-released</li>
+        <li>&lt;Rp 25.000 tidak bisa diproses</li>
+        <li>Pengajuan max 3 bulan sebelum tenor asuransi berakhir</li>
+      </ul>
+      <div class="flow-steps" style="margin-top:.6rem">
+        <div class="flow-step"><div class="num">1</div><p>Cabang email → PIC kirim ke maskapai minta pembatalan → minta hitungan premi sisa</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Buat form pembatalan + memo refund (TTD s.d DD) → kirim ke maskapai → maskapai transfer maks H+5</p></div>
+        <div class="flow-step"><div class="num">3</div><p>PIC buat form transfer ke FSM (max jam 3 sore) → FSM transfer ke konsumen H+1 (maks 2 hari)</p></div>
+      </div>
+      <p style="margin:.5rem 0;font-size:.85rem">Yang dikembalikan: premi yang belum berjalan. Rekening untuk refund tidak harus BCA.</p>
+      <h5>Refund CP (5 Maskapai):</h5>
+      <p style="font-size:.84rem">Ciputra 30%, CHUB 8%, BCA Life 30%, Manulife 30%, TMLI 10%. SLA: 21 hari kalender / 14 hari kerja. Minimal: Rp 25.000.</p>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>Endorse</h5>
+          <ul>
+            <li><b>Berpremi:</b> Upgrade, perluasan</li>
+            <li><b>Nonpremi:</b> Revisi data konsumen/kendaraan</li>
+            <li>Data: Nopol, merk/tipe/tahun, warna, no mesin/rangka, jenis, kapasitas</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Rekonsiliasi</h5>
+          <ul>
+            <li>H+60 hari setelah order</li>
+            <li>Nilai premi mengikuti tabel rate OJK</li>
+            <li>SOA sebagai feedback order manual</li>
+            <li>CP yang bayar accounting</li>
+            <li>Pembayaran kendaraan H+7 sejak dapat kwitansi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 7: LEGAL ADMIN & FIDUSIA ===== -->
+<div id="legaladmin" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>📜 Pasca Realisasi — Resume, Legal Admin &amp; Fidusia Admin</h2>
+    <p>Proses fidusia management: resume AHU, legal admin (5 bagian), fidusia admin, sertifikat &amp; minuta</p>
+  </div>
+
+  <!-- RESUME -->
+  <div class="section-label">RESUME (Fidusia Management)</div>
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Resume AHU — Order &amp; Ketentuan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Tugas:</b> Meringkas profil konsumen perusahaan, Order AHU melalui Ditjen AHU, Meringkas profil perusahaan untuk validitas PT dan Signer kontrak. SLA H+1.</p>
+      <h5>Flow Order Resume AHU:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Beli voucher Simpadhu Rp 500.000/voucher (max 144). Ada voucher Rp 50K untuk update profil AHU terakhir. Yang bayar: konsumen lewat biaya lain-lain (fidusia bayar dulu, anggaran dari Finance).</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Bayar voucher via BNI Direct (3 user: Input–PIC, Approval–Bu Mira/UH, Release–Bu Ria/DH). Voucher belum bayar berlaku 7 hari, sudah bayar 60 hari. Jatah 140 voucher/hari, 5 voucher/sekali beli.</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Order resume AHU via aplikasi → input NPWP &amp; SIUP → cek Ditjen AHU → pilih profil lengkap → input voucher → cek akta → download &amp; upload resume AHU → request dokumen tambahan ke marketing.</p></div>
+        <div class="flow-step"><div class="num">4</div><p>4 Action: <b>Order AHU</b> (baru), <b>Internal</b> (pending/resume belum jadi–Pengajuan Ringkasan Anggaran Dasar), <b>Update</b> (ada update data), <b>Finish</b> (done).</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Masa berlaku resume BCAF:</b> 15 bulan (bisa untuk Repeat Order)
+      </div>
+      <h5>Pasal Penting Akta:</h5>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Pasal Utama</h5>
+          <ul>
+            <li><b>Pasal 1</b> — Nama &amp; kedudukan</li>
+            <li><b>Pasal 4</b> — Modal</li>
+            <li><b>Pasal 9</b> — RUPS</li>
+            <li><b>Pasal 11</b> — Masa jabatan direksi</li>
+            <li><b>Pasal 12</b> — Tugas &amp; wewenang direksi (signer dilihat dari sini)</li>
+            <li><b>Pasal 14</b> — Masa jabatan komisaris</li>
+            <li><b>Pasal 20</b> — Susunan pemegang saham &amp; pengurus</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Resume Non-AHU</h5>
+          <ul>
+            <li>Jenis: koperasi, yayasan, CV, persekutuan perdata, BBN (dari CS)</li>
+            <li>Kerjasama dengan UDS (Utama Dwidaya Solusindo) via Google Drive (INBOX/OUTBOX)</li>
+            <li>Feedback H+1</li>
+            <li>Biaya Rp 45.000/resume</li>
+            <li>Masa berlaku 15 bulan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGAL ADMIN -->
+  <div class="section-label" style="margin-top:1.5rem">LEGAL ADMIN (Fidusia Management)</div>
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Legal Admin — 5 Bagian (H+1 s.d H+5) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="note-box">H+5 dari realisasi sudah harus order ke notaris. Biaya revisi 1 kontrak Rp 50.000.</div>
+      <div class="info-grid" style="margin-top:.8rem">
+        <div class="info-card">
+          <h5>1. Reprint (H+1)</h5>
+          <ul>
+            <li>Print data kendaraan di Ikhtisar &amp; SKPB (mobil baru)</li>
+            <li>Ikhtisar: 2 rangkap untuk PT/SHF (1 CS, 1 Archive); perorangan 1 rangkap (Archive saja)</li>
+            <li>Cap tanggal realisasi di PPK, SKPB, SK Fidusia</li>
+            <li>Input no rekening (cara bayar) di ikhtisar</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>2. Checker (H+2)</h5>
+          <ul>
+            <li>Susun urutan set kontrak: PO → Ikhtisar → Tabel Angsuran → RIPLAY Personal → Pasal PPK → Lampiran → BAST → SP RIPLAY → SKPB → Fidusia</li>
+            <li>Cek nama/alamat konsumen (KTP, KTP pasangan, KK, data pengurus BU)</li>
+            <li>Cek data kendaraan</li>
+            <li>Cek kelengkapan: SKPB, SP RIPLAY, SK Fidusia</li>
+            <li>Pisahkan B2B dan non-B2B</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>3. Tera Materai (H+3)</h5>
+          <ul>
+            <li>Yang ditera: SK Fidusia (bagian TTD), PPK, SP Non-Refinancing, SKPB, SK Pendebetan Rekening</li>
+            <li>Mesin tera saldo Rp 200 jt/bulan (isi ulang saat sisa ~Rp 50 jt)</li>
+            <li>1 hari bisa habis Rp 8 jt</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>4. Renvoi (H+4)</h5>
+          <ul>
+            <li>Revisi data kendaraan &amp; data konsumen menggunakan mesin tik</li>
+            <li><b>4 jenis:</b> Coret (jika salah), Coret ganti, Sisip (tambahan info di tengah), Penambahan (info baru di akhir)</li>
+            <li>Keputusan renvoi oleh Bu Mira (UH)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>5. Scan (H+5)</h5>
+          <ul>
+            <li><b>Perorangan:</b> 5 halaman terdepan (PPK, Ikhtisar, Tabel Angsuran, RIPLAY Personal, Lampiran &amp; Pasal) kirim via WA</li>
+            <li><b>PT:</b> 6 halaman (SKPB ada 2 hal) kirim fisik</li>
+            <li><b>Aplikasi:</b> DMS dan PDP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIDUSIA ADMIN -->
+  <div class="section-label" style="margin-top:1.5rem">FIDUSIA ADMIN</div>
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Fidusia Admin — 3 Jenis Prepare &amp; PNBP <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>1. Manual (CV, PT, Pemohon Tunggal)</h5>
+          <ul>
+            <li>Bongkar dokumen fisik, fotokopi KTP</li>
+            <li>Cek data konsumen + TTD</li>
+            <li>Cek data kendaraan &amp; alamat</li>
+            <li>Order manual via Aplikasi Fidusia</li>
+            <li>Input H+5 hari kerja realisasi</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>2. B2B Perorangan / UMK3</h5>
+          <p style="font-size:.8rem;margin-bottom:.3rem">Cabang: Tangerang, KP, Karawang, Bogor, Depok, Mogot, Bekasi, WTC, Kelapa Gading</p>
+          <ul>
+            <li>SLA 1–2 menit</li>
+            <li>Prepare via Financore &amp; DMS</li>
+            <li>Tidak perlu fotokopi</li>
+            <li>Hanya kasih SK Fidusia ke notaris</li>
+            <li>Otomatis terorder dari sistem</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>3. Badan Usaha (Semua Cabang)</h5>
+          <ul>
+            <li>Cek TTD direktur/komisaris + cap</li>
+            <li>SK Fidusia vs NIB/SIUP</li>
+            <li>Cek SP Direktur &amp; Komisaris</li>
+            <li>Order manual</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>PNBP (Penerimaan Negara Bukan Pajak)</h5>
+          <ul>
+            <li>0–50 jt = Rp 50.000</li>
+            <li>50–100 jt = Rp 100.000</li>
+            <li>100–200 jt = Rp 200.000</li>
+            <li>200–500 jt = Rp 450.000</li>
+            <li>500 jt–1 M = Rp 850.000</li>
+            <li>&gt;1 M = Rp 1.800.000</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-grid" style="margin-top:.8rem">
+        <div class="info-card">
+          <h5>Sertifikat</h5>
+          <ul>
+            <li>Masa aging max 30 hari setelah realisasi</li>
+            <li>Biaya revisi &lt;30 hari dari tgl sertifikat: Rp 50.000</li>
+            <li>Biaya revisi &gt;30 hari: Rp 250.000</li>
+            <li>Revisi nilai PH: Rp 250.000</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Minuta</h5>
+          <p>Akta jaminan fidusia yang ditandatangani Kreditur &amp; Debitur untuk disimpan notaris. TTD bermaterai Rp 10.000. Waktu pengerjaan 2–3 hari dari penerimaan akta.</p>
+        </div>
+        <div class="info-card">
+          <h5>Adendum</h5>
+          <ul>
+            <li>BBN — ganti nama karena overkredit</li>
+            <li>Ubah Jaminan — gagal/cacat produk (ganti no rangka/mesin)</li>
+            <li>Harus selesai 30 hari</li>
+            <li>Biaya Rp 250.000</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 8: BPKB ADMIN, ARCHIVE, DOCUST ===== -->
+<div id="bpkb" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>🔑 Pasca Realisasi — BPKB Admin, Archive &amp; Document Custodian</h2>
+    <p>Pengelolaan BPKB, arsip dossier, dan keamanan dokumen berharga</p>
+  </div>
+
+  <!-- BPKB ADMIN -->
+  <div class="section-label">BPKB ADMIN</div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Cek Absah BPKB — Used Car <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Dokumen dari CMO</h5>
+          <ul>
+            <li>BPKB</li>
+            <li>APP ID</li>
+            <li>Faktur (mandatory)</li>
+            <li>NIK</li>
+            <li>Blanko Kuitansi (mandatory)</li>
+            <li>SP Hak (PT–mandatory)</li>
+            <li>Form A/B/C (CBU/Diplomatik)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Vendor &amp; Jadwal Batch</h5>
+          <p><b>Vendor:</b> Rudi Liwan &amp; Armando</p>
+          <ul>
+            <li><b>Batch I:</b> jam 09:30 (order dari 10:30–16:00 hari sebelumnya)</li>
+            <li><b>Batch II:</b> jam 10:30 (order dari pagi–10:00)</li>
+            <li><b>Batch II Akhir Bulan:</b> 11:00 (terima max 10:30)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Biaya &amp; Flow</h5>
+          <ul>
+            <li>Rp 105.000 (aplikasi) / Rp 115.000 (manual)</li>
+            <li>Jabodetabek gratis (biaya di muka)</li>
+            <li>Luar Jabo: Rp 500.000</li>
+          </ul>
+          <h5 style="margin-top:.5rem">Flow:</h5>
+          <ol style="padding-left:1.2rem;font-size:.83rem">
+            <li>Register Excel → Input APP ID di Aplikasi Absah</li>
+            <li>Cek data → pilih area → order → dapat tanda terima</li>
+            <li>Dapat Surat Polda/Absah dari biro jasa → BPKB langsung ke Docust</li>
+            <li>Input hasil Absah+Blokir+Invoice ke Aplikasi Absah → kabarin APP</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Cek Blokir BPKB <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Tujuan:</b> Hindari duplikasi BPKB &amp; pindah tangan → diblokir atas BCA Finance.</p>
+      <div class="flow-steps" style="margin-top:.5rem">
+        <div class="flow-step"><div class="num">1</div><p>Input no rangka di web Polda e-blokir → data keluar</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Cocokan dengan BPKB → simpan → download Surat Blokir (2 hari)</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Kirim ke Docust/Cabang via email → update nomor Blokir di Aplikasi</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Biaya blokir:</b> sama dengan absah (Rp 105K/115K). Cabut blokir yang sudah diblokir leasing lain: Rp 50.000.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      New Car — Follow Up Cover Note (CN) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Cover Note berisi:</b> Data Konsumen (nama a.n. BPKB, alamat), Data Kendaraan (merek, tipe, warna, no rangka, no mesin, jumlah unit, tahun).</p>
+      <p style="margin:.4rem 0"><b>Cabang Jabo yang dikelola:</b> WPI, Bogor, Depok, Bekasi, Mogot, MOI, WTC, Tangerang.</p>
+      <div class="info-grid" style="margin-top:.6rem">
+        <div class="info-card">
+          <h5>Timeline CN → BPKB</h5>
+          <ul>
+            <li>Simpan 90 hari</li>
+            <li>Follow up intens ab 60 hari</li>
+            <li>Order BPKB setelah 90 hari</li>
+            <li>Jika &gt;90 hari belum ada → SP ke dealer → kunjungan → somasi</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Yang Dicek &amp; Input Saat BPKB Jadi</h5>
+          <ul>
+            <li>Warna BPKB</li>
+            <li>BPKB date</li>
+            <li>Nopol</li>
+            <li>Nomor BPKB</li>
+            <li>Faktur</li>
+          </ul>
+          <p style="font-size:.83rem;margin-top:.3rem">H+2 dari cek/scan/input → diserahkan ke Docust (serah terima)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      STNK &amp; BBN (Balik Nama Kendaraan) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>PIC STNK:</b> STNK WPI (walk-in), STNK Titipan Luar Kota (plat B di luar kota), Ex BBN (terima BPKB setelah proses STNK), Memo (naikan memo pembayaran biro jasa ke Finance).</p>
+      <p style="margin:.4rem 0"><b>OTTPSB</b> (4 lembar): CS–Pink, BPKB Admin–Putih, Konsumen–Kuning, Biro Jasa–Hijau.</p>
+      <h5>Flow Balik Nama (BBN):</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Konsumen ke CS → CS kasih syarat &amp; dokumen</p></div>
+        <div class="flow-step"><div class="num">2</div><p>CS create di Financore &amp; request alokasi dana</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Proses ke BPKB Admin → cek butuh BPKB atau tidak → borrow ke Docust</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Gabung berkas → tanda terima ke biro jasa</p></div>
+        <div class="flow-step"><div class="num">5</div><p>STNK datang → update register &amp; endorse asuransi → bikin memo pembayaran</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Perpanjangan STNK:</b> Sama flow, tidak butuh BPKB fisik (hanya fotocopy dari DMS).<br>
+        <b>Balik nama wilayah sama pajak aktif:</b> tidak kena pajak lagi. <b>Beda wilayah:</b> kena pajak lagi.<br>
+        <b>PT:</b> perlu kop surat, STNK asli, NIB, NPWP, SK domisili.
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHIVE -->
+  <div class="section-label" style="margin-top:1.5rem">ARCHIVE MANAGEMENT</div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Archive Management — Alur &amp; SLA <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Fungsi:</b> Kelola dossier asli (AM01), dossier copy (AM02), sertifikat fidusia (AM04).<br>
+      <b>Partner:</b> MMI (Multifiling Mitra Indonesia) — diambil alih Iron Mountain.</p>
+      <h5>Alur Penyimpanan JABO:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>APP → Legal Admin → Legal Admin pisah dossier asli &amp; copy</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Dossier copy langsung ke Archive</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Dossier asli: reprint + tera materai + scan (H+7) → upload DMS (H+10)</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Dossier asli ke fidusia → order notaris → serah terima dari fidusia</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Masuk Archive → registrasi → masa retensi 10 tahun</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>SLA:</b> Dari realisasi sampai upload DMS 5 hari. Receive dokumen H+10 dari realisasi. Sampling 10% setiap kali masuk box.
+      </div>
+      <div class="info-grid" style="margin-top:.8rem">
+        <div class="info-card">
+          <h5>Retrieve (Peminjaman)</h5>
+          <ul>
+            <li>By email (scan–4 jam)</li>
+            <li>Fisik H+1 normal / H+4 emergency (5x harga) / H+1 box</li>
+            <li>Retrieve box</li>
+            <li>Fisik max 7 hari tanpa memo</li>
+            <li>Dengan memo sesuai memo (max 6 bulan dengan TTD BOD)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Insertion (Penyisipan)</h5>
+          <p>Rp 3.900/account. Kasus: pengkinian data, adendum, overkredit, ubah cara bayar, BBN, dokumen susulan realisasi.</p>
+        </div>
+        <div class="info-card">
+          <h5>Destroy</h5>
+          <ul>
+            <li>Masa retensi per box = tenor terlama + 10 tahun</li>
+            <li>Metode: mesin cacah, pulping (bubur kertas), bakar</li>
+            <li>Pisahkan dokumen WO sebelum destroy</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Biaya Penyimpanan MMI</h5>
+          <ul>
+            <li>Rp 5.050/bulan/box</li>
+            <li>Scan Gray Scale: Rp 680 (dossier copy)</li>
+            <li>Scan BW: Rp 630 (dossier asli &amp; sertifikat fidusia)</li>
+            <li>Stock opname: 3% dari keseluruhan box, 2x setahun (Cikarang 1x/tahun)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT CUSTODIAN -->
+  <div class="section-label" style="margin-top:1.5rem">DOCUMENT CUSTODIAN (DOCUST)</div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Docust — Receive, Borrow, Return, Release BPKB <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>Mengelola:</b> BPKB, Surat Blokir, Polis Asuransi (self cover &amp; cover mundur), Dokumen leasing/SGU (Faktur, Invoice, Hak Opsi), CD Archive Management. BPKB dilengkapi asuransi in-transit.</p>
+      <p><b>Kluis:</b> Ruangan baja anti api. <b>Brankas:</b> Lemari anti api.</p>
+      <h5 style="margin-top:.7rem">Receive BPKB Baru:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>APP serahkan CN bersama dokumen → input di Financore</p></div>
+        <div class="flow-step"><div class="num">2</div><p>BPKB jadi: biro jasa ambil dari dealer → cek data (CN vs Financore) → input Financore</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Max H+2 setelah penerimaan dari dealer → serahkan ke Docust → status "In Progress"</p></div>
+        <div class="flow-step"><div class="num">4</div><p>PIC Tag BPKB/RFID (nomor laci, norek nopin) → PIC Kluis simpan (urutan berdasar nomor kontrak)</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.6rem">Tag BPKB max 350. SLA H+1.</div>
+
+      <h5>Receive BPKB Bekas:</h5>
+      <p style="font-size:.85rem">Manual (Jabo SHF): BPKB diterima dari marketing → surat pengantar biro jasa → BPKB discan sebelum dikirim → absah &amp; blokir → BPKB dikembalikan → simpan sampai realisasi → input tanggal realisasi, no invoice, no faktur, expired STNK → serahkan Docust max 2 hari setelah realisasi.</p>
+
+      <h5>SLA Borrow:</h5>
+      <div class="tbl-wrap">
+        <table class="limit-table">
+          <thead><tr><th>Keperluan</th><th>SLA</th></tr></thead>
+          <tbody>
+            <tr><td>BBN</td><td>2 bulan</td></tr>
+            <tr><td>Asuransi klaim TLO</td><td>3 bulan</td></tr>
+            <tr><td>Asuransi klaim biasa</td><td>1 bulan</td></tr>
+            <tr><td>PPJGR</td><td>3 bulan</td></tr>
+            <tr><td>Konfirmasi STNK/BPKB</td><td>1 bulan</td></tr>
+            <tr><td>Mutasi</td><td>3 bulan</td></tr>
+            <tr><td>Reservasi dalam kota</td><td>15 hari</td></tr>
+            <tr><td>Reservasi luar kota</td><td>1 bulan</td></tr>
+            <tr><td>Lelang</td><td>3 bulan</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h5 style="margin-top:.8rem">Release BPKB:</h5>
+      <ul>
+        <li>Pastikan status Financore sudah Close, lunas + denda sudah dibayar</li>
+        <li>Konsumen reservasi BPKB. Docust tarik report H+1 untuk pengambilan</li>
+        <li>Konfirmasi ke konsumen H-1. Kesempatan ambil BPKB: 15 hari (WPI), 20 hari (luar kota)</li>
+        <li>Buyback ke BCA (JF) hanya tanggal 10 tiap bulan (khusus ET)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Dual Custody, Dual Control &amp; Stock Opname Docust <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Dual Custody</h5>
+          <p>Kombinasi angka + anak kunci (alat) untuk brankas/kluis.</p>
+        </div>
+        <div class="info-card">
+          <h5>Dual Control</h5>
+          <p>Pejabat (kombinasi) dan staf (anak kunci) harus berbeda orang. Di KP: staf kluis pegang anak kunci, pejabat pegang kombinasi. Cadangan di amplop berbeda orang. Jika resign → reset via vendor + memo berita acara.</p>
+        </div>
+        <div class="info-card">
+          <h5>Stock Opname Docust</h5>
+          <ul>
+            <li>1x per semester</li>
+            <li><b>Semester 1</b> (Jan–Jun): detail s.d kelengkapan (Ms.Access)</li>
+            <li><b>Semester 2</b> (Jul–Des): cek fisik (RFID-KP / barcode-cabang)</li>
+            <li>Jika pejabat resign → wajib stock opname</li>
+            <li>Laporan TTD s.d DD National Operation (Pak Frans)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 9: CS FRONT ===== -->
+<div id="csfront" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>🏪 DCRM — Customer Service Front</h2>
+    <p>Layanan tatap muka konsumen: ET, BBN, BPKB, asuransi, kelebihan dana, WAIVE</p>
+  </div>
+
+  <div class="note-box" style="margin-bottom:1rem">
+    <b>Global Process CS Front:</b> Security → antrian Qmatic → CS panggil → sapa &amp; tanya kebutuhan → klik add service Qmatic → verifikasi data (KTP asli) → proses → selesai → panggil konsumen berikutnya.<br>
+    (Jika bisa digital: arahkan ke counter ASTARI — digital masuk front = kelalaian security)
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Layanan CS Front (9 Jenis) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <ol style="padding-left:1.3rem">
+        <li>ET Walk In (untuk Lansia, Disabilitas, Rekanan Showroom, BCA Prioritas &amp; Soliter)</li>
+        <li>Bea Balik Nama (BBN) + Perpanjangan STNK</li>
+        <li>SKPS (Surat Keterangan Perpanjangan STNK)</li>
+        <li>Pengambilan BPKB non-reservasi (Lansia, Disabilitas, Rekanan Showroom, BCA Prioritas &amp; Soliter)</li>
+        <li>Asuransi (Klaim kendaraan, jiwa, refund, upgrade)</li>
+        <li>Permohonan Perbaikan Status Kolektibilitas</li>
+        <li>Permohonan Pengembalian Kelebihan Dana</li>
+        <li>WAIVE (biaya titip BPKB dan denda)</li>
+        <li>Pengecekan Jadwal dan Total Angsuran</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow ET Walk In (9 Langkah) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>CS minta dokumen kontrak / cek ikhtisar ada penalty tidak (yang penting hafal no plat)</p></div>
+        <div class="flow-step"><div class="num">2</div><p>CS cek data di Financore (angsuran berjalan)</p></div>
+        <div class="flow-step"><div class="num">3</div><p>CS konfirmasi nama debitur, jenis mobil, warna</p></div>
+        <div class="flow-step"><div class="num">4</div><p>CS tanya kapan akan pelunasan</p></div>
+        <div class="flow-step"><div class="num">5</div><p>CS minta KTP asli debitur</p></div>
+        <div class="flow-step"><div class="num">6</div><p>CS print lembar detail ET dari Aplikasi Gabungan Engine ET → TTD TL Front</p></div>
+        <div class="flow-step"><div class="num">7</div><p>CS informasikan: pelunasan sebelum jam 12 siang, reservasi BPKB, ambil BPKB 2 hari kerja (WPI) / 3–4 hari (cabang)</p></div>
+        <div class="flow-step"><div class="num">8</div><p>Konsumen diarahkan bayar via VA</p></div>
+        <div class="flow-step"><div class="num">9</div><p>Konsumen kembali, tunjukkan bukti bayar → CS close di Financore</p></div>
+      </div>
+      <div class="warn-box" style="margin-top:.7rem">
+        <b>Mengapa jam 12?</b> Lewat jam 12 tidak bisa diclose secara sistem. JF buyback ditolak secara sistem.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow BBN + Perpanjangan STNK <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Konsumen datang</p></div>
+        <div class="flow-step"><div class="num">2</div><p>CS konfirmasi lokasi balik nama</p></div>
+        <div class="flow-step"><div class="num">3</div><p>CS periksa dokumen: KTP, KK, gesek rangka mesin dari samsat, surat kuasa BCAF (dikosongin → diisi biro jasa), PPKD, surat persetujuan pemutihan</p></div>
+        <div class="flow-step"><div class="num">4</div><p>CS infokan biaya materai untuk surat pengantar perpanjangan STNK</p></div>
+        <div class="flow-step"><div class="num">5</div><p>CS fotocopy dokumen</p></div>
+        <div class="flow-step"><div class="num">6</div><p>CS input transaksi di QMATIC</p></div>
+        <div class="flow-step"><div class="num">7</div><p>CS buat no VA pembayaran</p></div>
+        <div class="flow-step"><div class="num">8</div><p>CS cetak form dan VA</p></div>
+        <div class="flow-step"><div class="num">9</div><p>Setelah dibayar: foto bukti bayar → buatkan OTTPSB (slip kuning)</p></div>
+        <div class="flow-step"><div class="num">10</div><p>Slip kuning ke konsumen (digunakan untuk ambil STNK)</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        Balik nama wilayah sama pajak aktif: tidak kena pajak lagi. Beda wilayah: kena pajak lagi.<br>
+        PT: perlu kop surat, STNK asli, NIB, NPWP, SK domisili.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow Pengambilan BPKB <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Konsumen datang → CS minta nopol</p></div>
+        <div class="flow-step"><div class="num">2</div><p>CS konfirmasi nama dan unit</p></div>
+        <div class="flow-step"><div class="num">3</div><p>CS minta KTP asli</p></div>
+        <div class="flow-step"><div class="num">4</div><p>CS konfirmasi angsuran sudah selesai</p></div>
+        <div class="flow-step"><div class="num">5</div><p>CS tanya kisaran angsuran/bulan ke konsumen (konfirmasi informal)</p></div>
+        <div class="flow-step"><div class="num">6</div><p>CS buat PPDJ (Permohonan Pengambilan Dokumen Jaminan)</p></div>
+        <div class="flow-step"><div class="num">7</div><p>Konsumen TTD PPDJ</p></div>
+        <div class="flow-step"><div class="num">8</div><p>CS fotocopy KTP, validasi dengan KTP reader</p></div>
+        <div class="flow-step"><div class="num">9</div><p>Jika tidak terbaca: minta SIM asli + foto konsumen pegang KTP &amp; SIM (gaya foto pinjol)</p></div>
+        <div class="flow-step"><div class="num">10</div><p>CS arahkan ke counter Docust (no 21–22)</p></div>
+      </div>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>Jika Dikuasakan</h5>
+          <ul>
+            <li>Surat kuasa bermaterai + KTP asli pemberi &amp; penerima</li>
+            <li>CS back konfirmasi</li>
+            <li>TTD PPDJ 2 lembar (kuning &amp; putih)</li>
+            <li>Foto bukti pelunasan</li>
+            <li>Screenshot KTP reader → word → print</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Jika Ahli Waris</h5>
+          <ul>
+            <li>Semua KTP ahli waris</li>
+            <li>Akta kematian, buku nikah debitur</li>
+            <li>Surat pernyataan ahli waris, KK</li>
+            <li>Surat kuasa (jika ahli waris tidak semua datang)</li>
+            <li>Akta lahir (usia &lt;21 tahun)</li>
+            <li>Surat pengadilan wali (jika anak-anak tanpa ortu)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow Kelebihan Dana &amp; WAIVE <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>Jenis Kelebihan Dana:</h5>
+      <p style="font-size:.85rem">CP, kelebihan dana ET, kelebihan auto debet, kelebihan BBN-STNK.</p>
+      <h5 style="margin-top:.5rem">Flow Kelebihan Dana:</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>CS tanya plat → konfirmasi nama debitur → cek Financore pembayaran terakhir</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Minta bukti bayar → print PPKD (Permohonan Penyelesaian Kelebihan Dana)</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Konsumen TTD → lampirkan bukti bayar + FC KTP + FC KK → proses</p></div>
+      </div>
+      <h5 style="margin-top:.7rem">WAIVE (Biaya Titip BPKB &amp; Denda):</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>CS berikan rumus perhitungan biaya (nama &amp; nomor kontrak)</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Jika keberatan → ajukan WAIVE</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Data disajikan ke atasan sesuai limit kewenangan</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Atasan TTD dan tentukan % potongan</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        Reservasi BPKB langsung ke kantor → diarahkan ke AVA counter. WPI yang sudah reservasi → langsung ke counter reservasi. Semua pengambilan BPKB wajib reservasi (kecuali ahli waris dan showroom used car).
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 10: CS BACK + PENGIRIMAN KONTRAK ===== -->
+<div id="csback" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>📧 DCRM — CS Back &amp; Pengiriman Kontrak</h2>
+    <p>Layanan digital: Halo BCA, email, WA Astari — ET, BPKB, CRM, pengiriman kontrak</p>
+  </div>
+
+  <div class="note-box" style="margin-bottom:1rem">
+    <b>CS Back — Input:</b> Halo BCA (CRM Halo Lite), Email BCAF, WA Astari.<br>
+    Webchat BCAF transisi ke Astari. Email dolphin ada automasi → bucket team leader → PIC.
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      5 PIC CS Back <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>1. PIC Early Termination (ET)</h5>
+          <p>Konsumen order ET via Halo BCA/email/WA Astari. PIC tarik data → regis excel → proses simulasi ET (Engine ET) → kirim hitungan ET, no VA, syarat pengambilan BPKB → konsumen bayar sebelum jam 12 siang.</p>
+        </div>
+        <div class="info-card">
+          <h5>2. PIC Order BPKB Badan Usaha WPI</h5>
+          <p>Mengelola order BPKB khusus badan usaha yang berada di wilayah WPI.</p>
+        </div>
+        <div class="info-card">
+          <h5>3. PIC Order BPKB Perorangan (WPI &amp; Non WPI) &amp; BU (Non WPI)</h5>
+          <ul>
+            <li>Konsumen order melalui Halo BCA</li>
+            <li>PIC tarik data dari Halo BCA ke excel</li>
+            <li>Regis: cabang, ambil sendiri/dikuasakan, kapan &amp; dimana ambil, nomor kontrak</li>
+            <li>Jika Jabo: kirim ke Docust. Non Jabo: kirim ke cabang via email</li>
+            <li>Rekapan batch 1: jam 10.30 / Batch 2: jam 13.30</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>4. PIC CRM</h5>
+          <p>Layanan selain 3 PIC di atas. Per Juni 2023 belum ada PIC tetap, tugasnya ke PIC lain.</p>
+        </div>
+        <div class="info-card">
+          <h5>5. Admin CS Back</h5>
+          <ul>
+            <li>Konfirmasi BPKB yang dikuasakan</li>
+            <li>Konfirmasi BPKB Forklift</li>
+            <li>Konfirm BPKB luar negeri (vidcall WA: ke LN mana, berangkat kapan, tujuan ngapain)</li>
+            <li>Konfirm SKL yang dikuasakan</li>
+            <li>Konfirm STNK yang dikuasakan (lembar kuning hilang)</li>
+            <li>Sigma: umum 5 spesifik 2 | Non-Sigma: umum 7 spesifik 3</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      CS Pengiriman Kontrak — 3 Macam <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>1. Pengiriman Fisik</h5>
+          <p>Untuk: PT, CV, SHF. Dikirimkan secara fisik ke konsumen atau kantor.</p>
+        </div>
+        <div class="info-card">
+          <h5>2. Pengiriman Digital via WA Astari (Perorangan)</h5>
+          <ul>
+            <li>H+15 realisasi</li>
+            <li>Gagal kirim → otomatis H+7 kirim lagi (kalender)</li>
+            <li>Jika tetap gagal → email</li>
+            <li>Flow: DMS → scan dari legal admin → kirim by sistem</li>
+            <li>Parameter QQC: Identitas (tanggal, identitas konsumen), Legalitas (paraf, TTD), Kerapihan &amp; Kelengkapan</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>3. Return dari Pengiriman Fisik</h5>
+          <p>Penanganan kontrak yang dikembalikan (alamat salah, konsumen tidak ada, dll).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 11: CT, CC, CS DIGITAL, AVA ===== -->
+<div id="ctcc" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>💰 Customer Transaction, Customer Care &amp; CS Digital</h2>
+    <p>Kasir, reversal, klaim kolektibilitas, APPK OJK, AVA, dan email website</p>
+  </div>
+
+  <div class="section-label">CUSTOMER TRANSACTION (Kasir)</div>
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Customer Transaction — Cashless, Reversal, MIS/MIT <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Metode Pembayaran (per 2023: cashless)</h5>
+          <ul>
+            <li>Autodebet, Klik BCA, m-BCA</li>
+            <li>Tokopedia, Blibli, OVO</li>
+            <li>VA BCA, Debet card (walk-in)</li>
+            <li><b>Cash:</b> hanya dari internal (marketing, materai tera, cek absah) atau badan usaha (SKL)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Catatan Penting</h5>
+          <ul>
+            <li>Sejak 2023: konsumen dalam penanganan collection → diarahkan ke collection → bayar via VA MAS (Mobile Account Solution)</li>
+            <li>Uang palsu: dilarang sebut uang palsu → tanya konsumen apakah ada uang lain</li>
+            <li>PDC: giro BCA (tidak bisa tunai, beda dengan cek)</li>
+            <li>Cashless otomatis masuk sistem H+1</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Reversal</h5>
+          <p>Revisi di Financore. Contoh: staff CT salah input nominal/metode bayar → reversal saat konsumen masih ada. Ada juga pengembalian dana ke FSM. Reversal antar unit kerja wajib sepengetahuan pejabat unit terkait.</p>
+        </div>
+        <div class="info-card">
+          <h5>MIS / MIT &amp; Pick Up Service</h5>
+          <ul>
+            <li><b>MIS</b> (Money in Save): uang di brankas CT</li>
+            <li><b>MIT</b> (Money in Transit): uang dikirim ke cabang BCA terdekat (berbeda gedung termasuk MIT)</li>
+            <li>Pick up service dikelola unit CT KP. Yang kerjasama dengan vendor adalah BCA (bukan BCAF)</li>
+            <li>Limit asuransi MIS &amp; MIT berkaitan dengan premi ke maskapai. Overlimit harus berita acara</li>
+            <li>Review limit sebelum 16 Agustus. Maskapai: BCA Insurance. Premi per tahun</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:1.5rem">CUSTOMER CARE</div>
+  <p style="font-size:.87rem;color:var(--gray-text);margin-bottom:.8rem"><b>PIC:</b> KP = UH CS | Cabang = BOH (Branch Operation Head). Layering kedua setelah CS.</p>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      A. Permohonan Perbaikan Kolektibilitas (19 Langkah) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Check email → register</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Serahkan ke PIC → admin tanya ke credset &amp; accounting</p></div>
+        <div class="flow-step"><div class="num">3</div><p>PIC data dari FSM (sisa kewajiban) → cek aplikasi WO Settlement</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Minta form BAST / SP / SPT / SPHL / SPPI</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Hitungan: Total pelunasan - hasil lelang + biaya lelang + bunga berjalan = Total outstanding</p></div>
+        <div class="flow-step"><div class="num">6</div><p>IOM gabungan (TTD UH, DH DCRM, DH FSM, DD Operation, DD FA, 3 BOD)</p></div>
+        <div class="flow-step"><div class="num">7</div><p>Surat tanggapan → review legal (di luar lelang) → kirim ke konsumen</p></div>
+        <div class="flow-step"><div class="num">8</div><p>Admin register &amp; rekap &amp; berita acara</p></div>
+        <div class="flow-step"><div class="num">9</div><p>Konsumen bayar, kirim bukti bayar → PIC cek verifikasi dana</p></div>
+        <div class="flow-step"><div class="num">10</div><p>Buat surat keterangan tidak ada kewajiban → surat pernyataan penyelesaian (status SLIK hapus buku, hapus tagih: tambah surat pernyataan ikat baik)</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Kebijakan:</b> Denda dipotong 50% pada permohonan kolektibilitas pertama kali (hanya untuk jual lelang).
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      B. Monitoring BPKB Hilang &amp; Berita Negatif <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Monitoring BPKB Hilang</h5>
+          <ol style="padding-left:1.2rem;font-size:.84rem">
+            <li>Check iklan baris di koran/media online</li>
+            <li>Cek NOPOL di aplikasi PCC</li>
+            <li>Ada/tidak tetap input</li>
+            <li>Cek Financore (cabang, status BPKB)</li>
+            <li>Koordinasi ke unit terkait</li>
+          </ol>
+        </div>
+        <div class="info-card">
+          <h5>Monitoring Berita Negatif</h5>
+          <ol style="padding-left:1.2rem;font-size:.84rem">
+            <li>Check berita/media massa terkait BCAF</li>
+            <li>Screenshot &amp; kliping</li>
+            <li>Diserahkan ke PIC</li>
+            <li>Selesaikan via telepon/surat tanggapan/hak jawab media</li>
+          </ol>
+          <p style="font-size:.82rem;margin-top:.4rem"><b>Contoh:</b> kehilangan BPKB di media, tagline clickbait BCAF, permasalahan penanganan kendaraan.</p>
+        </div>
+        <div class="info-card">
+          <h5>Permohonan Kuasa Hukum/Ormas</h5>
+          <ol style="padding-left:1.2rem;font-size:.84rem">
+            <li>Cabang kirim ke admin CC</li>
+            <li>Konfirm ke ASR untuk kronologis + dokumen (BAST, SP, SPT, SPPI)</li>
+            <li>Jika lengkap buat surat tanggapan</li>
+            <li>Kirim ke alamat ormas &amp; kuasa hukum</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      APPK OJK (Aplikasi Portal Perlindungan Konsumen) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>Terima keluhan di APPK</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Cek kelengkapan: KTP, surat pengaduan, dokumen pendukung → input di PCC</p></div>
+        <div class="flow-step"><div class="num">3</div><p>CC hubungi unit terkait → muat jawaban di APPK</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Jika konsumen sepakat: selesai</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Jika tidak: fasilitasi melalui LAPS (Lembaga Alternatif Penyelesaian Sengketa)</p></div>
+      </div>
+      <div class="warn-box" style="margin-top:.7rem">
+        LAPS berbayar jika sengketa &gt;Rp 250 juta.<br>
+        <b>SLKPK:</b> Keluhan tertulis max 18 hari kerja. Keluhan tidak tertulis max 3 hari.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:1.5rem">CS DIGITAL &amp; AVA</div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      CS Digital — Email, Website, &amp; AVA <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Email (customercarebcaf@bcaf.id)</h5>
+          <ul>
+            <li>Reservasi BPKB PT, pengajuan ET, info angsuran, denda</li>
+            <li>ET via email: konsumen email → PIC cek → jika cuma info/tanya-tanya → arahkan ke FINA/Halo BCA. Jika sudah lengkap (nama, NOPOL, dok) → PIC kirim konfirmasi data → jika valid → kirim hitungan ET, VA, syarat ambil BPKB → konsumen bayar + kirim bukti bayar sebelum jam 12 siang</li>
+            <li>Reservasi BPKB PT via email: email ke BCAF → PIC cek kelengkapan → serahkan ke CS Back konfirmasi → CS Back infokan docust/cabang → jika email &lt;jam 1 bisa ambil besok, &gt;jam 1 bisa ambil lusa</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Website (Kontak Kami)</h5>
+          <ul>
+            <li>Tarikan batch jam 9 dan jam 2 (pakai aplikasi laporan kontak kami)</li>
+            <li>Otomatis excel → PIC kirim ke masing-masing bagian</li>
+            <li>Pengajuan kredit → telesales</li>
+            <li>Solusi kredit → analis cyber</li>
+            <li>Layanan/keluhan → PIC</li>
+            <li>Jawaban via telepon</li>
+            <li>SLA: penarikan hari ini selesai hari yang sama. Report max jam 17:15</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>AVA (Astari Virtual Assistant)</h5>
+          <p>Perbandingan layanan:</p>
+          <ul>
+            <li><b>CALL Halo BCA</b>: hanya info, tidak proses</li>
+            <li><b>VIDCALL AVA</b>: info + proses</li>
+            <li><b>WALK IN</b>: semua proses</li>
+          </ul>
+          <h5 style="margin-top:.5rem">Layanan AVA:</h5>
+          <ul>
+            <li>Reservasi BPKB</li>
+            <li>Pelunasan Dipercepat (ET)</li>
+            <li>Informasi Angsuran</li>
+            <li>Simulasi Pengurusan STNK</li>
+            <li>Surat Keterangan PPJ STNK</li>
+            <li>Pengkinian Data</li>
+            <li>Klaim Asuransi</li>
+            <li>Upgrade Asuransi</li>
+            <li>Informasi Seputar BCAF</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Alur AVA &amp; FINA</h5>
+          <p style="font-size:.84rem">Konsumen walk-in → security arahkan ke AVA → satpam bantu konsumen gunakan media online → CS tangani (tanya NOPOL, identitas, kebutuhan) → proses selesai.</p>
+          <p style="font-size:.84rem;margin-top:.4rem"><b>FINA &amp; Google Review:</b> Balas review Google, report ke Bu Vero tiap awal minggu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 12: OQA, OA, OSD ===== -->
+<div id="osd" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>⚙️ Operation Support — OQA, OA &amp; OSD</h2>
+    <p>Audit internal, operasional area, dan pengembangan layanan direktorat operation</p>
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      OQA (Operation Quality Assurance) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p>Cabang kelas A–C. Passive Checklist: Observasi CCTV. PUT (Process Understanding Test): Menguji pengetahuan staf atas prosedur kerja unit kerja secara umum.</p>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>Checklist Proses</h5>
+          <p>Apakah cabang memahami proses, melakukan administrasi, monitoring &amp; kontrol tiap unit kerja operasional.</p>
+        </div>
+        <div class="info-card">
+          <h5>Checklist Kebijakan</h5>
+          <p>Apakah cabang melakukan administrasi &amp; update kebijakan baru, memahami isi kebijakan, melaksanakan isi kebijakan.</p>
+        </div>
+        <div class="info-card">
+          <h5>Checklist Umum</h5>
+          <p>Apakah cabang melakukan penilaian insentif operation sesuai manajemen, menjalankan operasional sesuai kewenangan, keselarasan antar divisi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      OA (Operation Area) — 2 Wilayah <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p><b>OA 1:</b> Non Jawa &nbsp;|&nbsp; <b>OA 2:</b> Jawa</p>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card">
+          <h5>Jobdesk OA</h5>
+          <ul>
+            <li>Branch Operational Risk Control (BORC)</li>
+            <li>Pemenuhan kebutuhan Pejabat &amp; Staff di Cabang</li>
+            <li>Coaching &amp; Counseling BOH</li>
+            <li>Koordinasi Kebutuhan Cabang</li>
+            <li>Fasilitator Cabang–KP</li>
+            <li>Insentif OB/Messenger</li>
+            <li>Insentif Karyawan Mitra Cabang &amp; KP</li>
+            <li>Perhitungan KPI Cabang</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Admin OA</h5>
+          <ul>
+            <li>Reimburse biaya kebutuhan cabang (diteruskan ke GS)</li>
+            <li>Reimburse Entertain Biro Jasa &amp; biaya mobil operasional BOH</li>
+            <li>Penerusan memo pengajuan approval ke KP (contoh: WAIVE)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Area Specialist</h5>
+          <ul>
+            <li>BORC cabang kelas D</li>
+            <li>Backup checklist kelas A–C</li>
+            <li>Backup BOH kelas A–C</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Area Multitasking</h5>
+          <ul>
+            <li>Langsung di bawah DD</li>
+            <li>Bisa menggantikan semua lini operation</li>
+            <li>Backup BOH kelas D</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      OSD (Operation Support &amp; Development) — IOM &amp; Fungsi <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>IOM Kebijakan:</h5>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>IOM 012/OPS-OSD-I/IX/2023</h5>
+          <p>Fungsi back-up staff S2P admin oleh MR. Admin S2P cuti → MR yang jalankan.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 187-2022</h5>
+          <p>MR terima scan dokumen realisasi, CN/BPKB diserahkan ke cabang induk.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 189-2022</h5>
+          <p>Pemegang utama kombinasi dan anak kunci S2P Admin. Cadangan kombinasi: BOH. Cadangan anak kunci: MR.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 10/OPS-OSD-I/VIII/2023</h5>
+          <p>Kewenangan penggunaan angka kombinasi &amp; anak kunci brankas ACM.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 07/OPS-OSD I/III/2023</h5>
+          <p>Pemeriksaan kesesuaian data BPKB.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 06/OPS-OSD-I/II/2023</h5>
+          <p>Pola penilaian performa Direktorat Operation.</p>
+        </div>
+      </div>
+
+      <h5 style="margin-top:1rem">IOM Non-Kebijakan:</h5>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>IOM 061/2023</h5>
+          <p>Gift Survei Online: saldo GoPay Rp 30.000 untuk indeks kepuasan pasca realisasi.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 058/2023</h5>
+          <p>Service Level Scan &amp; Upload Dossier Asli: Cabang +3 HK, KP &amp; Surabaya +6 HK dari tanggal realisasi.</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 049/2023</h5>
+          <p>Implementasi RPA (Robotic Process Automation) — berjalan di: Received PPK (Archive Management), Received BPKB (Docust), Borrow BPKB (Docust).</p>
+        </div>
+        <div class="info-card">
+          <h5>IOM 044/2023</h5>
+          <p>Kuota Cek Absah Blokir Showroom Pilihan (200 top showroom rekanan BCAF). Jika cek absah &amp; blokir belum keluar tapi sudah cek asset registry → bisa percepatan dengan BBG.</p>
+        </div>
+      </div>
+
+      <h5 style="margin-top:1rem">4 Fungsi OSD:</h5>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>1. Service &amp; Development</h5>
+          <p>Efisiensi proses kerja, pengerjaan project.</p>
+        </div>
+        <div class="info-card">
+          <h5>2. Data Support</h5>
+          <p>Service Level, BPKB, Exception Report, CN Overdue.</p>
+        </div>
+        <div class="info-card">
+          <h5>3. People</h5>
+          <p>Test Pejabat, Test PPK.</p>
+        </div>
+        <div class="info-card">
+          <h5>4. Others</h5>
+          <p>Performance Management, Pengelolaan Outsource, CSI, RKA &amp; Budget, KPI Directorate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 13: CREDIT SETTLEMENT ===== -->
+<div id="credset" class="section-alt">
+<div class="section">
+  <div class="st">
+    <h2>🔨 Credit Settlement</h2>
+    <p>Penanganan kendaraan tarikan — dari ASR ke taksasi lelang</p>
+  </div>
+
+  <div class="note-box" style="margin-bottom:1rem">
+    <b>Overview:</b> Dibagi 2 area, tiap area ada 2 sub kerja: Taksasi + Data Support.<br>
+    <b>Hubungan dengan ASR:</b> Unit ditarik ASR hari ke-16 masuk ke Credit Settlement.
+  </div>
+
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Alur Credit Settlement (Lengkap) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>ASR tarik unit dari konsumen (karena kredit macet/NPL)</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Hari ke-16 unit masuk ke Credit Settlement (Credset)</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Credset cek kondisi unit. Jika rusak → ajukan klaim asuransi kendaraan. Jika oke → lanjut ke taksasi.</p></div>
+        <div class="flow-step"><div class="num">4</div><p><b>TAKSASI:</b> Buat memo persetujuan lelang ke BOD. Isi memo: NOPOL, tipe, tahun, warna, harga limit.</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Distribusi ke balai lelang → BOD approve</p></div>
+        <div class="flow-step"><div class="num">6</div><p>Jika tidak terjual → review harga lagi → kirim ke balai lelang lagi</p></div>
+        <div class="flow-step"><div class="num">7</div><p>Jika terjual → masuk Data Support (input harga jual, biaya lelang, order BPKB ke Docust)</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Data Support (After Lelang) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p>H+1 balai lelang kirim hasil lelang</p></div>
+        <div class="flow-step"><div class="num">2</div><p>Unit belum laku → penyesuaian harga untuk event selanjutnya</p></div>
+        <div class="flow-step"><div class="num">3</div><p>Kondisi unit: tidak semua BPKB ada di Jakarta</p></div>
+        <div class="flow-step"><div class="num">4</div><p>Memo kirim dokumen ketika BPKB di luar kota lelang</p></div>
+        <div class="flow-step"><div class="num">5</div><p>Pengiriman BPKB: Senin, Rabu, Jumat</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Penentuan Balai Lelang:</b> Coverage area &amp; kemampuan balai menjual.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Hubungan Operation–Credset &amp; Keterkaitan Kolektibilitas <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Hubungan Operation &amp; Credset</h5>
+          <ul>
+            <li><b>Asuransi:</b> Klaim kendaraan jika unit rusak saat ditarik</li>
+            <li><b>Docust:</b> Order BPKB untuk proses lelang &amp; setelah laku</li>
+            <li><b>BOH (Branch Operation Head):</b> Koordinasi penanganan di cabang</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Keterkaitan dengan Permohonan Kolektibilitas</h5>
+          <ul>
+            <li>Hitungan: Total pelunasan - hasil lelang + biaya lelang + bunga berjalan = Total outstanding kewajiban konsumen</li>
+            <li>Denda dipotong 50% pada permohonan kolektibilitas pertama (hanya untuk jual lelang)</li>
+            <li>Jika ada kelebihan hasil lelang melebihi kewajiban → konsumen berhak dapat SKL</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:.8rem">
+        Setelah laku lelang, asuransi kendaraan dialihkan ke pemegang polis induk (BCAF) → polis dibatalkan → refund dari maskapai (setiap Jumat, tarik data dari Financore laporan "asuransi konsumen terjual lelang" seminggu terakhir).
+      </div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <h5>Hitungan Kewajiban Konsumen (Permohonan Kolektibilitas)</h5>
+    <div class="f">Total Pelunasan − Hasil Lelang + Biaya Lelang + Bunga Berjalan = Total Outstanding</div>
+    <div class="vars">Denda dipotong 50% (permohonan pertama, jual lelang saja). Kelebihan → konsumen dapat SKL.</div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 14: SK/SE GALLERY ===== -->
+<div id="skse" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>📂 Dokumen SK, SE &amp; Instruksi Kerja</h2>
+    <p>55 dokumen resmi tersedia — klik untuk buka PDF</p>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="ftab active" onclick="filterDocs('ALL')">Semua</button>
+    <button class="ftab" onclick="filterDocs('SK')">SK</button>
+    <button class="ftab" onclick="filterDocs('SE')">SE</button>
+    <button class="ftab" onclick="filterDocs('IK')">Instruksi Kerja</button>
+    <button class="ftab" onclick="filterDocs('Memo')">Memo</button>
+    <span class="doc-count" id="docCountLabel"></span>
+  </div>
+  <div class="doc-gallery" id="docGallery"></div>
+</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLbOnBackdrop(event)">
+  <button id="lbClose" onclick="closeLb()">✕</button>
+  <div class="lb-iframe-wrap">
+    <iframe id="lbFrame" src=""></iframe>
+  </div>
+</div>
+
+<footer>
+  <strong>OPERATION Flow</strong> &nbsp;·&nbsp; BCA Finance Direktorat Operation &nbsp;·&nbsp;
+  Ringkasan Catatan PDP 38 &nbsp;·&nbsp; <em>Hanya untuk keperluan edukasi internal</em>
+</footer>
+
+<script src="operation-data.js"></script>
+<script>
+// =============================================
+// OPERATION DATA — loaded from operation-data.js
+// =============================================
+// OPERATION_DATA loaded from operation-data.js
+
+// =============================================
+// GALLERY BUILDER
+// =============================================
+let currentFilter = 'ALL';
+
+function buildGallery(filter) {
+  currentFilter = filter;
+  const gallery = document.getElementById('docGallery');
+  const label = document.getElementById('docCountLabel');
+  gallery.innerHTML = '';
+
+  let all = [];
+  if (filter === 'ALL' || filter === 'SK')   all = all.concat(OPERATION_DATA.SK.map(d=>({...d, type:'SK'})));
+  if (filter === 'ALL' || filter === 'SE')   all = all.concat(OPERATION_DATA.SE.map(d=>({...d, type:'SE'})));
+  if (filter === 'ALL' || filter === 'IK')   all = all.concat(OPERATION_DATA.IK.map(d=>({...d, type:'IK'})));
+  if (filter === 'ALL' || filter === 'Memo') all = all.concat(OPERATION_DATA.Memo.map(d=>({...d, type:'Memo'})));
+
+  if (all.length === 0) {
+    gallery.innerHTML = '<p style="color:var(--gray-text);font-size:.9rem;grid-column:1/-1;padding:2rem;text-align:center">Tidak ada dokumen.</p>';
+    label.textContent = '0 dokumen';
+    return;
+  }
+
+  // Group by category
+  const groups = {};
+  all.forEach(d => {
+    const key = d.cat || d.type;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(d);
+  });
+
+  let total = 0;
+  Object.keys(groups).forEach(grp => {
+    const docs = groups[grp];
+    total += docs.length;
+
+    // Group header
+    const gh = document.createElement('div');
+    gh.className = 'group-header';
+    gh.innerHTML = `<span>${grp}</span><span class="gh-count">${docs.length} dokumen</span>`;
+    gallery.appendChild(gh);
+
+    docs.forEach(doc => {
+      const card = document.createElement('div');
+      card.className = 'doc-thumb';
+      card.dataset.file = doc.f;
+      card.dataset.title = doc.t;
+      card.innerHTML = `
+        <span class="badge-type ${doc.type}">${doc.type}</span>
+        <div class="dt">${doc.t}</div>
+        <button class="btn-open" onclick="openLb('${encodeURIComponent(doc.f)}','${doc.t.replace(/'/g,"\\'")}')">Buka PDF</button>
+      `;
+      gallery.appendChild(card);
+    });
+  });
+
+  label.textContent = `${total} dokumen`;
+}
+
+function filterDocs(type) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  buildGallery(type);
+}
+
+// =============================================
+// LIGHTBOX
+// =============================================
+function openLb(encodedFile, title) {
+  const file = decodeURIComponent(encodedFile);
+  const frame = document.getElementById('lbFrame');
+  const lb = document.getElementById('lb');
+  frame.src = file;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb() {
+  const lb = document.getElementById('lb');
+  const frame = document.getElementById('lbFrame');
+  lb.classList.remove('open');
+  frame.src = '';
+  document.body.style.overflow = '';
+}
+
+function closeLbOnBackdrop(e) {
+  if (e.target === document.getElementById('lb')) closeLb();
+}
+
+// Close lightbox on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+// =============================================
+// ACCORDION
+// =============================================
+function toggleAcc(head) {
+  const item = head.closest('.acc-item');
+  item.classList.toggle('open');
+}
+
+// =============================================
+// gotoDoc — search & highlight card
+// =============================================
+function gotoDoc(keyword) {
+  buildGallery('ALL');
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  document.querySelector('.ftab').classList.add('active');
+
+  const kw = keyword.toLowerCase();
+  const cards = document.querySelectorAll('.doc-thumb');
+  let found = null;
+  cards.forEach(c => {
+    const title = (c.dataset.title || '').toLowerCase();
+    const file = (c.dataset.file || '').toLowerCase();
+    if (!found && (title.includes(kw) || file.includes(kw))) found = c;
+  });
+
+  if (found) {
+    const skseSection = document.getElementById('skse');
+    skseSection.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      found.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      found.classList.add('sk-highlight');
+      setTimeout(() => found.classList.remove('sk-highlight'), 2000);
+    }, 400);
+  }
+}
+
+// =============================================
+// SMOOTH SCROLL + ACTIVE NAV
+// =============================================
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// =============================================
+// INIT
+// =============================================
+buildGallery('ALL');
+</script>
+</body>
+</html>
