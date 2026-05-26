@@ -238,6 +238,7 @@
     <li><a href="#sigma">SIGMA Approva</a></li>
     <li><a href="#prarealisasi">Pra Realisasi</a></li>
     <li><a href="#app">APP/Realisasi</a></li>
+    <li><a href="#sentra-app-motor">Sentra APP Motor</a></li>
     <li><a href="#asuransi">Pasca Realisasi</a></li>
     <li><a href="#legaladmin">Legal &amp; Fidusia</a></li>
     <li><a href="#bpkb">BPKB &amp; Archive</a></li>
@@ -932,6 +933,520 @@
 </div>
 </div>
 
+<!-- ===== SECTION 5b: SENTRA APP MOTOR ===== -->
+<div id="sentra-app-motor" class="section-green">
+<div class="section">
+  <div class="st">
+    <h2>🏍️ Sentra APP Motor</h2>
+    <p>Verifikasi dokumen &amp; vertel untuk pencairan kredit motor (KSM &amp; KPM) — seluruh Indonesia</p>
+  </div>
+
+  <!-- Overview Cards -->
+  <div class="ov-grid" style="margin-bottom:1.5rem">
+    <div class="ov-card">
+      <div class="icon">🎯</div>
+      <h4>Tujuan</h4>
+      <p style="color:navy">Melakukan verifikasi dokumen dari cabang melalui telepon dan mencocokkannya dengan data sistem, setelah unit diterima oleh konsumen.</p>
+    </div>
+    <div class="ov-card gold">
+      <div class="icon">📦</div>
+      <h4>2 Produk</h4>
+      <ul style="color:navy">
+        <li><b>KSM</b> — via Cabang BCA, wajib autodebet</li>
+        <li><b>KPM</b> — via Dealer, bayar manual (bisa autodebet juga)</li>
+      </ul>
+    </div>
+    <div class="ov-card blue">
+      <div class="icon">👥</div>
+      <h4>Ketentuan Staff</h4>
+      <ul style="color:navy">
+        <li>Shift 1: 09.00–18.00</li>
+        <li>Shift 2: 10.00–19.00</li>
+        <li>Staff Backup: jika aplikasi rame</li>
+        <li>SLA: 2 jam (masuk → TL Approved)</li>
+        <li>Rata-rata vertel: 8 menit</li>
+        <li>MPP: 14 orang, 5 TL, 1 Head (Bu Vero)</li>
+        <li>Area: seluruh Indonesia</li>
+      </ul>
+    </div>
+    <div class="ov-card dark">
+      <div class="icon">📱</div>
+      <h4>Aplikasi CDA</h4>
+      <p style="color:navy">Central Disbursement APP — memuat: Customer Data, Tagihan Dealer, Object, Autodebet, Other</p>
+    </div>
+  </div>
+
+  <!-- 5 Bucket Dashboard -->
+  <div style="background:#fff;border-radius:10px;padding:1rem 1.2rem;box-shadow:0 2px 8px rgba(0,87,63,.08);margin-bottom:1.5rem">
+    <h4 style="color:var(--green-dark);margin-bottom:.7rem">📊 5 Bucket Dashboard Monitoring CDA</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.55rem;font-size:.83rem">
+      <div style="background:#e6f4ee;padding:.6rem .8rem;border-radius:8px"><span style="color:navy"><b>Reguler</b><br>Standar</span></div>
+      <div style="background:#fff3e0;padding:.6rem .8rem;border-radius:8px"><span style="color:navy"><b>Cluster A</b><br>Prioritas</span></div>
+      <div style="background:#e8f0fe;padding:.6rem .8rem;border-radius:8px"><span style="color:navy"><b>Multiguna</b><br>Gadai BPKB</span></div>
+      <div style="background:#f3e5f5;padding:.6rem .8rem;border-radius:8px"><span style="color:navy"><b>Company</b><br>Nasabah PT</span></div>
+      <div style="background:#fce4ec;padding:.6rem .8rem;border-radius:8px"><span style="color:navy"><b>Appointment</b><br>Tidak diangkat 2×</span></div>
+    </div>
+  </div>
+
+  <!-- Alur Kerja -->
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Alur Kerja Umum <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Marketing input di MOSS</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Marketing beri dokumen fisik ke ADS (staff admin cabang): tagihan dealer, autodebet, customer data, other &amp; object data</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">TL ADS → cek dokumen → OK</p></div>
+        <div class="flow-step"><div class="num">4</div><p style="color:navy">Staf ADS → scan &amp; upload dokumen via Dissapp → masuk ke CDA</p></div>
+        <div class="flow-step"><div class="num">5</div><p style="color:navy">Centra Disburse melakukan verif &amp;/atau vertel. Vertel maks 2× (termasuk appointment). Jika lewat → dikembalikan ke cabang</p></div>
+        <div class="flow-step"><div class="num">6</div><p style="color:navy">Jika ada Return → dikembalikan ke cabang</p></div>
+        <div class="flow-step"><div class="num">7</div><p style="color:navy">Jika gagal vertel → cabang koordinasi langsung dengan konsumen. Perubahan no telp &amp;/atau nama ibu kandung perlu Form OTS dari cabang</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem;color:navy">
+        <b>Catatan:</b> Unit wajib diterima konsumen lebih dulu sebelum diproses di Sentra APP Motor. Jika belum diterima → return ke cabang.
+      </div>
+    </div>
+  </div>
+
+  <!-- Process Pengecekan & Vertel -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Process Pengecekan &amp; Verifikasi Dokumen <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="color:navy;margin-bottom:.6rem">Staff klik <b>Get Data</b> di CDA → regist data ke excel (dokumentasi) → lakukan pengecekan berikut:</p>
+
+      <h5>1. Cek Customer Data</h5>
+      <ul style="color:navy">
+        <li>Pastikan nama &amp; tanggal lahir di CDA sama dengan KTP yang di-upload</li>
+        <li>Pastikan status perkawinan di sistem sama dengan di KTP</li>
+      </ul>
+
+      <h5 style="margin-top:.7rem">2. Cek Tagihan Dealer — KSM</h5>
+      <div class="info-grid" style="margin:.4rem 0">
+        <div class="info-card">
+          <h5>PO (Purchase Order)</h5>
+          <ul style="color:navy">
+            <li>TTD Pejabat Dealer &amp; BM Cabang</li>
+            <li>Jika PO baru karena penggantian → gunakan yang terbaru</li>
+            <li>Cek: no pemesanan (no PP), tgl pemesanan, no aplikasi, nama konsumen, pembayaran ke dealer</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>BASTK (Serah Terima Kendaraan)</h5>
+          <ul style="color:navy">
+            <li>TTD Pejabat Dealer → dealer serahkan unit ke konsumen</li>
+            <li>Tanda terima unit: ambil tgl terbaru (jika ada banyak tanggal)</li>
+            <li>Data kendaraan: tipe, warna, gesekan noka nosin</li>
+            <li>Nama &amp; hubungan penerima (jika bukan konsumen)</li>
+            <li>TTD PIC dealer &amp; penerima (sesuai KTP; jika beda ada surat pernyataan spesimen)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Kwitansi Pelunasan</h5>
+          <ul style="color:navy">
+            <li>Nama leasing → harus tertuju ke BCA Finance &amp; alamat sesuai</li>
+            <li>Nominal = pembayaran ke dealer (KSM tidak dikurangi DP)</li>
+            <li>Angka terbilang harus sesuai nominal</li>
+            <li>Materai (fisik/e-materai/bea materai) + TTD materai</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Gesekan Noka Nosin</h5>
+          <ul style="color:navy">
+            <li>No rangka selalu diawali kode <b>MH1</b> (kecuali Dealer Astra)</li>
+            <li>Kode digit tahun: T=2026, V=2027 → disamakan dengan tahun kendaraan</li>
+            <li>KTP (jika BPKB atas nama selain konsumen)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Cover Note (CN)</h5>
+          <ul style="color:navy">
+            <li>Struktur kredit: angsuran &amp; tenor</li>
+            <li>Nama STNK/BPKB, Nama Leasing</li>
+            <li>Redaksi waktu penyerahan BPKB: maks 3 bulan sejak CN TTD (bukan dari tgl jadi STNK)</li>
+            <li>Khusus Benelli: maks 6 bulan. Selain itu → wan prestasi dealer</li>
+            <li>Jika BPKB beda nama konsumen → lampirkan atas nama BPKB</li>
+            <li>Kata wajib: "Selambat-lambatnya", "Maximal", "Dalam kurun waktu", "dalam periode"</li>
+            <li>Kata dilarang: "kira-kira", "kurang lebih", "kemungkinan" → return ke cabang</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Akta Perusahaan (PT)</h5>
+          <ul style="color:navy">
+            <li>Opsional jika konsumen PT/atas nama PT</li>
+            <li>Harus ada nama direktur/komisaris &amp; nama perusahaan</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box" style="color:navy"><b>Note revisi dokumen:</b> Penulisan yang direvisi → wajib diparaf &amp; dicap Dealer. Paraf dealer wajib sama dengan spesimen di portal → jika beda, return ke cabang (MC Operation Cabang update portal).</div>
+
+      <h5 style="margin-top:.8rem">KPM — Perbedaan vs KSM</h5>
+      <ul style="color:navy">
+        <li>Dokumen tagihan sama dengan KSM + tambahan <b>Kwitansi DP</b></li>
+        <li>Kwitansi DP: konsumen bayar DP langsung ke dealer → mempengaruhi nilai pencairan</li>
+        <li>Pastikan nominal DP = yang ada di kwitansi pelunasan</li>
+        <li>Kwitansi pelunasan: tidak wajib ada nama leasing, wajib nama nasabah (bukan atas nama BPKB)</li>
+      </ul>
+
+      <h5 style="margin-top:.8rem">Multiguna — Dokumen Tambahan</h5>
+      <ul style="color:navy">
+        <li>PO, BPKB (wajib), STNK, Noka Nosin</li>
+        <li>Inquiry tanggungan (buku tabungan atau SS Mbanking)</li>
+        <li>Faktur, KTP pemohon</li>
+        <li>Surat penggunaan fasilitas (tujuan, rekening pencairan, nominal)</li>
+      </ul>
+
+      <h5 style="margin-top:.8rem">3. Cek Object</h5>
+      <ul style="color:navy">
+        <li><b>Project tanpa Vertel (Piloting):</b> foto piloting dilampirkan di tab Object atau Tagihan Dealer</li>
+        <li>Upload di tab Object → otomatis IYA. Upload di tab lain → invalid dulu di verifikasi, ubah jadi IYA</li>
+        <li>Ketentuan foto piloting: wajib foto dengan papan &amp; unit (bisa kertas/kardus, isi sesuai struktur kredit)</li>
+        <li>Jika tidak ada kendaraan → vertel. Jika yang foto selain pengaju/nama BPKB → wajib lampirkan KTP</li>
+        <li>Pengajuan &gt;1 unit → buat list pengajuan (no aplikasi beda, vertel cukup sekali berdasar list)</li>
+        <li>Jika unit belum diterima semua → vertel unit yang sudah diterima dulu, nanti unit lain vertel lagi</li>
+      </ul>
+
+      <h5 style="margin-top:.8rem">4. Cek Dokumen Autodebet</h5>
+      <ul style="color:navy">
+        <li>Wajib untuk KSM. KPM opsional (bisa autodebet jika mau)</li>
+        <li><b>SKPR</b> (Surat Kuasa Pendebetan Rekening) → TTD materai; bisa debet diri sendiri, PT, atau orang lain</li>
+        <li><b>SPADR</b> (Surat Pernyataan Auto Debet Rekening) → sama dengan SKPR + ada tanggal pendebetan</li>
+        <li>Nama sesuai kontrak (Section di surat) = data pengaju kredit; ada keterangan hubungan dengan pemohon</li>
+        <li>Rekening PT → isi alamat PT. Rekening orang lain → TTD pemilik rekening &amp; TTD atas nama pengajuan</li>
+        <li><b>KTP a.n. Rekening</b> → boleh rekening anak/ortu</li>
+        <li><b>Inquiry (SS Mbanking)</b> → lampirkan form beda nama rekening jika nama di KTP &amp; inquiry berbeda (kecuali kepotong karena keterbatasan sistem)</li>
+      </ul>
+
+      <h5 style="margin-top:.8rem">5. Cek Others</h5>
+      <ul style="color:navy">
+        <li>Dokumen pendukung</li>
+        <li>Akta perusahaan (jika konsumen PT)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Cara Melakukan Verifikasi -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Cara Melakukan Verifikasi — Vertel, Piloting, SS WA <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Vertel (Verifikasi Telepon)</h5>
+          <ul style="color:navy">
+            <li>Menggunakan aplikasi <b>X-Lite</b> (3–5 menit, maks 5 menit)</li>
+            <li>No outgoing: <b>1500850</b> (diadopsi dari ASR)</li>
+            <li>Konsumen terima telepon dari no ini (sama seperti no Deskcoll Motor)</li>
+            <li>H-3 closing: broadcast ke cabang agar konsumen mau angkat</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Piloting</h5>
+          <ul style="color:navy">
+            <li>Konsumen foto sambil memegang papan berisi: nama, angsuran, tenor, warna, tipe unit</li>
+            <li>Jika penerima bukan YBS/pasangan → lampirkan KTP penerima</li>
+            <li>Papan tidak harus BCAF, bisa kertas/kardus asal isinya sesuai</li>
+            <li>Semua nasabah bisa piloting, tergantung nasabah &amp; cabang</li>
+            <li>Tidak harus ada marketing, tapi kadang marketing bantu bawa papan ke rumah konsumen</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>SS WA (Nasabah Prioritas/Solitaire)</h5>
+          <ul style="color:navy">
+            <li>Khusus nasabah Prioritas/Solitaire yang tidak mau ditelpon</li>
+            <li>Marketing kirim WA → SS WA dilampirkan ke CD Apps</li>
+            <li>SS WA harus ada TTD BM (nama + jabatan jelas)</li>
+            <li>Jika SS tidak jelas → ditelpon sekali; jika tidak diangkat → dialihkan ke cabang</li>
+            <li>Pengecekan dokumen tetap sama dengan standar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow Verifikasi & Pertanyaan Vertel -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow Verifikasi &amp; Pertanyaan Vertel <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid" style="margin-bottom:.8rem">
+        <div class="info-card">
+          <h5>Pertanyaan Vertel</h5>
+          <ul style="color:navy">
+            <li>Nama</li>
+            <li>Tempat &amp; tanggal lahir</li>
+            <li>Nama ibu kandung</li>
+            <li>Tanggal terima unit</li>
+            <li>Merk &amp; tipe kendaraan</li>
+            <li>Nominal angsuran</li>
+            <li>Tenor</li>
+            <li>Nama di BPKB &amp; STNK</li>
+            <li>Penerima motor &amp; hubungannya</li>
+            <li>Apakah sudah TTD dokumen</li>
+            <li>Tanggal jatuh tempo</li>
+            <li>Denda: 0,5% dari nominal angsuran</li>
+            <li><b>KSM:</b> tanyakan DP-nya</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Case Khusus Verifikasi Data</h5>
+          <ul style="color:navy">
+            <li>KTP status kawin tapi tidak ada nama pasangan → return + lampirkan KK/Surat Menikah/Surat Kematian</li>
+            <li>Di sistem ada pasangan, KTP lajang → sama, return</li>
+            <li>PT: tidak harus no perusahaan, biasanya no direksi atau PIC</li>
+            <li>Istri yang angkat: boleh → validasi nama pasangan harus sama</li>
+            <li>Ibunya yang angkat: boleh → validasi pakai nama penjamin (jika bapak angkat tapi nama penjamin ibu → tidak boleh)</li>
+            <li>Pasangan/penjamin tidak tahu → appointmen, nanti dikonfirm oleh konsumen sendiri</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>SLA, Cut Off &amp; Catatan Teknis</h5>
+          <ul style="color:navy">
+            <li>Cut off vertel: jam 19.00 (kecuali closing → sampai sistem off)</li>
+            <li>Waktu tunggu tidak angkat: 30 menit</li>
+            <li>Jam appointment cut off: 16.30 → lewat &amp; tidak angkat → langsung ke cabang</li>
+            <li>Multiguna: tgl jatuh tempo &amp; tgl terima menyesuaikan tgl vertel, wajib vertel semua (setelah done/DV)</li>
+            <li>BAST tidak bisa diverif &gt;21 hari dari tgl terima → perlu BA T21 dari cabang (kronologi + ubah tgl terima + approve BM)</li>
+            <li>Aplikasi masuk: terupdate tiap 5 menit, sistem rebutan MC APP</li>
+            <li>Target insentif: min 500 aplikasi/bulan</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box" style="color:navy">
+        <b>Tgl Jatuh Tempo Sabtu/Minggu</b> → dipercepat ke Jumat (tidak bisa autodebet). <b>Tgl BAST</b> → diambil yang terbaru; jika ada pembaruan PO → ikuti tgl terbaru PO.
+      </div>
+    </div>
+  </div>
+
+  <!-- Kode Hasil Penanganan -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Output — Kode Hasil Penanganan &amp; Dial Result <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="status-grid">
+        <div class="status-chip approved"><span class="code">#DC</span><span class="desc">Done Check</span></div>
+        <div class="status-chip approved"><span class="code">#DV</span><span class="desc">Don't Vertel — Piloting &amp; Cluster A</span></div>
+        <div class="status-chip pending"><span class="code">#GVE</span><span class="desc">Gagal Vertel — no tidak bisa dihubungi/salah/tidak diangkat 2× (tunggu 30 menit). Nomor salah: langsung return</span></div>
+        <div class="status-chip pending"><span class="code">#VTS</span><span class="desc">Vertel Tidak Sesuai — cth: angsuran tidak sesuai</span></div>
+        <div class="status-chip pending"><span class="code">#DTS</span><span class="desc">Data Tidak Sesuai — data dari marketing tidak sesuai</span></div>
+        <div class="status-chip pending"><span class="code">#ATS</span><span class="desc">Autodebit Tidak Sesuai</span></div>
+        <div class="status-chip reject"><span class="code">#RTD</span><span class="desc">Tagihan Tidak Sesuai — dokumen tagihan tidak sesuai / nama dealer di sistem &amp; dokumen berbeda</span></div>
+        <div class="status-chip reject"><span class="code">#RPC</span><span class="desc">Return Permintaan Cabang — cabang minta langsung return</span></div>
+        <div class="status-chip process"><span class="code">#T21</span><span class="desc">Tgl Vertel mendekati jatuh tempo (&gt;21 hari) → pakai BA T21 dari cabang untuk majukan tgl BASTK</span></div>
+      </div>
+      <h5 style="margin-top:.9rem">Dial Result</h5>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem">
+        <span style="background:#e6f4ee;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Verified</span>
+        <span style="background:#fff8e6;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Tidak Diangkat</span>
+        <span style="background:#fff8e6;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Appointment</span>
+        <span style="background:#fee8ea;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Rejected</span>
+        <span style="background:#fee8ea;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Nomor Tidak Valid</span>
+        <span style="background:#fee8ea;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Salah Sambung</span>
+        <span style="background:#e8f0fe;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Customer Sibuk</span>
+        <span style="background:#e8f0fe;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Nomor Tidak Aktif</span>
+        <span style="background:#e8f0fe;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Tidak Bersedia Verifikasi</span>
+        <span style="background:#e8f0fe;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Nomor Dialihkan</span>
+        <span style="background:#e8f0fe;color:navy;padding:.2rem .6rem;border-radius:6px;font-size:.82rem">Telepon Tidak Selesai</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invalid vs Return -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Invalid vs Return — Panduan Koreksi Data <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Yang Bisa di-Invalid (Return ke SSPK)</h5>
+          <ul style="color:navy">
+            <li>No telp 1 (revisi/ganti) → No telp 2 (tambah no baru)</li>
+            <li>Email</li>
+            <li>Nama ibu kandung</li>
+            <li>Tanggal terima</li>
+            <li>Tanggal jatuh tempo</li>
+            <li>Warna unit</li>
+            <li>Metode bayar</li>
+            <li>Tanggal autodebet</li>
+            <li>Norek autodebet &amp; nama autodebet</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Yang TIDAK Bisa di-Invalid (Return + Stop Vertel)</h5>
+          <ul style="color:navy">
+            <li>Nama debitur</li>
+            <li>Nama sesuai KTP</li>
+            <li>Tanggal lahir</li>
+            <li>Merk &amp; model unit</li>
+            <li>Struktur kredit (angsuran &amp; tenor)</li>
+            <li>Nama BPKB</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Catatan Koreksi</h5>
+          <ul style="color:navy">
+            <li>No rangka &amp; no mesin: tidak ditanyakan ke konsumen</li>
+            <li>Yang di-return ke cabang = yang perlu revisi di dokumen</li>
+            <li>Dari staff submit → TL WF Approval → no kontrak muncul 1–5 menit</li>
+            <li>No kontrak dikirim ke konsumen via WA &amp; Email (1–3 hari)</li>
+          </ul>
+          <h5 style="margin-top:.5rem">Ganti Tanggal Autodebet / CDD</h5>
+          <ul style="color:navy">
+            <li>Jika tgl jatuh tempo ≠ tgl autodebet → ajukan perubahan (ada biaya denda)</li>
+            <li>Wajib ada SKPR &amp; SPADR (keduanya). Salah satu tidak ada → tidak bisa ganti tgl autodebet/CDD</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disburse Manual & Autodebet Manual -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Disburse Manual &amp; Autodebet Manual (DSM) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>Disburse Manual</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Tiap jam tarik report Disburse → Fast Report</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Cek di JogetDX → inquiry status CDA → cek aplikasi sudah disburse atau belum</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">Cek yang error/gagal disburse → no kontrak tidak ada, no invoice dan PV tidak ada</p></div>
+        <div class="flow-step"><div class="num">4</div><p style="color:navy">MC APP input manual lewat FAST (create invoice) → gen AR → Send to AP → cek AP → dok cek</p></div>
+        <div class="flow-step"><div class="num">5</div><p style="color:navy">Seharusnya no kontrak, invoice, &amp; PV terbentuk. Jika no kontrak terbentuk tapi invoice/PV tidak → buat ticket ke IT</p></div>
+      </div>
+      <h5 style="margin-top:.8rem">Autodebet Manual — Produk DSM (Direct Sales)</h5>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Produk DSM langsung disburse → perlu daftar autodebet manual</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Login FAST as SSPK (MC APP) → input no rek, nama nasabah, autodebet cabang mana</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">Submit → masuk ke bucket TL (KSPK) → TL verified → Autodebet terdaftar</p></div>
+        <div class="flow-step"><div class="num">4</div><p style="color:navy">Dokumen manual autodebet dimasukkan datanya ke WinSCP. Data disebarkan TL tiap minggu (ada piket)</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buyback, Dakor, Updation -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Buyback, Faktor Dakor &amp; Updation <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Buyback</h5>
+          <ul style="color:navy">
+            <li>Aplikasi di-cancel → proses dari awal di cabang → vertel lagi</li>
+            <li>Penyebab: salah input asuransi (tiap cabang punya plotting asuransi sendiri)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Faktor Dakor (Data Correction)</h5>
+          <ul style="color:navy">
+            <li>Noka nosin salah (tanpa MH1) → pengajuan dengan fidusia</li>
+            <li>Tembak data oleh IT</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Updation (Cabang yang Urus)</h5>
+          <ul style="color:navy">
+            <li>Perubahan nomor rekening konsumen (ganti ke no yang aktif)</li>
+            <li>Ubah tanggal jatuh tempo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Lead & KPI -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Team Lead — Tugas, Penilaian &amp; KPI <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>WF Approval</h5>
+          <ul style="color:navy">
+            <li>Setelah SSPK vertel &amp; submit → masuk ke bucket TL (WF Approval)</li>
+            <li>Double check kembali (tidak vertel lagi)</li>
+            <li><b>Approve</b> → masuk ke finance (disburse)</li>
+            <li><b>Return</b> → dikembalikan ke cabang</li>
+            <li><b>Revise</b> → dikembalikan ke SSPK (MC APP)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Penilaian SSPK (tengah &amp; akhir bulan)</h5>
+          <ul style="color:navy">
+            <li>SLA vertel: maks 5 menit</li>
+            <li>Get data: 500/bulan</li>
+            <li>Sampling vertel: 25 recording/orang (download dari e-centrix)</li>
+            <li>Kriteria: salam buka/tutup, volume suara stabil, artikulasi jelas, cara tanya data (terbuka/tertutup, jangan bocorkan jawaban), kelengkapan pertanyaan (cth KSM tanya DP)</li>
+            <li>Hasil mempengaruhi KPI staff. Dilakukan 1×/bulan</li>
+            <li>Coaching: 1×/semester — disampaikan KPI &amp; issue staff</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>KPI TL</h5>
+          <ul style="color:navy">
+            <li>Coaching, Pelaksanaan 4DX, Improvement/Kaizen</li>
+            <li>5R/Cleaning, Internal audit</li>
+            <li>Time to disburse: maks 2 jam</li>
+            <li>Random sampling &amp; kesesuaian verif dokumen</li>
+            <li>Jumlah aplikasi disburse (yang jadi no kontrak, bukan yang masuk data)</li>
+            <li>Setiap awal bulan: report SLA &amp; Ranking SSPK (Mas Ronald)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Syarat OTS (Form OTS)</h5>
+          <ul style="color:navy">
+            <li>PK tidak tahu struktur kredit (angsuran &amp; tenor)</li>
+            <li>PK tidak merasa mengambil kredit</li>
+            <li>Gagal vertel 3× dalam 3 hari</li>
+            <li>Dokumen OTS dilampirkan ke CD Apps oleh cabang</li>
+            <li>Di luar syarat: nasabah TTD ke DD (penyimpangan), cth naik haji/umroh</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lain-Lain & Inovasi -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Lain-Lain &amp; Inovasi/Issue <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <ul style="color:navy">
+        <li>X-Lite diadopsi dari ASR karena kualitas baik (no 1500850 — sama dengan Deskcoll Motor)</li>
+        <li>H-3 closing: broadcast ke cabang agar konsumen mau angkat no 1500850 (sering dikira spam/penipuan, bahkan ada yang sampai diblokir provider)</li>
+        <li>Data CD Apps harus diselesaikan di hari yang sama, cut off jam 19.00 (kecuali closingan)</li>
+        <li>Target insentif MC APP: minimal 500 aplikasi/bulan (tergantung banyaknya penjualan)</li>
+        <li>Spesimen TTD di Portal: untuk cek semua TTD pejabat dealer. Jika pergantian orang → dealer/cabang update. Pendaftaran/verif/upload portal = tugas TL Operation Cabang sesuai PKS dealer</li>
+        <li><b>Centra Disburse Motor = hanya checker.</b> Penentu keputusan final: Centra Kredit (Pak Mahendra) → semua harus dicek. Berbeda dengan mobil yang bisa memberi keputusan sendiri</li>
+        <li>Revisi dari cabang: tidak ada batas berapa kali, tapi hanya bisa revisi dalam 3 hari jika debitur tidak angkat</li>
+        <li>Cluster A/Nasabah Prio: marketing yang chat WA (cek tipe, tenor, angsuran, no/nama kontak). SS chat dilampirkan ke CD Apps, harus ada TTD BM (nama + jabatan jelas)</li>
+        <li>Laporan bulanan: penilaian vertel (intonasi &amp; informasi)</li>
+      </ul>
+      <div class="note-box" style="margin-top:.7rem">
+        <b>Issue &amp; Solusi:</b>
+        <ul style="padding-left:1rem;margin-top:.3rem;color:navy">
+          <li>Cabang upload dokumen → tidak terupdate ke dokumen terbaru di CDA (tidak boleh kirim WA/email dokumen, di-save pun tidak boleh)</li>
+          <li>No 1500850 banyak komentar aneh di get contact → konsumen takut angkat karena takut penipuan</li>
+          <li><b>Solusi:</b> Pakai WA Coster (nomor official BCAF) → ingatkan konsumen sebelum vertel, bisa atur jadwal vertel juga</li>
+          <li>Sistem sering lemot di malam hari saat closingan meski aplikasi tinggal sedikit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <!-- ===== SECTION 6: PASCA REALISASI - ASURANSI ===== -->
 <div id="asuransi" class="section-green">
 <div class="section">
@@ -940,6 +1455,7 @@
     <p>Jenis, order, klaim, upgrade, refund, endorse, dan rekonsiliasi asuransi kendaraan &amp; CP</p>
   </div>
 
+  <!-- JENIS ASURANSI -->
   <div class="acc-item open">
     <div class="acc-head" onclick="toggleAcc(this)">
       Jenis Asuransi Kendaraan &amp; CP <span class="acc-chevron">▼</span>
@@ -952,6 +1468,7 @@
             <li><b>TLO</b> — Kerusakan &gt;75% atau hilang</li>
             <li><b>Comprehensive</b> — All risk + TLO</li>
           </ul>
+          <p style="color:navy;font-size:.83rem;margin-top:.4rem"><b>Motor:</b> TLO untuk KSM/KSMM/KPM; Allrisk hanya motor &gt;75jt (KSM+KPM)</p>
         </div>
         <div class="info-card">
           <h5>PERLUASAN</h5>
@@ -960,6 +1477,8 @@
             <li><b>RSCC Huru-Hara</b></li>
             <li><b>TJH 10 jt</b> — Kerugian pihak ke-3</li>
           </ul>
+          <p style="color:navy;font-size:.83rem;margin-top:.3rem"><b>P1:</b> Kompr+RSCC+RSMB+TJH 25jt &nbsp;|&nbsp; <b>P2:</b> Kompr+RSCC+RSMB+TJH 50jt &nbsp;|&nbsp; <b>P3:</b> Komprehensive saja</p>
+          <p style="color:navy;font-size:.83rem">Tarif TJH: 10jt=100rb/thn, 25jt=250rb/thn, 50jt=300rb/thn</p>
         </div>
         <div class="info-card">
           <h5>PENYERTA</h5>
@@ -969,6 +1488,7 @@
             <li><b>PAP Personal Accident Passenger</b></li>
             <li><b>CFP Car Family Protection</b> — GPS</li>
           </ul>
+          <p style="color:navy;font-size:.83rem;margin-top:.3rem">Penyerta nempel INDUK: TLP, PA, CPR. <b>Motor:</b> TLP untuk KSM/KSMM (KPM hanya Honda).</p>
         </div>
         <div class="info-card">
           <h5>Tiering &amp; Maskapai</h5>
@@ -979,6 +1499,135 @@
           </ul>
           <h5 style="margin-top:.5rem">Maskapai:</h5>
           <p style="font-size:.83rem">BCAI, Raksa, Aswata, ACP (Cakrawala Proteksi), Artaindo, Pan Pacific, Sinarmas</p>
+          <p style="color:navy;font-size:.83rem;margin-top:.3rem"><b>7 Maskapai Kendaraan Mobil:</b> BCAI, SIMAS, SAHABAT, CAKRAWALA, ASTARINDO, ASWATA, CHUBB</p>
+          <p style="color:navy;font-size:.83rem"><b>Maskapai CP Mobil:</b> CIPUTRA, CHUBB, TMLI</p>
+          <p style="color:navy;font-size:.83rem"><b>Maskapai CP Motor:</b> BCA Life (0–200jt PH), Simas Jiwa (200–500jt PH)</p>
+          <p style="color:navy;font-size:.83rem"><b>Maskapai Kendaraan Motor:</b> ASCPI (Cakrawala), ASHBT (Sahabat), BCAI, Sompo, Astob, Raksa, Simas, ASMW, BCA Life</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">CP Mobil — Syarat</h5>
+          <ul>
+            <li>Usia &lt;65 tahun, &gt;17 tahun saat realisasi</li>
+            <li>PH &lt;Rp 1M, bukan badan usaha (PT)</li>
+            <li>Tidak ada penyakit bawaan berat</li>
+            <li>Maskapai: CIPUTRA, CHUBB, TMLI</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">CP Motor — Syarat (khusus KSM)</h5>
+          <ul>
+            <li>Bottom Rate &lt;19%, max umur 65 tahun saat pengajuan</li>
+            <li>Nasabah individu (bukan PT). Tidak sesuai syarat → declined</li>
+            <li>BCA Life untuk PH 0–200jt, Simas Jiwa untuk 200–500jt</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Perhitungan Premi Kendaraan</h5>
+          <ul>
+            <li>TSI = OTR – Depresiasi; Premi = TSI × Rate (rate berbeda tiap tahun)</li>
+            <li>RSMB perlu survei; PA/PD tidak perlu survei</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN ASURANSI -->
+  <div class="section-label" style="color:navy;margin-top:1rem">ADMIN ASURANSI — PIC Endorsement &amp; Order</div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">PIC Endorsement Premi</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">3 Input Endorsement Premi</h5>
+          <ul>
+            <li><b>Ontrace:</b> RPA blast WA → konsumen bayar biaya upgrade+admin 14rb via VA → H+60 kirim ke maskapai</li>
+            <li><b>Fina:</b> Konsumen ajukan di Fina → order otomatis → feedback polish → masuk DMS</li>
+            <li><b>Telesales:</b> Manual telefon → kirim report H+1 → pembayaran H+60 setelah order</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Perluasan P1/P2/P3</h5>
+          <ul>
+            <li><b>P1:</b> Komprehensive + RSCC + RSMB + TJH 25jt</li>
+            <li><b>P2:</b> Komprehensive + RSCC + RSMB + TJH 50jt</li>
+            <li><b>P3:</b> Komprehensive saja</li>
+            <li>TJH: 10jt=100rb/thn, 25jt=250rb/thn, 50jt=300rb/thn</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Cover Mundur &amp; Notes</h5>
+          <ul>
+            <li><b>Cover Mundur:</b> Refinancing top up + self cover (syarat self cover berlaku)</li>
+            <li>RSMB perlu survei; PA/PD tidak perlu survei</li>
+            <li>Konsumen ET: kendaraan masih active (CP inactive)</li>
+            <li>Perluasan termasuk asuransi kendaraan (bukan CP)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">PIC Endorsement Non Premi</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Definisi &amp; Penyebab</h5>
+          <ul>
+            <li>Ubah data tertanggung/kendaraan saja (bukan pertanggungan), tidak ada biaya</li>
+            <li>Penyebab: warna motor berubah, nama STNK berubah</li>
+            <li>Data polish induk: Data tertanggung + Data kendaraan + Data pertanggungan</li>
+            <li>Polis CP = soft copy bersama PPK/Kontrak, bisa download di FINA</li>
+            <li>No BPKB tidak bisa di-endorse</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Non Premi</h5>
+          <ul>
+            <li>Cabang input JogetDX-Drone → paralel bucket (BPKB Admin/CS/Asuransi/Fidusia Admin/Docust/JF&amp;LM)</li>
+            <li>PIC tarik data Excel → olah jadi PDF → kirim ke maskapai</li>
+            <li>H+1 feedback: API (BCAI/Aswata masuk DMS), Non-API (reply email)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">SHF (Property All Risk &amp; Earthquake)</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Jenis &amp; Maskapai SHF</h5>
+          <ul>
+            <li>PAR (Property All Risk) + EQ (Earthquake)</li>
+            <li>Maskapai: BCAI, SIMAS, CAKPRO</li>
+            <li>Order penutupan baru, perpanjangan, endorsement via JogetDX-Infinity</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur SHF</h5>
+          <ul>
+            <li>Input Infinity → PIC cek nilai premi SP3 + kelengkapan</li>
+            <li>Approve di Infinity → bucket Bu Sherry + Pak Rahmat</li>
+            <li>Maskapai feedback max H+5 (polish PDF via email)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Refund SHF</h5>
+          <ul>
+            <li>Lampiran Memo Internal, approval Pak Frans (DD Operation)</li>
+            <li>Order ke maskapai via email</li>
+            <li>Dapat feedback berupa bukti bayar refund ke showroom</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1017,6 +1666,40 @@
             <li>&gt;Rp 40 jt: approve DD</li>
           </ul>
         </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Order Otomatis via API (Detail)</h5>
+          <ul>
+            <li>H+1 realisasi → terorder → monitoring status</li>
+            <li>Unordered → lapor IT; Unreceive → confirm maskapai</li>
+            <li>Idealnya hari H e-polis terkirim ke DMS, H+14 link ke FINA</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Order Manual</h5>
+          <ul>
+            <li><b>Cover Mundur Non-Expo:</b> Refinancing/Top Up, alur B2B</li>
+            <li><b>Cover Mundur Expo:</b> Lexus promo free 1 tahun</li>
+            <li><b>Aksesori &gt;5:</b> Order penutupan baru</li>
+            <li><b>Mini 4 Max tahap 2:</b> Order insurance by API tapi pembayaran manual</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Change Insurance &amp; Self Cover</h5>
+          <ul>
+            <li><b>Change &lt;2bln:</b> Memo approval 1 BOD via email maskapai</li>
+            <li><b>Prorate &gt;2bln:</b> Lembar survei + perhitungan selisih + kurang bayar. SLA H+2</li>
+            <li><b>Self Cover:</b> Tiring=lainnya, wajib lampirkan leasing clause. Jika order=double cover → endorsement</li>
+            <li>Restruktur → perpanjang/perpendek tenor; Over Kredit → nama yang di-endorse</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">SLA Order</h5>
+          <ul>
+            <li>Order = H+1 realisasi</li>
+            <li>Feedback maskapai = H+1 order (Expo H+14)</li>
+            <li>Pembayaran ke maskapai = H+60 dari order</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1035,6 +1718,82 @@
       </div>
       <div class="warn-box" style="margin-top:.7rem">
         <b>Catatan CP:</b> Masa tunggu: tenor 1 tahun = 3 bulan, tenor &gt;1 tahun = 6 bulan. CP tidak boleh usia &gt;65 tahun. PH &gt;Rp 1M tidak bisa dicover CP.
+      </div>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Aplikasi Asuransi Mobil</h5>
+          <ul>
+            <li>Financore, DMS, Privy, OneView, JogetDX, CP Plus</li>
+            <li>Order via API (Financore→DMS), feedback e-polis ke DMS</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Maskapai &amp; % Refund CP Mobil</h5>
+          <ul>
+            <li>CIPUTRA=30%, CHUBB=8–10%, TMLI=10%</li>
+            <li>Syarat refund CP: nominal min Rp 25.000</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">PIC Pembayaran Asuransi</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pembayaran CP &amp; Penyerta</h5>
+          <ul>
+            <li>Akuntan yang bayar (Finance/FSM)</li>
+            <li>RECONCIL: Asuransi Manual Order + Asuransi Upgrade</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pembayaran Kendaraan</h5>
+          <ul>
+            <li>H+60 setelah order ke maskapai</li>
+            <li>Lebih/kurang lewat rekonsiliasi</li>
+            <li>Proses otomatis (invoice manual kalau order manual)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Flow SHF &amp; CPR via EGER / CLOSE ET</h5>
+          <ul>
+            <li><b>SHF &amp; CPR:</b> Memo → naik ke Dept Head → upload EGER → Payment melakukan pembayaran</li>
+            <li><b>Close ET:</b> Memo → naik ke Dept Head → naikkan fisik memo+dok pendukung ke Payment → Payment melakukan pembayaran</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">PIC Maintenance Asuransi</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur &amp; Fungsi</h5>
+          <ul>
+            <li>JOGET → approve DD → bucket admin asuransi → Form Data Maintenance (Nama/NIP/kronologi/akibat/permintaan)</li>
+            <li>Buat IT Service → setiap unit menginfokan masalah → eksekusi IT → solved</li>
+            <li>Perbedaan endorsement: endorsement=ubah di polis; maintenance=ubah di Financore</li>
+            <li>Yang bisa ubah data adalah IT; SLA = 5 hari</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Jobdesc &amp; Notes</h5>
+          <ul>
+            <li>Narik data dari datamart untuk PIC Order (unreceived/unorder)</li>
+            <li>Buat register dan monitoring pengajuan (follow up IT)</li>
+            <li>IT yang reject (alasan: salah no kontrak/aplikasi)</li>
+            <li>Berlaku secara nasional; PIC hanya beri note kalau ada yang salah</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1058,7 +1817,7 @@
 
   <div class="acc-item">
     <div class="acc-head" onclick="toggleAcc(this)">
-      Klaim Asuransi CP (Life) <span class="acc-chevron">▼</span>
+      Klaim Asuransi CP (Life) — Mobil <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
       <div class="info-grid">
@@ -1068,6 +1827,7 @@
             <li>Meninggal (sakit / kecelakaan)</li>
             <li>Ketidakmampuan (cacat, sakit lumpuh, stroke)</li>
           </ul>
+          <p style="color:navy;font-size:.83rem;margin-top:.3rem"><b>Cacat Total Tetap:</b> lumpuh/kehilangan anggota tubuh. <b>Cacat Total Tidak Tetap:</b> lumpuh sementara/stroke.</p>
         </div>
         <div class="info-card">
           <h5>Dokumen Klaim Meninggal</h5>
@@ -1078,6 +1838,27 @@
             <li><b>Batas:</b> Maksimal 90 hari dari kematian</li>
           </ul>
         </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pengajuan Awal (Minimal)</h5>
+          <ul>
+            <li>Pengajuan oleh ahli waris, tanggal kejadian/kematian</li>
+            <li>Nama/no telp ahli waris atau konsumen</li>
+            <li>Soft copy/scan KTP konsumen atas nama</li>
+            <li>Cabang/internal: description di CP Plus + Financore</li>
+            <li>Pengajuan via Move: approval BOH→TL Asuransi→staff claim CP</li>
+            <li>Walk in CS: approval TL CS</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Klaim Ditolak</h5>
+          <ul>
+            <li>Telat lapor &gt;90 hari kalender dari tanggal kejadian</li>
+            <li>Berperang, alkohol+mabuk+kecelakaan/jantung, aktivitas berbahaya</li>
+            <li>Tindak kejahatan/melanggar hukum (gak pakai helm/gak punya SIM)</li>
+            <li>Penyakit seksual (HIV)</li>
+            <li><b>Waiting periode:</b> tenor 1thn=3bln, ≥1thn=6bln (kecelakaan tidak berlaku)</li>
+          </ul>
+        </div>
       </div>
       <h5 style="margin-top:.8rem">Flow Klaim CP:</h5>
       <div class="flow-steps">
@@ -1086,6 +1867,24 @@
         <div class="flow-step"><div class="num">3</div><p>Jika setuju: maskapai minta perhitungan sisa PH + bunga (max 60 hari) → TTD s.d UH</p></div>
         <div class="flow-step"><div class="num">4</div><p>Kirim ke maskapai → maskapai bayar H+5 → cek Engine ET</p></div>
       </div>
+      <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Dokumen Pending Maskapai</h5>
+          <ul>
+            <li>K1 (formulir klaim diisi ahli waris), K2 (SK dokter, wajib meninggal di RS/DOA, TTD dokter+cap basah RS)</li>
+            <li>Kronologis meninggal, pernyataan penyerahan kuasa informasi medis (kalau RS gak mau buat K2)</li>
+            <li>Form pengobatan pasien, copy resume medis, copy hasil LAB, SK kematian/SK polisi</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Klaim Disetujui &amp; Memo ET</h5>
+          <ul>
+            <li>Maskapai minta perhitungan bunga berjalan sejak tgl meninggal (max 60 hari)</li>
+            <li>Approval: TL+UH. Claim CP di-TF ke rekening asuransi (BCAF)</li>
+            <li>Lebih bayar → dikembalikan ke konsumen/ahli waris</li>
+          </ul>
+        </div>
+      </div>
       <div class="warn-box" style="margin-top:.7rem">
         Selama 60 hari ahli waris wajib bayar pokok hutang. Admin fee &amp; penalti tidak dicover.<br>
         <b>Klaim ditolak:</b> Telat lapor (&gt;90 hari), Waiting period, Penyakit tertentu (HIV).
@@ -1093,12 +1892,44 @@
       <div class="note-box" style="margin-top:.5rem">
         <b>Kewenangan Memo ET/Form Penutupan:</b> 0–30 jt: DH Pak Ika | 30–100 jt: DD Pak Frans | 100–200 jt: 1 BOD Pak Sugito | &gt;200 jt: 2 BOD (Pak Sugito &amp; Pak Roni)
       </div>
+      <div class="note-box" style="color:navy;margin-top:.5rem">
+        <b>Notes Klaim CP:</b> Pengajuan awal sedikit agar konsumen tidak telat 90 hari; dokumen dilengkapi setelah pending maskapai. Selain nama polis: surat kuasa + KTP. Ahli waris: surat kematian. Istri sah = buku nikah (hanya boleh 1).
+      </div>
     </div>
   </div>
 
   <div class="acc-item">
     <div class="acc-head" onclick="toggleAcc(this)">
-      Klaim Asuransi Kendaraan <span class="acc-chevron">▼</span>
+      <span style="color:navy">Klaim CP-PA (Personal Accident)</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Klaim PA</h5>
+          <ul>
+            <li>PA dilakukan setelah CP; kalau kejadiannya kecelakaan → claim PA</li>
+            <li>Maskapai PA = SIMAS. CP=unit asuransi, PA=cabang yang urus</li>
+            <li>Email SIMAS: atas nama kontrak, no kontrak, no polis, tgl kejadian, no hp ahli waris, cabang pelopor</li>
+            <li>Feedback dokumen → cabang kirim hard copy ke cabang maskapai terdekat + soft copy email CC unit asuransi</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Perhitungan &amp; Notes PA</h5>
+          <ul>
+            <li>Meninggal = 100% (100jt atau 200jt); ketidakmampuan ada persentase sendiri</li>
+            <li>Feedback SIMAS: tolak (alasan sama CP tapi PA gak ada waiting periode) atau setujui (SIMAS kirim LOD)</li>
+            <li>CP+PA ngajuin bareng. Jika CP approve duluan → pembayaran ke ahli waris</li>
+            <li>Jika PA cair duluan → ke rek BCAF (nutup PH dulu), setelah CP cair baru ke ahli waris</li>
+            <li>Balancing harian+bulanan juga</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Klaim Asuransi Kendaraan — Mobil <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
       <div class="info-grid">
@@ -1110,12 +1941,32 @@
           <h5>TLO (Kehilangan / Kerusakan &gt;75% / CTL)</h5>
           <p>Ke maskapai atau BCAF. Mobil "dibeli" maskapai → uang ke konsumen.</p>
         </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Klaim TLO</h5>
+          <ul>
+            <li>Konsumen ke CS → dokumen awal (FC KTP/SIM/BPKB+Faktur/STNK) → email ke maskapai</li>
+            <li>Setuju: maskapai hubungi konsumen TTD SPGR (nilai ganti rugi=harga pasar, OR=300rb pickup/500rb mobil biasa)</li>
+            <li>Maskapai email ke BCAF → BCAF kirim SPNP → dana maskapai ke BCAF via VA 55000</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">TLP &amp; Kelebihan/Kekurangan Dana</h5>
+          <ul>
+            <li>Cek TLP (20% dari kendaraan) di Financore (maskapai TLP: Axa, BCAI)</li>
+            <li>Kurang → coba di-waived → masih kurang → tagih ke konsumen</li>
+            <li>Lebih → PPKD (0-30jt=DH, 30-100jt=DD, 100-200jt=1BOD, 200jt+=2BOD)</li>
+            <li>Memo FSM close ET → Dana TF ke konsumen</li>
+          </ul>
+        </div>
       </div>
       <div class="danger-box" style="margin-top:.7rem">
         <b>Klaim ditolak:</b> Telat lapor (max 5 hari), Polis TLO tapi rusak &lt;75%, Kehilangan karena penipuan/hipnotis/penggelapan (kemungkinan ditolak), Melanggar lalu lintas (tidak ada SIM, terobos lampu merah, rel kereta).
       </div>
       <div class="note-box" style="margin-top:.5rem">
-        <b>SLA:</b> 90 hari sejak lapor. Banjir: denda 10% nilai pertanggungan (risiko sendiri). TLP: pengganti 20% OTR awal. Pencairan maks 14 hari sejak BCAF kirim SPNP. Dana masuk BCAF dulu.
+        <b>SLA:</b> 14 hari cairkan, SLA keseluruhan 90 hari. Banjir: denda 10% nilai pertanggungan. TLP: pengganti 20% OTR awal. Pencairan maks 14 hari sejak BCAF kirim SPNP. Dana masuk BCAF dulu.
+      </div>
+      <div class="note-box" style="color:navy;margin-top:.5rem">
+        <b>Notes:</b> Memo ET dibikin cabang, naikin privy=PIC claim. Allrisk tapi kerusakan 75% → di-claim secara TLO. PPKD bisa TTD ahli waris kalau konsumen meninggal. CP+kendaraan bisa di-claim dua-duanya kalau meninggal karena kecelakaan.
       </div>
     </div>
   </div>
@@ -1125,21 +1976,60 @@
       Refund Asuransi &amp; Endorse &amp; Rekonsiliasi <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
-      <h5>Syarat Refund Kendaraan:</h5>
+      <h5>Syarat Refund Kendaraan (Mobil):</h5>
       <ul>
-        <li>Status Financore harus Close ET-released</li>
-        <li>&lt;Rp 25.000 tidak bisa diproses</li>
-        <li>Pengajuan max 3 bulan sebelum tenor asuransi berakhir</li>
+        <li>Status Financore harus Close ET-released, BPKB sudah diambil</li>
+        <li>Sisa periode polis ≥90 hari, tidak ada batas nominal</li>
       </ul>
       <div class="flow-steps" style="margin-top:.6rem">
         <div class="flow-step"><div class="num">1</div><p>Cabang email → PIC kirim ke maskapai minta pembatalan → minta hitungan premi sisa</p></div>
         <div class="flow-step"><div class="num">2</div><p>Buat form pembatalan + memo refund (TTD s.d DD) → kirim ke maskapai → maskapai transfer maks H+5</p></div>
         <div class="flow-step"><div class="num">3</div><p>PIC buat form transfer ke FSM (max jam 3 sore) → FSM transfer ke konsumen H+1 (maks 2 hari)</p></div>
       </div>
-      <p style="margin:.5rem 0;font-size:.85rem">Yang dikembalikan: premi yang belum berjalan. Rekening untuk refund tidak harus BCA.</p>
-      <h5>Refund CP (5 Maskapai):</h5>
-      <p style="font-size:.84rem">Ciputra 30%, CHUB 8%, BCA Life 30%, Manulife 30%, TMLI 10%. SLA: 21 hari kalender / 14 hari kerja. Minimal: Rp 25.000.</p>
       <div class="info-grid" style="margin-top:.7rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Lengkap Refund Kendaraan Mobil</h5>
+          <ul>
+            <li>2 input: Cabang (email soft copy) + CS (dokumen fisik)</li>
+            <li>Dokumen: Form Pengajuan TTD+materai, KTP, cover buku tabungan, Rekap Order (cabang: approval BOH+TL+Staff)</li>
+            <li>Register Microsoft Access → email maskapai (no kontrak, no polis, tgl batal=H+5 dari terima)</li>
+            <li>Maskapai kirim feedback perhitungan H+1 → cocokkan perhitungan (kalau beda: cek periode polis/tgl batal)</li>
+            <li>Buat Memo Refund/batal (approval TL/UH/DH/DD) + order batal ke maskapai</li>
+            <li>Maskapai TF ke BCAF maks H+5 → FSM kirim rekapan tiap pagi → buat permohonan kelebihan dana (approval TL/UH/DH) → kirim ke FSM H+3</li>
+            <li>FSM transfer ke konsumen H+1 (maks 2 hari). Boleh bank lain (biaya admin 10K)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Notes Refund Kendaraan</h5>
+          <ul>
+            <li>Ada perluasan = refund lebih besar. Pengajuan di atas jam 2 = proses besok</li>
+            <li>TLP wajib diajuin juga meski pengajuan hanya kendaraan (gak bisa refund TLP saja)</li>
+            <li>Maskapai TLP: Axa dan TLP BCAI</li>
+            <li>Form pengajuan harus atas nama konsumen (kalau meninggal: surat kuasa+KTP ahli waris)</li>
+            <li>No rekening harus atas nama polis atau rekening autodebet (beda: surat kuasa)</li>
+            <li>Balancing harian+bulanan (email+broadcast Sparks). Tidak ada persentase</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Syarat &amp; Alur Refund CP Mobil</h5>
+          <ul>
+            <li>Syarat: Status Close ET-Release, BPKB sudah diambil, nominal min Rp 25.000</li>
+            <li>2 sumber: Cabang (email, via admin/TL/BASH/BM) + KP/WPI (walk in CS)</li>
+            <li>Dokumen Cabang: Form Permohonan (Approval BOH+TTD Konsumen materai), KTP, Inquiry/SS rek, Polis (opsional, wajib Chubb Life)</li>
+            <li>Register di Excel, tanggal pelunasan = cut off</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Perhitungan &amp; Proses Refund CP Mobil</h5>
+          <ul>
+            <li>Formula: (Sisa hari belum terpakai / Tenor asuransi) × Premi dibayar × % refund</li>
+            <li>% per maskapai: Ciputra=30%, Chubb=8–10%, TMLI=10%, BCA Life=30%</li>
+            <li>Jika nominal &lt;25.000 → email balik ke cabang (tidak bisa refund)</li>
+            <li>Surat pembatalan → memo → naik ke Privy (Approval DD Accounting+DH Account Manager)</li>
+            <li>Kirim email ke maskapai → refund CAIR ke rekening konsumen</li>
+            <li>Pengajuan sebelum jam 4=hari ini, sesudah jam 4=besok. Jika pernah claim CP → ditolak maskapai. Tidak ada batas waktu</li>
+          </ul>
+        </div>
         <div class="info-card">
           <h5>Endorse</h5>
           <ul>
@@ -1156,6 +2046,271 @@
             <li>SOA sebagai feedback order manual</li>
             <li>CP yang bayar accounting</li>
             <li>Pembayaran kendaraan H+7 sejak dapat kwitansi</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin:.5rem 0;font-size:.85rem">Yang dikembalikan: premi yang belum berjalan. Rekening untuk refund tidak harus BCA.</p>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">PIC Memo ET (Asuransi CP)</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Komponen Pelunasan &amp; Alur</h5>
+          <ul>
+            <li>Os Principal, Total overdue (di-waived kalau meninggal), Pinalti overdue, Bunga Berjalan, Pinalti ET 5% (di-waived), Admin Fee (di-waived)</li>
+            <li>Treasury/FSM kirim rekapan harian dana unknown → PIC identifikasi CP (deskripsi ada PT CHUBB/CAkpri)</li>
+            <li>Pastikan nominal sesuai register → bikin memo bukti bayar → approve TL Insurance</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Case Kurang/Lebih Bayar</h5>
+          <ul>
+            <li><b>Kurang banget (di-waived masih kurang):</b> infoin cabang tagih ahli waris, di-waived kalau diminta ahli waris</li>
+            <li><b>Kurang saja (setelah di-waived bisa pas):</b> bikin memo waived ET tanpa pengajuan</li>
+            <li>Approval waived: ≤1jt=Pak Ika (DH), 1jt–50%=Pak Frans (DD), &gt;50%=1 BOD</li>
+            <li>Setelah pas → naikin ke FSM tutup akun → info cabang ke ahli waris untuk ambil BPKB</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Lebih Bayar &amp; Close ET</h5>
+          <ul>
+            <li>Lebih bayar → generate di Microsoft Access (approval DH via Privy) → kirim ke FSM: tutup account + sisa dana ke deposit</li>
+            <li>Memo ET diserahkan ke cabang untuk info konsumen, BPKB bisa diambil</li>
+            <li>Kalau claim di KP → email ke CS bawah</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASURANSI MOTOR -->
+  <div class="section-label" style="color:navy;margin-top:1.5rem">ASURANSI KENDARAAN MOTOR</div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Order Asuransi Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Aplikasi &amp; Ketentuan</h5>
+          <ul>
+            <li>Aplikasi: Fast App + Fast Web</li>
+            <li>TLO untuk KSM/KSMM/KPM; Allrisk hanya motor &gt;75jt (KSM+KPM)</li>
+            <li>Maskapai: ASCPI (Cakrawala), ASHBT (Sahabat), BCAI, Sompo, Astob, Raksa, Simas, ASMW, BCA Life</li>
+            <li>Khusus BCAI: sudah API, cek di menu report asuransi motor</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Order Motor</h5>
+          <ul>
+            <li>Fast App → menu insurance → Create Text Order Insurance → tarik data order</li>
+            <li>Buyback=H+1 setelah marketing input Moss, Non Buyback=endorse/koreksi</li>
+            <li>Masuk Fast Web report (TXT) → kirim ke maskapai email → maskapai feedback TXT+no polis</li>
+            <li>Upload ke Fast → input order resume kendaraan → masukkan ke rekapan</li>
+            <li>CP: menu Create Text Order CP + upload order resume CP. Cek report nasabah CP untuk yang declined</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">SLA Order Motor</h5>
+          <ul>
+            <li>Order/refund/CP = H+1</li>
+            <li>Tagihan premi + endorse = 14 HK</li>
+            <li>Feedback maskapai = H+1</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Endorse Asuransi Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Endorse Non Premi</h5>
+          <ul>
+            <li>Administrasi: change due date/nama/tanggal/dll; muncul di text order non buyback</li>
+            <li>Create text endorse CDD → checklist amount 5000 → tarik data (Fast Web Report)</li>
+            <li>Buat perhitungan Excel (JT berubah → premi berapa?) → kirim ke maskapai</li>
+            <li>Maskapai feedback + cek nominal → maskapai kirim soft copy kwitansi</li>
+            <li>Upload ke Move (approval TL-UH) → maskapai kirim hard copy kwitansi → serahkan ke FSM/Payment</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Endorse Premi</h5>
+          <ul>
+            <li>Ubah struktur: case WO/Sold. Tarik data seminggu sekali (Fast Web Report)</li>
+            <li>Totalin premi per batch. Approval: 0-25jt=TL-UH-Accounting, 25-40jt=TL-UH-DH-Accounting, 40jt++=TL-UH-DH-DD-Accounting</li>
+            <li>Bikin memo surat pembatalan (up Privy approval TL+UH) → kirim ke maskapai</li>
+            <li>Maskapai feedback Credit Note → upload Endorse response + debit/credit note → Create RV from credit note</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Tagihan Premi Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Fast Web Report → Insurance → new rekap tagihan premi → pilih maskapai → muncul data tahun 1/2/3 → jadikan Excel</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Kirim ke maskapai → maskapai kirim debit note + soft copy kwitansi</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">Upload debit note di Fast App → buat memo pembayaran (naikan Privy sesuai approval)</p></div>
+        <div class="flow-step"><div class="num">4</div><p style="color:navy">Approval: 0-25jt=TL-UH-Accounting, 25-40jt=TL-UH-DH-Accounting, 40jt++=TL-UH-DH-DD-Accounting</p></div>
+        <div class="flow-step"><div class="num">5</div><p style="color:navy">Maskapai kirim hard copy → ke Payment</p></div>
+      </div>
+      <div class="note-box" style="color:navy;margin-top:.5rem">Tagihan premi motor dibayar setahun sekali ke maskapai. SLA tagihan premi = 14 HK.</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Refund Asuransi Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Refund Kendaraan Motor</h5>
+          <ul>
+            <li>Cabang request via email (surat pembatalan asuransi, lampiran SKL/KTP/buku rekening)</li>
+            <li>Buat perhitungan refund di Excel → kirim ke maskapai → maskapai feedback "OK"</li>
+            <li>Bikin memo (approval UH/DD/Account Management, lampiran SKL/KTP/buku rekening)</li>
+            <li>Kirim ke maskapai → maskapai kirim kwitansi</li>
+            <li>Ngajuin ke FSM lewat Move (approval TL Asuransi/DH/FSM/DH Treasury/Accounting 2)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Notes &amp; TLP Motor</h5>
+          <ul>
+            <li>CP tidak bisa direfund</li>
+            <li>TLP = asuransi penyerta untuk KSM/KSMM (KPM hanya Honda)</li>
+            <li>Order TLP sama kaya CP, seminggu sekali: menu Create Text Order CP → field coverage set TLP</li>
+            <li>SLA refund = H+1</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Klaim Kendaraan Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Klaim Motor</h5>
+          <ul>
+            <li>Pelaporan awal dari cabang lewat Move + input di sistem FAST (Tracking Claim). SLA 5 hari setelah kejadian</li>
+            <li>Cek no kontrak di FAST → input tanggal pelaporan → kirim email ke maskapai</li>
+            <li>Maskapai feedback dokumen → Move dikembalikan ke cabang (upload Form Claim/FC KTP/dok kecelakaan)</li>
+            <li>PIC kirim soft copy ke maskapai; hard copy diserahkan cabang ke maskapai</li>
+            <li>Move di-approve (penanda dok lengkap) → input checklist di FAST → tunggu H+14 kerja feedback maskapai</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">SPGR, SPNP &amp; Depresiasi</h5>
+          <ul>
+            <li>Presentasi depresiasi: Thn1=100%, Thn2=85%, Thn3=75%, Thn4=70%</li>
+            <li>Nilai persetujuan = harga motor × persentase; Resiko sendiri = 500.000</li>
+            <li>Net premi = dikurangi sisa premi belum dibayar. Wewenang SPNP = TL+DH Asuransi</li>
+            <li>SPNP+CL dikirim ke maskapai (CL via Tracking Claim+Fast Web Report). Tunggu pencairan H+10 ke BCAF</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">CN/DN &amp; Proses Pre-term</h5>
+          <ul>
+            <li>Maskapai kirim CN/DN: CN=nominal sama kaya SPGR, DN=sisa premi+500rb jika gak ada STNK</li>
+            <li>Upload CN/DN (Create RV kalau CN, Create DN kalau DN) → kirim rincian ke FSM</li>
+            <li>Bikin form Pre-term (Fast→new penalty nego and preterm→Calculate)</li>
+            <li>Kelebihan dana → memo pre-term → full approved → ubah status Closed di FAST</li>
+            <li>Kekurangan → coba waived (denda+admin saja) → info ke cabang kalau harus bayar</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box" style="color:navy;margin-top:.5rem">
+        <b>Notes:</b> Yang bisa batalin klaim cuma konsumen (maskapai itu tolak). Kunci motor+STNK diberikan ke maskapai saat klaim. Konsumen bisa langsung claim ke maskapai tanpa BCAF.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Klaim CP Motor</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Cover, SLA &amp; Penolakan</h5>
+          <ul>
+            <li>Cover: pokok hutang sisa; bunga tetap tanggungan konsumen</li>
+            <li>SLA: 90 hari kalender sampai kelengkapan dokumen; SPGR=60 hari; Pencairan=10 HK setelah SPNP</li>
+            <li>Penolakan: Waiting periode 6 bulan, Pre existing condition (stroke/tumor/diabetes/gagal ginjal/penyakit hati)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Proses Klaim CP Motor</h5>
+          <ul>
+            <li>Cabang Laporan Awal di Move (bisa KTP atau no kontrak saja)</li>
+            <li>Buat KP (kartu piutang, approval UH via Privy: no kontrak+nama, tgl kejadian, tgl lapor)</li>
+            <li>Lampirkan PH+tabel angsuran terakhir dari Fast → new penalty nego and preterm</li>
+            <li>Upload KP+dok awal ke maskapai → maskapai feedback: SPAJ, FC KTP/KK, FKMD, SK RS, kuesioner ahli waris, SK kepolisian</li>
+            <li>Cabang kirim dok fisik ke PIC → cek kelengkapan → kirim ke maskapai</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Proses RV &amp; Pelunasan</h5>
+          <ul>
+            <li>Fast → ubah kode cabang → account management → new penalty nego and preterm → deposit KSM → masukin no kontrak → Calculate → masukin no RV → keluar nominal</li>
+            <li>Kurang bayar → info ke cabang → no RV baru+lama di-input ke menu pre term → memo ET/preterm → cetak Draft → Cancel → kirim ke cabang → Save → Close</li>
+            <li>Kelebihan dana = proses refund asuransi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span style="color:navy">Refund CP Motor &amp; Kendaraan General (Motor)</span> <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Dokumen &amp; Proses Refund CP Motor</h5>
+          <ul>
+            <li>Dokumen: Asli surat perintah transfer (semua ahli waris+kuasa ke X), FC cover rekening, FC tertanggung+ahli waris, FC akta kelahiran (ahli waris &lt;umur), FC akta kematian, FC KK, FC surat kuasa/pernyataan ahli waris</li>
+            <li>Ex Deposit CP: Ubah kode Cabang → Fast → Finance → Invoice → Ex deposit → field supplier → pilih deposit no → isi nominal → process → SS halaman ex deposit CP</li>
+            <li>Buat perhitungan → kirim ke FSM → FSM feedback var card → bikin memo refund</li>
+            <li>Ajuin ke MOVE Payment (approval TL-UH-Head Accounting-Staff Accounting) → full approved → accounting manual TF ke konsumen</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Refund Kendaraan General (Motor)</h5>
+          <ul>
+            <li>Dokumen soft copy saja (scan), tidak perlu fisik</li>
+            <li>Ex Deposit Kendaraan: Fast → Finance → Invoice → Ex deposit → Supplier=Konsumen Asuransi → Pilih deposit no → masukan nama rek/BI Code/Bank → Process → notif berisi no invoice</li>
+            <li>Buat memo detail permohonan → kirim ke FSM → FSM feedback excel (gantungan asuransi/nama/no RV/nominal/sisa pokok/ex deposit)</li>
+            <li>Buat memo refund (approval Privy TL+UH) → full approved → gabungkan SS ex deposit+feedback FSM+memo refund → ajuin ke Move → approve TL asuransi</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Notes Refund (CP &amp; General)</h5>
+          <ul>
+            <li>SLA refund = 2 hari setelah pre-term atau dokumen syarat fisik diterima</li>
+            <li>Nominal refund tidak diinfokan ke cabang</li>
+            <li>Tidak ada balancing harian; KPI = sesuai SLA</li>
+            <li>Refund dikerjakan di atas jam 11 (accounting narik data jam 10, TL perlu cek dulu)</li>
           </ul>
         </div>
       </div>
@@ -1616,6 +2771,198 @@
       </div>
     </div>
   </div>
+
+  <div class="section-label" style="margin-top:1.5rem">DOCUST MOTOR (Sentra Kustodi Motorcycle)</div>
+
+  <!-- Cabang & Definisi -->
+  <div class="acc-item open">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Lokasi, Definisi &amp; Ketentuan Umum <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid" style="margin-bottom:.8rem">
+        <div class="info-card">
+          <h5>Cabang Motorcycle Docust</h5>
+          <ul style="color:navy">
+            <li><b>Docust Ciputat</b> → Jakarta, Bogor, Depok, Cikarang</li>
+            <li><b>Docust Bandung</b> → Jawa Barat</li>
+            <li><b>Docust Solo</b> → Jawa Tengah</li>
+            <li><b>Docust Gresik</b> → Jawa Timur</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Definisi</h5>
+          <ul style="color:navy">
+            <li><b>BPKB:</b> Aset perusahaan sebagai jaminan kredit nasabah, dikontrol ketat</li>
+            <li><b>Stok Opname BPKB:</b> Membandingkan fisik BPKB &amp; dokumen kelengkapannya dengan pencatatan stok di sistem</li>
+            <li><b>Sentra Kustodi (Docust):</b> Lokasi terpusat penyimpanan &amp; pengelolaan BPKB dari beberapa cabang dalam satu area</li>
+            <li><b>Laci Transit:</b> Laci khusus dalam strong room untuk BPKB yang sudah diterima di sistem tapi belum di-scan ke document imaging</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Perbedaan Docust Motor vs Mobil</h5>
+          <ul style="color:navy">
+            <li><b>Motor — Mutasi Out:</b> hanya bisa diajukan oleh TL Operation Cabang (1 pintu) via aplikasi Move internal. Input list no kontrak di Move → Docust Motor siapkan BPKB → kirim ke cabang. <b>SKL dibuat oleh TL Operation Cabang</b></li>
+            <li><b>Mobil — Borrow BPKB:</b> dapat diajukan langsung oleh unit terkait ke Docust (cth: tim legal butuh BPKB). <b>SKL dibuat oleh Docust</b></li>
+            <li><b>Max BPKB di cabang:</b> Motor = 6 bulan | Mobil = 16 hari</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ketentuan Stock Opname -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Ketentuan Stock Opname (SK No. 008/SK/DIR/2025) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="color:navy;margin-bottom:.6rem">Dilakukan oleh Tim Document Custodian dan pihak independen internal untuk memastikan akurasi data fisik.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Jenis &amp; Periode — Rutin</h5>
+          <ul style="color:navy">
+            <li><b>1× dalam 2 tahun:</b> Pemeriksaan fisik BPKB beserta dokumen kelengkapannya (FAKTUR, NIK/nomor induk kendaraan, dll) — menggunakan Ms.Access</li>
+            <li><b>2× dalam setahun:</b> Pemeriksaan fisik BPKB saja — Semester 1: Januari–Juni | Semester 2: Juli–Desember</li>
+            <li>SO Fisik: menggunakan RF Id (KP) / barcode (cabang)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Non-Rutin</h5>
+          <ul style="color:navy">
+            <li>Dilakukan jika: pergantian pejabat/staf yang punya akses kluis, perpindahan kluis, atau permintaan khusus manajemen</li>
+            <li>Jika SO non-rutin sudah dilakukan → SO rutin tahun tersebut tidak diperlukan lagi</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Kriteria Pihak Independen Internal</h5>
+          <ul style="color:navy">
+            <li>Wajib hadir minimal 1×/tahun jika cabang memiliki <b>&gt;3.500 BPKB</b></li>
+            <li>Cabang dengan jumlah di bawah itu: wajib <b>sampling 50 BPKB</b>, fotonya dikirim ke PIC Sampling maksimal H+1</li>
+            <li>Tugasnya: memastikan pelaksanaan SO, membantu proses, &amp; menjadi saksi pembuatan Berita Acara</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pengelolaan BPKB Sentra Kustodi -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Pengelolaan BPKB di Sentra Kustodi (KBP/DOP/1109) <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="color:navy;margin-bottom:.6rem">Mengatur siklus hidup BPKB mulai dari pengambilan di cabang hingga penyimpanan akhir di Sentra Kustodi.</p>
+      <div class="info-grid" style="margin-bottom:.7rem">
+        <div class="info-card">
+          <h5>Proses Pick Up &amp; Distribusi</h5>
+          <ul style="color:navy">
+            <li><b>Jadwal:</b> Kepala Unit Sentra Kustodi informasikan jadwal tiap awal bulan via email. Reschedule maks H-1</li>
+            <li><b>Transportasi:</b><br>— Jarak &lt;120 km (PP): motor pribadi staf terdaftar atau ekspedisi<br>— Jarak &gt;120 km: mobil operasional atau ekspedisi<br>— Peminjaman mobil: dilakukan pada H-1 kegiatan</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Kriteria BPKB yang Disimpan</h5>
+          <ul style="color:navy">
+            <li>Kontrak aktif (<i>Active</i>) dengan sisa angsuran &gt;1</li>
+            <li>BPKB atas kontrak Write Off (WO)</li>
+            <li>BPKB yang sudah berada di cabang selama <b>6 bulan</b> sejak didistribusikan dari Sentra Kustodi</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>SLA Operasional</h5>
+          <ul style="color:navy">
+            <li><b>Penerimaan:</b> Receive di sistem FAST maks H+2 hari kerja sejak diterima dari cabang</li>
+            <li><b>Scanning:</b> Scan &amp; upload ke Document Imaging maks H+2 hari kerja setelah receive</li>
+            <li><b>Barcoding:</b> Tempel stiker barcode maks H+24 hari kerja (sesuai revisi terbaru) setelah scan</li>
+            <li><b>Penyimpanan:</b> Masuk ke lemari BPKB maks H+1 hari kerja setelah barcode</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Penomoran &amp; Kapasitas Lemari</h5>
+          <ul style="color:navy">
+            <li>Format: <b>xx.yy.zz</b> (xx: no lemari, yy: no laci, zz: no kolom)</li>
+            <li>Kapasitas 1 kolom: 40–80 BPKB (untuk hindari kerusakan fisik)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow Docust Motor -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Flow Docust Motor — Mutasi IN &amp; OUT <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <h5>Mutasi IN (Terima BPKB dari Cabang/Pick-Up)</h5>
+      <p style="color:navy;font-size:.85rem;margin-bottom:.4rem">Tiap awal bulan → terima BPKB dari: dealer (Covernote), BPKB dipinjam untuk pengurusan BBN (balik nama), Mutasi (perubahan alamat), proses STNK</p>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Input BPKB IN di FAST sesuai nomor BAST (fisik BAST &amp; BPKB sudah diterima)</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Scan &amp; upload ke Document Imaging (maks H+2 dari receive)</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">Tempel barcode → simpan ke lemari sesuai format penomoran</p></div>
+      </div>
+      <h5 style="margin-top:.8rem">Mutasi OUT (Distribusi BPKB ke Cabang)</h5>
+      <p style="color:navy;font-size:.85rem;margin-bottom:.4rem">H-1 bulan konsumen lunas → BPKB dikirim ke cabang-cabang</p>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="num">1</div><p style="color:navy">Input BPKB OUT di FAST sesuai nomor BAST</p></div>
+        <div class="flow-step"><div class="num">2</div><p style="color:navy">Siapkan BPKB → kirim ke cabang</p></div>
+        <div class="flow-step"><div class="num">3</div><p style="color:navy">Saat pengeluaran BPKB dari cabang ke konsumen: TL Operation Cabang cek apakah konsumen benar-benar lunas &amp; tidak ada denda → TL keluarkan SKL</p></div>
+      </div>
+      <div class="note-box" style="margin-top:.7rem;color:navy">
+        <b>Cut off pengiriman Docust Motor: Kamis</b> → mencegah BPKB tiba di hari libur tanpa yang menerima (tercecer).<br>
+        Jangka waktu BPKB di cabang: <b>6 bulan</b>. Jika tidak ada reservasi konsumen → BPKB di-pick up kembali ke Sentra Kustodi.
+      </div>
+    </div>
+  </div>
+
+  <!-- Tugas Rutin TL Docust & Pengiriman -->
+  <div class="acc-item">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      Tugas Rutin TL Docust, Pengiriman &amp; Pelaporan <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Tugas Rutin TL Docust</h5>
+          <ol style="color:navy;padding-left:1rem">
+            <li>Tiap awal bulan: buat jadwal pick up distribusi BPKB</li>
+            <li>Kirim BPKB ke cabang terkait (konsumen sisa angsuran 1×, H-1 bulan lunas)</li>
+            <li>Kelola jangka waktu BPKB di cabang (6 bulan; jika tidak direservasi → pick up kembali)</li>
+            <li>Penyimpanan di luar Sentra: cabang masing-masing dengan brankas</li>
+            <li>Tiap minggu: sampling BPKB via VC kepada TL cabang untuk pastikan penyimpanan sesuai ketentuan</li>
+            <li>Register proses mutasi IN/OUT di aplikasi FastApp (export by excel)</li>
+            <li>Proses balancing akhir hari di aplikasi My Report → di-approve oleh UH Docust</li>
+          </ol>
+        </div>
+        <div class="info-card">
+          <h5>Ketentuan Pengiriman BPKB (Staf Docust)</h5>
+          <ul style="color:navy">
+            <li>Jarak &gt;120 km &amp; jumlah BPKB &gt;150 → <b>mobil</b></li>
+            <li>Jarak &lt;120 km &amp; jumlah BPKB &gt;150 → <b>mobil</b></li>
+            <li>Jarak &lt;120 km &amp; jumlah BPKB &lt;150 → <b>motor</b></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Pelaporan &amp; Pengawasan</h5>
+          <ul style="color:navy">
+            <li><b>Target keberhasilan Pick Up:</b> 100%</li>
+            <li>Evaluasi tiap tgl 1 oleh Kepala Departemen Layanan Pendukung Operasional</li>
+            <li><b>Closing harian:</b> staf ajukan rekonsiliasi via sistem MOVE tiap akhir hari kerja</li>
+            <li><b>Berita Acara:</b> hasil SO &amp; rekonsiliasi dituangkan dalam BA, disetujui pejabat berwenang &amp; diarsip berdasar urutan tanggal</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Lain-Lain</h5>
+          <ul style="color:navy">
+            <li><b>Biaya Titip BPKB:</b> Rp 5.000/hari, dihitung sejak hari ke-61 kalender dari tgl pelunasan sampai tgl pengambilan BPKB</li>
+            <li>Multiguna: BPKB tetap diambil. Yang validasi absah &amp; blokir adalah MC Operation Cabang</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 </div>
 
@@ -2077,15 +3424,173 @@
           <p>Apakah cabang melakukan penilaian insentif operation sesuai manajemen, menjalankan operasional sesuai kewenangan, keselarasan antar divisi.</p>
         </div>
       </div>
+
+      <p style="color:navy; margin-top:.8rem"><b>IOM No. 001 tahun 2023</b> mengatur bobot penilaian checklist operation. Unit yang menjalankan fungsi mitigasi risiko operasional dan kepatuhan terhadap prosedur. Tujuan: memberikan penilaian atas kinerja cabang divisi operation dan memberikan rekomendasi perbaikan.</p>
+
+      <h5 style="color:navy; margin-top:.8rem">Man Power Planning &amp; KPI Staff OQA</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Struktur Tim OQA</h5>
+          <ul>
+            <li>2 Specialist</li>
+            <li>1 Head</li>
+            <li>2 Staff</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">KPI Penilaian Staff OQA</h5>
+          <ul>
+            <li>Total cabang yang dikunjungi</li>
+            <li>SLA Laporan Hasil Pemeriksaan Release</li>
+            <li>SLA laporan passive release (tgl 15 tiap bulan)</li>
+            <li>Setiap orang OQA wajib jadi Team Leader setiap tahunnya</li>
+            <li>Pemeriksaan laporan tindak lanjut</li>
+            <li>Nilai hasil test prosedur dari OSD</li>
+            <li>Lain-lain (4DX, Kaizen, …)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Hal yang Diperiksa</h5>
+          <ol>
+            <li>Data dan dokumen</li>
+            <li>Rekaman CCTV</li>
+            <li>Tes pemahaman prosedur kerja (PUT)</li>
+          </ol>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Contoh Temuan di Cabang Operation</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">App Admin</h5>
+          <ul>
+            <li>Firm kredit protection tidak di-TTD BM → harusnya TTD BM</li>
+            <li>Nosin pada faktur dan BPKB berbeda → pastikan sesuai sebelum input sistem</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Insurance Admin</h5>
+          <ul>
+            <li>Input aktivitas claim TLO belum konsisten → harus diupdate setiap ada aktivitas claim</li>
+            <li>Perbedaan tanggal penerimaan dokumen awal claim CP pada register vs sistem</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Account Management – Admin Front</h5>
+          <ul>
+            <li>Nominal biaya proses STNK/BPKB tidak sesuai PKS</li>
+            <li>Ada biaya cek Absah/blokir padahal tidak ada di PKS → pejabat wajib cek kesesuaian dengan PKS</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">CS &amp; CS Transaction</h5>
+          <ul>
+            <li>Update register untuk dokumen pengurusan STNK/BPKB tidak sesuai</li>
+            <li>Pengisian buku register aktivitas brankas belum realtime</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Support Function, Umum &amp; CCTV</h5>
+          <ul>
+            <li>Barang elektronik tidak terpakai di gudang dan tidak ditindaklanjuti</li>
+            <li>Barang tidak terpakai di ruang server</li>
+            <li>Staff sharing User ID (meski ada persetujuan pemilik) → tidak diperbolehkan</li>
+            <li>Staff CS Transaction tidak mengecek keaslian uang cash menggunakan ultraviolet</li>
+          </ul>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Lampiran Ceklist Process</h5>
+      <ul style="color:navy">
+        <li><b>Kondisi</b> → temuan di cabang</li>
+        <li><b>Rekomendasi</b> → hasil rekomendasi dari OQA</li>
+        <li><b>Tanggapan Cabang</b> → tanggapan cabang atas hasil temuan</li>
+        <li><b>Target Penyelesaian</b> → kapan cabang akan menyelesaikan</li>
+      </ul>
+
+      <h5 style="color:navy; margin-top:.8rem">Bobot Penilaian</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Bobot Checklist Process</h5>
+          <ul>
+            <li>Pemeriksaan proses kerja</li>
+            <li>PUT (Process Understanding Test) → menguji knowledge staff cabang</li>
+            <li>Pemeriksaan CCTV (penyimpanan: cabang 2 bulan, KP 3 bulan)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Bobot Checklist Umum</h5>
+          <ul>
+            <li>Pembuatan insentif</li>
+            <li>Komunikasi</li>
+            <li>Matriks rumah tangga</li>
+            <li>Pengelolaan umum</li>
+            <li>Pemeriksaan CCTV</li>
+          </ul>
+          <p style="font-size:.82rem">Penentuan bobot = hak prerogratif OQA, diperbarui tiap tahun berdasarkan temuan sebelumnya</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Faktor Pengurang</h5>
+          <ul>
+            <li>Temuan checklist process sebelumnya yang berulang</li>
+            <li>Temuan pemeriksaan CCTV sebelumnya yang berulang</li>
+            <li>Temuan audit yang berulang</li>
+          </ul>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Alur Kerja OQA</h5>
+      <div class="flow-steps" style="color:navy; margin-top:.5rem">
+        <div class="flow-step"><b>Awal Tahun:</b> Tentukan 20 cabang prioritas (1 cabang 1×/tahun). Susun anggaran akomodasi. Koordinasi jadwal dengan tim audit agar tidak bentrok.</div>
+        <div class="flow-step"><b>Kunjungan (5 Hari, 2×/bulan):</b> Senin–Kamis: Pemeriksaan. Jumat: Diskusi hasil temuan bersama cabang.</div>
+        <div class="flow-step"><b>Laporan (Max 60 Hari):</b> Laporan hasil pemeriksaan dikirim ke cabang via email.</div>
+        <div class="flow-step"><b>Tindak Lanjut Cabang (Max 30 Hari):</b> Cabang melampirkan bukti perbaikan. Dapat diperpanjang via email dengan alasan jelas (contoh: sibuk karena expo).</div>
+        <div class="flow-step"><b>Filling:</b> Dokumen diarsipkan oleh tim OQA.</div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Passive Ceklist</h5>
+      <p style="color:navy">Pemeriksaan data cabang kelas A–D yang diolah di kantor pusat. Dilakukan 2 tahun sekali (prioritas utama tetap kunjungan cabang langsung). Tujuan: cek data penting agar temuan dapat segera di-FIX.</p>
+
+      <h5 style="color:navy; margin-top:.8rem">Lain-lain OQA</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">OQA vs Audit</h5>
+          <ul>
+            <li>OQA: menilai procedural flow (SK/SE/IK/IOM) kerja cabang operation</li>
+            <li>Audit: memeriksa risiko dari aspek yang rawan fraud</li>
+            <li>Koordinasi jadwal agar tidak bentrok. Temuan audit yang belum di-fix saat dikunjungi OQA → nilai dikurangi</li>
+            <li>OQA langsung di bawah DD (independen). Nilai OQA tidak ada batas minimum — digunakan oleh OSD dan OA.</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Tim &amp; BORC</h5>
+          <ul>
+            <li>OQA memberi rekomendasi perbaikan, bukan sanksi. Jika fraud → laporkan ke DD</li>
+            <li>Cabang C: 4 orang. Cabang A &amp; B: 5–6 orang (pinjam specialist ke atas)</li>
+            <li>Bobot penilaian motor berbeda dengan mobil</li>
+            <li>BORC (Branch Operation Risk Control): tugasnya sama dengan OQA tetapi khusus cabang kelas D. Dihandle BORC karena keterbatasan MPP, tidak bisa digabung OQA agar tetap independen.</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Ketentuan CCTV &amp; Kunjungan</h5>
+          <ul>
+            <li>Kunjungan ke cabang bersifat mendadak → cabang harus bisa menyiapkan data dengan cepat</li>
+            <li>Sampling CCTV = 2 hari acak. CCTV hanya diakses di cabang (KP tidak bisa akses)</li>
+            <li>Yang dicek: CCTV ruang kerja operation dan dossier</li>
+            <li>Pemeriksaan CCTV KP: 1×/tahun, hanya kantor yang ada unit operation-nya (UOB &amp; WTC tidak termasuk)</li>
+            <li>Pemeriksaan dibedakan per kelas cabang; jika tidak ada prosesnya di Cabang B/C → nilai N/A</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="acc-item">
     <div class="acc-head" onclick="toggleAcc(this)">
-      OA (Operation Area) — 2 Wilayah <span class="acc-chevron">▼</span>
+      OA (Operation Area) — 3 Area <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
-      <p><b>OA 1:</b> Non Jawa &nbsp;|&nbsp; <b>OA 2:</b> Jawa</p>
+      <p style="color:navy">OA adalah perantara urusan cabang dan kantor pusat terkait kebutuhan &amp; kendala cabang. Dibagi menjadi <b>Area Specialist, OA Admin,</b> dan <b>Area Multitasking</b>.</p>
       <div class="info-grid" style="margin-top:.7rem">
         <div class="info-card">
           <h5>Jobdesk OA</h5>
@@ -2123,6 +3628,229 @@
             <li>Bisa menggantikan semua lini operation</li>
             <li>Backup BOH kelas D</li>
           </ul>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Pembagian 3 Area Operation</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Area 1 — Dept Head: Pak Billy</h5>
+          <p>Ada Area Specialist</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Area 2 — Dept Head: Pak Yudi</h5>
+          <p>Ada Area Specialist</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Area 3 — Dept Head: Bu Puji Astutik</h5>
+          <p>Tidak ada Area Specialist</p>
+        </div>
+      </div>
+      <p style="color:navy; margin-top:.5rem">Pembagian area <b>bukan berdasarkan wilayah geografis</b>, melainkan berdasarkan <b>kelas cabang</b> agar setiap area menangani kelas A, B, C, D secara merata. Komposisi: Kelas A = 8 cabang, Kelas B = 3 cabang, Kelas C = 25 cabang, Kelas D = 39 cabang.</p>
+
+      <h5 style="color:navy; margin-top:.8rem">Admin OA — Flow &amp; SLA</h5>
+      <p style="color:navy">Admin OA = gerbang masuk pertama untuk semua kebijakan cabang yang di luar wewenang BOH, biasanya dalam bentuk memo. <b>SLA: di hari yang sama (2 jam).</b></p>
+      <div class="flow-steps" style="color:navy; margin-top:.5rem">
+        <div class="flow-step">1 — Cabang kirim memo ke admin area masing-masing (Area 3 tidak ada admin → bebas kirim ke admin Area 1 atau 2)</div>
+        <div class="flow-step">2 — Admin cek isi memo (2 jam SLA): cek berbelit/tidak, apakah diatur SK, format lengkap, masuk akal, lampiran lengkap</div>
+        <div class="flow-step">3 — Admin area deliver memo ke Area Multitasking</div>
+        <div class="flow-step">4 — PIC Area Multitasking analisa memo</div>
+        <div class="flow-step">5 — Jika ada revisi → dikembalikan ke cabang</div>
+        <div class="flow-step">6 — Jika sudah sesuai → Admin Area naikan ke Privy untuk approval DH &amp; DD (pejabat wewenang)</div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">3 Kategori Pengajuan ke Admin OA</h5>
+      <div class="section-label" style="color:navy; margin:.6rem 0 .4rem">1. Pengajuan Terkait Konsumen</div>
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Waive Denda (di Operation)</h5>
+          <ul>
+            <li>0–1 juta: approval BOH, max 20%</li>
+            <li>1–5 juta: approval DH, max 30%</li>
+            <li>5–50 juta: approval DD, max 50%</li>
+            <li>≥ 50%: approval BOD</li>
+          </ul>
+          <p style="font-size:.82rem">Contoh: denda 1,5 juta, hanya bisa bayar 600rb → approvalnya ke BOD (mencapai 60%). Jika BOH cuti → naik ke DH. DH cuti → naik ke DD.</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Refund Dana</h5>
+          <p>Yang paling sering: refund angsuran karena bayar double.</p>
+          <p style="font-size:.82rem">Contoh: konsumen PT punya 10 kontrak, bayar semua lewat 1 no. kontrak → harus refund. Cek ke FSM/Financore. Dana masuk tersimpan di deposit.</p>
+          <p style="font-size:.82rem"><b>Dokumen yang diperlukan:</b></p>
+          <ul>
+            <li>Form Refund Dana (permohonan penyelesaian kelebihan dana)</li>
+            <li>Lampiran KTP</li>
+            <li>Mutasi rekening</li>
+            <li>Keterangan/alasan refund</li>
+            <li>TTD Konsumen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-label" style="color:navy; margin:.6rem 0 .4rem">2. Pengajuan Terkait Karyawan</div>
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">DetaSering (TL &amp; BOH)</h5>
+          <ul>
+            <li>Single: boleh pulang 3 bulan sekali</li>
+            <li>Jarak detasering berdasarkan tempat rekrut (bisa disimpangkan jika cabang tujuan lebih dekat domisili)</li>
+            <li>Dapat uang kost — langsung masuk gaji (dibedakan kota khusus/non khusus), wajib ada bukti bayar</li>
+            <li>Sudah menikah &amp; bawa keluarga: bisa ajukan kontrakan (perlu surat admin HR). Dokumen: kwitansi sewa, foto geotagging, KTP pemilik rekening</li>
+            <li>Penempatan luar pulau: reimburse cargo max Rp 3 juta. Dalam pulau: 50% (sesuai kwitansi)</li>
+            <li>Approval DH berapapun nominalnya</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pengeluaran Biaya Umum Operasional (E-ger)</h5>
+          <ul>
+            <li>Tagihan Kurir (vendor): JNE di-blacklist karena pernah kasus hilang BPKB</li>
+            <li>Tagihan Service, Kebersihan, Keamanan, dll</li>
+            <li>Admin OA cek: tanggal (masa expired kwitansi = 55 hari). Jika lewat → revisi kwitansi atau melalui penyimpangan</li>
+          </ul>
+          <p style="font-size:.82rem"><b>Wewenang E-ger:</b> 0–500rb = BOH | 500rb–1 juta = DH | &gt;1 juta = DD</p>
+          <p style="font-size:.82rem"><b>Advance vs Non-Advance:</b> Advance = reimburse di depan, sisa dikembalikan (max 14 HK, lewat → potong gaji + SP). Non-Advance = reimburse biasa.</p>
+        </div>
+      </div>
+      <div class="section-label" style="color:navy; margin:.6rem 0 .4rem">3. Memo-Memo Lain yang Diproses Admin</div>
+      <div class="info-grid">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">BBNNK (BPKB Balik Nama Non Konsumen)</h5>
+          <ul>
+            <li>Syarat: usia &gt;21 tahun → approval DD. &lt;21 tahun → naik ke BOD</li>
+            <li>KTP &amp; KK konsumen + KTP &amp; KK penerima balik nama</li>
+            <li>STNK</li>
+            <li>Beda approver untuk BBN ke pasangan vs non pasangan</li>
+          </ul>
+          <p style="font-size:.82rem"><b>Biaya BBN:</b> Birojasa + PKB (lihat STNK) + Fidusia/Adendum (tergantung OSAR). Cek juga PKP konsumen. BPKB di-blokir agar tidak duplikat.</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">PPDJ (Permohonan Pengambilan Dokumen Jaminan)</h5>
+          <p><b>5 Jenis PPDJ:</b></p>
+          <ol>
+            <li>PPDJ konsumen regular</li>
+            <li>PPDJ konsumen WO → SKL (approval DD) / Non SKL (approval DH OA)</li>
+            <li>PPDJ ahli waris</li>
+            <li>PPDJ dikuasakan konsumen (konsumen di LN)</li>
+            <li>PPDJ konfirmasi via Vidcall + dikuasakan (wajib: Form Vidcall + Screenshot + bukti chat + Surat Kuasa)</li>
+          </ol>
+          <p style="font-size:.82rem"><b>Dokumen:</b> Form PPDJ, KTP, Memo ASR, No. Kontrak, Bukti TF, Lampiran opsional (account inquiry)</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Update Konsumen &amp; Revisi BPKB</h5>
+          <p><b>Update Konsumen:</b></p>
+          <ul>
+            <li>Update data: approval DH OA → dikirim ke FSM (update by system)</li>
+            <li>Maintenance data jaminan: approval DD → cabang update via aplikasi Drone</li>
+            <li>Drone hanya dipakai OA jika BOH cuti. Link ke Financore (read only)</li>
+            <li>Contoh maintenance: no rangka, no mesin, salah ketik</li>
+            <li>Contoh update: BBN, pemutusan STNK, no pol berubah, no BPKB berubah</li>
+          </ul>
+          <p style="margin-top:.4rem"><b>Revisi BPKB:</b> Approval DD. Revisi: sumbu kendaraan. Dokumen: Memo + BPKB + Surat dealer → dieskalasi ke BPKB admin.</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Area Specialist — BORC &amp; KPI Cabang</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">BORC Kelas D</h5>
+          <ul>
+            <li>Sampling BPKB min 50, Covernote min 30. Dilakukan 2× setahun, 5 hari kerja (offline)</li>
+            <li>Cek kesesuaian fisik, sistem, dan faktur</li>
+            <li>BASO = memastikan fisik BPKB ada di brankas cabang (sampling foto cover BPKB)</li>
+            <li>Cek CCTV 1 hari acak (operation &amp; brankas). CCTV di-download ke USB. Retensi = 30 hari.</li>
+            <li>MPP terbatas: hanya 8 cabang/tahun. BORC laporan ke DH dulu, baru ke DD.</li>
+          </ul>
+          <p style="font-size:.82rem"><b>Flow Kunjungan:</b> Hari 1–4: minta dokumen, sampling BPKB &amp; CN, SO Petty Cash (Reguler Rp 5 juta, Service Rp 1,5 juta, BDC Rp 200rb). Hari 5: draft hasil sementara ke BOH → diskusi → cek CCTV → draft final via email ke cabang (SLA tanggapan 5 HK) → Laporan Hasil Kunjungan (approval DH+DD) → bukti perbaikan dari cabang (SLA 1 bulan).</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">KPI Cabang (Tahunan)</h5>
+          <p>KPI dibuat awal tahun. Perhitungan: semester 1, semester 2, tengah tahun, dan 1 tahun.</p>
+          <p style="font-size:.82rem"><b>KPI Wajib HR:</b> Coaching, Sella, Kaizen, 4DX, 5R</p>
+          <p style="font-size:.82rem"><b>KPI Cabang:</b></p>
+          <ul>
+            <li>Nilai PM (dari OSD, diolah OA) — tiering: nilai &gt;98 = 120%, 91–98 = 100%</li>
+            <li>Nilai Audit — berdasarkan Audit Rating (Sangat Baik = A = 120%)</li>
+            <li>Nilai OQA masuk ke PM</li>
+          </ul>
+          <p style="font-size:.82rem">Bagus = penghargaan cabang terbaik. Jelek = bisa tidak dapat bonus/insentif atau ada mutasi.</p>
+          <p style="font-size:.82rem"><b>Mikor &amp; Koar:</b> minimal 3×/semester, notulen diinput di Jotform (jadi penilaian). Mikor = meeting koordinasi cabang+marketing+ASR. Koar = Zoom meeting OA &amp; cabang (kelompok 3 TL, presentasikan materi bebas). Tiap bulan sekali ada Koar.</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Over Kredit &amp; Update Data via Drone</h5>
+          <p><b>Proses Over Kredit:</b></p>
+          <ul>
+            <li>Konsumen ke cabang, lampirkan IDEP + KTP → OA cek SLIK (cabang non-KP; KP: sama UH di CS)</li>
+            <li>Input NIK, nama, tgl lahir di Excel → upload Gen Slik → approval DH OA</li>
+            <li>Slik diambil untuk calon konsumen + pasangannya (perlu form + TTD + copy KTP)</li>
+            <li>Lihat rata-rata saldo minimum &amp; penghasilan per bulan</li>
+            <li>Analisa BOH: cek kredit berjalan (angsuran maks 30% dari penghasilan) → keputusan ada di BOH</li>
+          </ul>
+          <p style="margin-top:.4rem; font-size:.82rem"><b>Update Data via Drone:</b> Dilakukan jika BOH cuti. Yang bisa diubah: data kendaraan (warna, noka/nosin, nopol, nama STNK) dan no BPKB. Flow: cabang email OA (kirim dokumen lama &amp; baru) → input Drone → approval DH → perubahan masuk ke bucket unit masing-masing.</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Area Multitasking — Detail</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Fungsi &amp; Jobdesk</h5>
+          <p>Pengganti MPP cabang sementara 1–6 bulan (sambil tunggu rekrutmen HR). Termasuk cabang motor yang sudah bergabung BCAF. Bisa gantikan: CS, AMB, AMAF.</p>
+          <p style="font-size:.82rem">Ada laporan kondisi real cabang &amp; kendala ke DH. Jobdesk lain: analisa memo dari admin OA (SLA 2 jam sampai approval DH→DD).</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">BASO (Berita Acara Stock Opname)</h5>
+          <ul>
+            <li>Dilakukan 1 tahun 2× + apabila ada pergantian AMAB/AMAF</li>
+            <li>SO Fisik: tembak barcode BPKB</li>
+            <li>SO Detail (2 tahun sekali): cek Faktur, NIK, SPH, SP Konsumen, Form A</li>
+            <li>SO cabang ≥ 1500 BPKB → laporan ke KP + ada saksi. &lt;1500 → OA yang ke sana.</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">BAST Jabatan (Mutasi Pejabat)</h5>
+          <p>Setiap selesai penugasan dibuat format penugasan berisi:</p>
+          <ol>
+            <li>Aktivitas yang dilakukan</li>
+            <li>Uraian masalah</li>
+            <li>Usulan perbaikan</li>
+            <li>Jumlah CN &amp; BPKB di cabang</li>
+            <li>Jumlah brankas &amp; anak kuncinya</li>
+            <li>Rekanan (birojasa &amp; notaris)</li>
+            <li>Pending Meter (yang masih on-progress)</li>
+            <li>Kondisi cabang</li>
+            <li>Kunci kantor cabang</li>
+            <li>Approval DH &amp; DD Operation</li>
+          </ol>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Lain-lain di OA</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pemindahan Cabang (Pindah Gedung)</h5>
+          <ul>
+            <li>GS cari gedung → meeting OA &amp; GS (OA usulkan budget pemindahan BPKB &amp; CN)</li>
+            <li>OA buat memo: budget premi BPKB + mekanisme pemindahan</li>
+            <li>Seluruh BPKB yang keluar BCAF wajib di-cover asuransi kehilangan</li>
+            <li>BPKB di-packing dalam karsud → dibawa BOH (mobil operasional/vendor) → didampingi polisi</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Alur Waive Denda &amp; BPKB Konsumen Lunas</h5>
+          <ul>
+            <li><b>Alur Waive:</b> Konsumen kirim surat permohonan (free format) → BOH lihat kewenangan → CS input aplikasi Waive Denda → approval pejabat wewenang</li>
+            <li><b>Reimburse:</b> Cabang input E-ger → approve DH OA → masuk bucket Procurement/FSM</li>
+            <li><b>Konsumen lunas tidak bisa ambil BPKB:</b> Surat kuasa + KTP (vidcall jika di LN). Ahli waris 5 orang: semua datang, yang tidak bisa pakai surat kuasa.</li>
+            <li>Jabodetabek: BPKB di KB, cabang simpan yang reservasi. Selain Jabodetabek: BPKB di cabang masing-masing.</li>
+            <li>Reservasi BPKB di: Astari, Ava, Fina. Yang sudah close → sebelum jam 2 bisa dikirim besok.</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Reverse Disburse, TTBJ &amp; Issue OA</h5>
+          <ul>
+            <li><b>Reverse Disburse (Batal Realisasi):</b> Sudah cek absah lalu konsumen batal → CMO bayar via rekening ke BCAF → CMO nagih ke konsumen. Pengaruh ke konsumen: nihil, tapi ada biaya.</li>
+            <li><b>TTBJ (Tanda Terima Barang Jaminan):</b> Kalau WO harus ada memo recovery (dengan SKL/tidak) + bukti bayar. Bisa dikuasakan (surat kuasa + KTP + vidcall).</li>
+            <li>Update data konsumen juga bisa dilakukan di website.</li>
+          </ul>
+          <p style="font-size:.82rem"><b>Issue di OA:</b> Register masih manual. CCTV belum bisa diakses dari KP. Rekonsil BPKB banyak dan ribet (borrow, dikirim, release) → masih manual. Rekap insentif dikirim dari cabang ke admin area. DH bisa suruh OA datang ke cabang untuk diskusi kendala.</p>
         </div>
       </div>
     </div>
@@ -2198,6 +3926,167 @@
         <div class="info-card">
           <h5>4. Others</h5>
           <p>Performance Management, Pengelolaan Outsource, CSI, RKA &amp; Budget, KPI Directorate.</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:1.2rem">Monitoring Performance Cabang</h5>
+      <p style="color:navy">OSD melakukan monitoring performance cabang melalui beberapa indikator. Pemekaran/penurunan kelas cabang dinilai berdasarkan performance management dan di-review 1×/tahun. OSD dapat visit ke cabang jika ada temuan audit atau perlu tindak lanjut hasil meeting.</p>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">1. People — Test SDM</h5>
+          <p>Menilai pengetahuan SDM Operation melalui test Pejabat dan Test PPK, dilakukan 6 bulan sekali. Jika tidak memenuhi → berpengaruh ke KPI individu.</p>
+          <ul>
+            <li><b>Test Prosedur Pejabat:</b> wajib minimal TL, maksimal UH/BOH. KKM = 90 (20 soal, tahun 2022). Dilakukan tiap pertengahan bulan.</li>
+            <li><b>Test PPK:</b> KKM = 85 (tahun 2022), dilakukan 6 bulan sekali. Peserta: semua staff (termasuk outsource), authorized signer, analis. Tujuan: kembangkan PPK karyawan &amp; ciptakan nilai "Terpercaya".</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">2. Process — Pengembangan Sistem Kerja</h5>
+          <p>Melakukan pengembangan sistem kerja operation di KP maupun cabang. Implementasi IOM ke cabang ada review 1 bulan setelah implementasi. Untuk implementasi tools ada sosialisasi cara penggunaan terlebih dahulu.</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Komponen Penilaian PM (Performance Management)</h5>
+      <p style="color:navy">Penilaian disesuaikan dengan mapping bobot per kelas cabang (A, B, C, D).</p>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Skala Penilaian</h5>
+          <ul>
+            <li>A = ≥ 90,01</li>
+            <li>B = 80,01 – 90</li>
+            <li>C = 70,01 – 80</li>
+            <li>D = ≤ 70,00</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">4 Kriteria Penilaian PM</h5>
+          <ol>
+            <li><b>Optimized SLA &amp; Quality:</b> CN Overdue, SLA order Asuransi, SLA order birojasa (STNK &amp; BPKB)</li>
+            <li><b>Enhance Control &amp; QA:</b> Report Management + hasil ceklist OQA dan BORC-OA (kelas D)</li>
+            <li><b>Increase Employee Capacity:</b> Hasil Test PPK &amp; Test Prosedur Pejabat</li>
+            <li><b>Customer Satisfaction Index:</b> Hasil survei konsumen</li>
+          </ol>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">CSI (Customer Satisfaction Index)</h5>
+          <p>Tools: Question Pro. Tiap awal &amp; akhir kuartal ada gift untuk konsumen yang mengisi survei. Permohonan gift harus mendapat TTD dari: Deputy Director, Dept Head OSD, DD Bisnis Development.</p>
+          <p style="font-size:.82rem"><b>Flow CSI:</b> OSD distribusi kuesioner ke email konsumen → konsumen isi survei → OSD download data → pengiriman gift ke email konsumen → OSD olah data &amp; laporan hasil survei</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Transformasi Layanan Digital &amp; Cleaning Day</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Transformasi Layanan Digital</h5>
+          <p>Tujuan: dukung Campaign Digitalisasi Layanan BCAF &amp; perkembangan layanan digital.</p>
+          <ul>
+            <li><b>Upload Scan Dossier Asli:</b> KP &amp; Surabaya H+6 HK dari realisasi. Cabang lain H+3 HK.</li>
+            <li><b>Target upload scan BPKB:</b> 85% (tahun 2023)</li>
+            <li><b>Sign up Fina:</b> tingkatkan jumlah pengguna Fina</li>
+            <li><b>Pengurangan walkin:</b> Pembayaran angsuran = 0,2% defect. Pengurusan STNK/BPKB = 0% defect. ET/pelunasan dipercepat = 0% defect. (Kecuali: ASR, Multiguna, SHF)</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Cleaning Day — 5R</h5>
+          <p>Program dari GS. Prinsip 5R:</p>
+          <ol>
+            <li>Ringkas</li>
+            <li>Rapih</li>
+            <li>Resik</li>
+            <li>Rawat</li>
+            <li>Rajin</li>
+          </ol>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Support Data &amp; Pengembangan Sistem</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Data yang Dikelola OSD</h5>
+          <p>OSD menarik &amp; mengolah data untuk report, memantau apakah proses operasional sudah berjalan sesuai standar atau perlu tindak lanjut:</p>
+          <ul>
+            <li>Exception Report</li>
+            <li>Performance Report</li>
+            <li>CN Overdue</li>
+            <li>Monitoring BPKB</li>
+            <li>Fidusia</li>
+            <li>PPK</li>
+            <li>Asuransi</li>
+            <li>KPI Operation</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pengembangan Sistem (Aplikasi)</h5>
+          <p>OSD terlibat dalam project improvement, aplikasi pendukung, UAT, RPA, dan evaluasi implementasi (PIR).</p>
+          <ul>
+            <li>Pengajuan waive di <b>JogetDX</b></li>
+            <li>Pengiriman kelebihan dana di <b>JogetDX</b> (contoh: DP STNK 5 juta, terpakai 4,5 juta → sisa 500rb dikembalikan)</li>
+            <li><b>RPA UIPath</b> untuk Received PPK &amp; Borrow BPKB → menu Collateral Tracking di SigmaFinance</li>
+            <li>Pengajuan userID via JogetDX user maintenance</li>
+          </ul>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">BPKB Showroom via Birojasa</h5>
+          <p>BPKB Showroom bisa diantar oleh Birojasa. OSD mengatur ketentuan birojasa yang bisa antar (SLA, pembayaran, kebijakan wanprestasi).</p>
+          <p style="font-size:.82rem"><b>Flow:</b> Showroom order ke Marketing → Marketing order ke Operation → Operation konfirmasi konsumen &amp; PIC Showroom → Operation kirim BPKB via birojasa (sesuai surat kuasa) → Birojasa terima &amp; kirim ke showroom</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Exception Report &amp; Pendelegasian Wewenang</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Exception Report</h5>
+          <p>Tujuan: mencegah kerugian perusahaan &amp; mengurangi komplain konsumen atas kesalahan input data operation.</p>
+          <div class="flow-steps" style="color:navy">
+            <div class="flow-step">OSD olah exception report → kirim harian ke function owner masing-masing departemen via email (KP, OA, Kantor Cabang)</div>
+            <div class="flow-step">OA tindak lanjut exception report di masing-masing unit terkait (KP &amp; cabang)</div>
+            <div class="flow-step">OA lapor hasil tindak lanjut → rekap bulanan ke OSD via email, <b>max H+3 awal bulan berikutnya</b>. Isi: tanggal TL, PIC, hasil investigasi, tindak lanjut perbaikan</div>
+            <div class="flow-step">OSD analisa &amp; olah hasil TL → jadi indikator penilaian PM &amp; pengembangan exception report</div>
+          </div>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Pendelegasian Wewenang</h5>
+          <p>Dilakukan jika ada acara yang melibatkan pejabat operation (contoh: tour reward) → tugas pejabat terkait didelegasikan sementara agar operation nasional tetap berjalan.</p>
+          <p>Tugas yang didelegasikan: persetujuan, penandatanganan, pengambilan keputusan. Berdasarkan memo, didelegasikan ke Team Leader (bisa 1 atau lebih TL sesuai departemennya).</p>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Menentukan Kelas Cabang</h5>
+          <p>Ditentukan oleh OQA berdasarkan load kerja dan jumlah MPP, tetapi di-review juga oleh OSD.</p>
+        </div>
+      </div>
+
+      <h5 style="color:navy; margin-top:.8rem">Pembuatan Memo (Kebijakan untuk Cabang)</h5>
+      <div class="info-grid" style="margin-top:.5rem">
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Sumber Data Pembuatan Memo</h5>
+          <ol>
+            <li>Pengajuan dari atas ke bawah atau bawah ke atas</li>
+            <li>Temuan audit → dibuat memo</li>
+            <li>Target penilaian PM: survei konsumen, realisasi capaian cabang sebelumnya, temuan hasil kerja cabang (Exception Report)</li>
+          </ol>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Struktur Memo (9 Poin)</h5>
+          <ol>
+            <li>Nomor memo</li>
+            <li>Unit yang ditujukan + CC tembusan ke unit terkait</li>
+            <li>Unit pembuat memo</li>
+            <li>Perihal/judul</li>
+            <li>Label</li>
+            <li>Referensi memo-memo terkait (sesuai kebutuhan)</li>
+            <li>Flow pelaksanaan memo</li>
+            <li>Approval: DD Operation, Dept Head OSD, Direktur</li>
+            <li>Lampiran</li>
+          </ol>
+        </div>
+        <div class="info-card" style="color:navy">
+          <h5 style="color:navy">Lain-lain OSD</h5>
+          <ul>
+            <li>Pengajuan userID melalui JogetDX user maintenance</li>
+            <li><b>Outsourcing (2022):</b> JKT, Sby, Bdg → PT Exa Mitra (borongan kerja). Unit: Asuransi, Legal Adm, Fidusia Adm, Pengiriman Dokumen</li>
+            <li><b>Outsourcing BPKB (2023):</b> Jasa Layanan Pengantaran BPKB → vendor PT. Abacus Dana Pensiuntama</li>
+            <li>Kantor Cabang: pengiriman dokumen via Messenger. KP: via vendor.</li>
+          </ul>
         </div>
       </div>
     </div>
