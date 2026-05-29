@@ -1435,6 +1435,7 @@ tr:nth-child(even) td{background:var(--gray-50);}
   <ul>
     <li>SLA: <strong>1x24 jam</strong></li>
     <li>Aplikasi: Resume AHU / Ditjen AHU / AHU Fidusia Online</li>
+    <li><strong>RAD BCA:</strong> tidak perlu order AHU (sudah terintegrasi)</li>
   </ul>
   <h4>Beli Voucher SIMPADHU (6 Langkah)</h4>
   <ul>
@@ -1927,6 +1928,12 @@ tr:nth-child(even) td{background:var(--gray-50);}
     <li>Pembayaran ke maskapai: H+60 dari order</li>
   </ul>
   <div class="note-blue"><strong>Mini 4 Max Tahap 2:</strong> Order asuransi pertama = min 4 max tahap 1. Jika konsumen lanjut tahap 2 → order asuransi lagi via API, tapi pembayaran manual.</div>
+  <h4>Change Insurance (Ganti Maskapai)</h4>
+  <table>
+    <tr><th>Kondisi</th><th>Proses</th></tr>
+    <tr><td>Realisasi &lt; 2 bulan (Perawal)</td><td>Cabang buat memo approval sampai 1 BOD → ajukan via email ke maskapai</td></tr>
+    <tr><td>Realisasi &gt; 2 bulan (Prorate)</td><td>Dokumen: Lembar survey + Perhitungan selisih + Kurang bayar → ajukan via email ke maskapai · SLA: H+2 setelah request pembatalan akan dilakukan konfirmasi ke konsumen</td></tr>
+  </table>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Pembayaran &amp; Rekonsil</div><div class="acc-body">
@@ -2588,6 +2595,18 @@ tr:nth-child(even) td{background:var(--gray-50);}
   </ul>
   <div class="note-blue"><strong>Jabodetabek:</strong> BPKB disimpan di KP (pusat), cabang hanya simpan yang reservasi. Di luar Jabo: BPKB disimpan di cabang masing-masing.</div>
   <div class="note">Biaya titip BPKB Rp 5.000/hari mulai hari ke-61 pelunasan. Untuk yang sudah close ET → sebelum jam 14.00 bisa dikirim besok.</div>
+  <h4>Reverse Disburse — Batal Realisasi</h4>
+  <ul>
+    <li>Sudah cek absah tapi konsumen batal → CMO yang bayar lewat rekening ke BCAF</li>
+    <li>CMO nagih ke konsumen (pengaruh ke konsumen kalau batal tidak ada, tapi dikasih tau CMO bahwa batal ada biayanya)</li>
+  </ul>
+  <h4>TTBJ (Tanda Terima Barang Jaminan) — Ambil BPKB</h4>
+  <ul>
+    <li>Jika WO: harus ada memo recovery (dengan SKL / tanpa SKL) + Bukti bayar</li>
+    <li>Bisa dikuasakan: surat kuasa + KTP + Video call (jika konsumen di luar negeri)</li>
+    <li>Ahli waris lebih dari 1 → semua harus datang; yang tidak bisa datang pakai surat kuasa</li>
+  </ul>
+  <div class="note-blue">Rekap insentif dikirim dari cabang ke Admin Area (untuk monitoring dan penilaian)</div>
 </div></div>
 </div>
 <div id="osd" class="tab-pane">
