@@ -812,121 +812,212 @@ tr:nth-child(even) td{background:var(--gray-50);}
 
 <!-- TABS 4-11 PLACEHOLDER - will be added -->
 <div id="cdm" class="tab-pane">
-<h2>🏍️ Central Disburse Motor</h2>
+<h2>🏍️ Central Disburse Motor (Sentra APP Motor)</h2>
 <div class="section-intro">
-  Tujuan: verifikasi dokumen dari cabang dan pencocokan dengan sistem.
-  Area cakupan: <strong>seluruh Indonesia</strong>
+  Tujuan: melakukan verifikasi dokumen dari cabang melalui telepon dan mencocokkannya dengan data di sistem, <strong>setelah unit diterima oleh konsumen</strong>.
+  Area cakupan: <strong>seluruh Indonesia</strong>.
+  Centra disburse motor berperan sebagai <em>checker</em> — penentu keputusan final adalah <strong>Centra Kredit (Pak Mahendra)</strong>.
 </div>
 
-<h3>📋 Dokumen Tagihan</h3>
+<div class="card"><div class="card-head">👥 Gambaran Umum Tim</div><div class="card-body">
+  <div class="info-grid">
+    <div class="info-item"><strong>MPP</strong>14 orang · 5 TL · 1 Head (Bu Vero)</div>
+    <div class="info-item"><strong>Shift 1</strong>09.00 – 18.00</div>
+    <div class="info-item"><strong>Shift 2</strong>10.00 – 19.00</div>
+    <div class="info-item"><strong>Staff Backup</strong>Dipanggil jika aplikasi ramai</div>
+    <div class="info-item"><strong>SLA</strong>2 jam dari aplikasi masuk sampai TL Approved</div>
+    <div class="info-item"><strong>Rata-rata Vertel</strong>8 menit (max 5 menit ideal)</div>
+    <div class="info-item"><strong>Cut-off Vertel</strong>Jam 19.00 (kecuali saat closing)</div>
+    <div class="info-item"><strong>Target Insentif Staff</strong>Min 500 aplikasi/bulan</div>
+  </div>
+  <h4>2 Produk yang Ditangani</h4>
+  <table>
+    <tr><th>Produk</th><th>Jalur</th><th>Pembayaran</th></tr>
+    <tr><td>KSM (Kredit Sepeda Motor)</td><td>Cabang BCA</td><td>Wajib Autodebet</td></tr>
+    <tr><td>KPM (Kredit Pemilikan Motor)</td><td>Melalui Dealer</td><td>Manual (non-autodebet) · bisa autodebet juga</td></tr>
+  </table>
+  <div class="note"><strong>Penting:</strong> Unit <em>wajib diterima dulu</em> oleh konsumen sebelum diproses Sentra APP Motor. Jika belum diterima → dikembalikan ke cabang (return).</div>
+</div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Dokumen Tagihan KSM (Kredit Sepeda Motor)</div><div class="acc-body">
-  <h4>PO (Purchase Order)</h4>
+<h3>💻 Aplikasi CDA (Central Disbursement APP)</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">5 Tab di Aplikasi CDA &amp; 5 Bucket Monitoring</div><div class="acc-body">
+  <div class="g2">
+    <div>
+      <h4>5 Tab Input Dokumen</h4>
+      <ul>
+        <li>Customer Data</li><li>Tagihan Dealer</li><li>Object</li>
+        <li>Autodebet</li><li>Other</li>
+      </ul>
+    </div>
+    <div>
+      <h4>5 Bucket Dashboard Monitoring</h4>
+      <ul>
+        <li><span class="chip chip-blue">Reguler</span></li>
+        <li><span class="chip chip-green">Cluster A — Prioritas</span></li>
+        <li><span class="chip chip-yellow">Multiguna</span> (Gadai BPKB)</li>
+        <li><span class="chip chip-gray">Company</span> (Nasabah PT)</li>
+        <li><span class="chip chip-red">Appointment</span> (Tidak diangkat 2x)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note-blue">Staff mengambil aplikasi dengan sistem <strong>rebutan</strong>. Aplikasi terupdate setiap kelipatan 5 menit (ex: 08.30, 08.35, …)</div>
+</div></div>
+
+<h3>🔄 Alur Kerja</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Alur General — Dari Cabang ke Disburse</div><div class="acc-body">
+  <div class="flow">
+    <div class="flow-step">Marketing input di MOSS</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Marketing beri dokumen fisik ke ADS (Staff Admin Cabang)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">TL ADS cek dokumen</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Staff ADS scan + upload via DissApp → masuk ke CDA</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Staff CDM klik "Get Data" → Regist ke Excel</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek Customer Data + Tagihan + Object + Autodebet</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Vertel / Piloting / SS WA</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Submit → TL WF Approval</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Approve → Disburse (No Kontrak muncul 1–5 menit)</div>
+  </div>
   <ul>
-    <li>Nomor pesanan, tanggal, nomor aplikasi</li>
-    <li>Nama konsumen, nominal pembayaran dealer</li>
+    <li>Vertel maksimal <strong>2x</strong> termasuk appointment</li>
+    <li>Jika gagal vertel → cabang koordinasi langsung dengan konsumen</li>
+    <li>Jika ada perubahan no telp / nama ibu kandung → perlu <strong>Form OTS</strong> dari cabang</li>
+    <li>No kontrak dikirim ke konsumen via WA &amp; Email dalam 1–3 hari</li>
+    <li>H-3 closing: broadcast ke cabang untuk info konsumen agar mau angkat telepon (no <strong>1500850</strong>)</li>
+    <li>Data per hari harus diselesaikan hari itu juga (cut-off jam 19.00), kecuali saat closing</li>
   </ul>
-  <h4>BAST (Berita Acara Serah Terima)</h4>
+</div></div>
+
+<h3>📋 Pengecekan Dokumen</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Cek Customer Data</div><div class="acc-body">
   <ul>
-    <li>Tanggal terbaru (paling kini)</li>
-    <li>Struktur kredit lengkap</li>
-    <li>Nama + hubungan penerima unit</li>
+    <li>Pastikan <strong>nama dan tanggal lahir</strong> di CDA sama dengan nama dan tanggal lahir di KTP yang diupload</li>
+    <li>Pastikan <strong>status perkawinan</strong> di sistem sama dengan di KTP</li>
+    <li>Jika di KTP status kawin tapi tidak ada nama pasangan → return ke cabang, lampirkan KK / Surat Tanda Menikah / Surat Kematian</li>
+    <li>Jika di sistem ada nama pasangan tapi di KTP status lajang → return juga</li>
+    <li>Untuk konsumen PT: tidak harus no perusahaan, biasanya no direksi atau PIC</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Cek Tagihan Dealer — KSM</div><div class="acc-body">
+  <h4>PO (Purchase Order) — TTD Pejabat Dealer + BM Cabang</h4>
+  <ul>
+    <li>Jika ada PO baru karena penggantian → gunakan yang <strong>terbaru</strong></li>
+    <li>Yang dicek (pastikan dokumen = sistem): No Pemesanan (No PP), Tanggal Pemesanan, No Aplikasi, Nama Konsumen, Pembayaran ke Dealer</li>
+  </ul>
+  <h4>BASTK (Berita Acara Serah Terima Kendaraan) — TTD Pejabat Dealer</h4>
+  <ul>
+    <li>Tanda terima unit: <strong>tanggal terbaru</strong> (jika ada banyak tanggal: cetak/kirim/terima → ambil yang terima)</li>
+    <li>Data kendaraan: tipe, warna, gesekan noka nosin</li>
+    <li>Nama &amp; hubungan penerima unit (jika bukan konsumen sendiri)</li>
+    <li>TTD PIC dealer dengan penerima unit harus sesuai KTP — jika beda: lampirkan surat pernyataan spesimen tanda tangan</li>
+    <li><strong>BAST tidak bisa diverifikasi jika sudah &gt;21 hari dari tanggal terima</strong> → cabang lampirkan BA T21 (isi: kronologi, ubah tanggal terima, approve BM)</li>
   </ul>
   <h4>Kwitansi Pelunasan</h4>
   <ul>
-    <li>Harus bermaterai</li>
-    <li>Nama leasing = BCAF</li>
-    <li>Nominal = pembayaran dealer (harus sama)</li>
-    <li>Nominal terbilang harus sesuai</li>
+    <li>Nama leasing harus tertuju ke <strong>BCA Finance + alamat sesuai</strong></li>
+    <li>Angka nominal pelunasan = pembayaran ke dealer (<strong>KSM tidak dikurang DP</strong>)</li>
+    <li>Angka terbilang harus sesuai nominal</li>
+    <li>Materai wajib (fisik / e-materai / bea materai); tanpa materai bisa kasih note dari cabang (1–2 dealer saja biasanya)</li>
   </ul>
   <h4>Gesekan Noka Nosin</h4>
-  <ul><li>Kertas gesekan nomor rangka (noka) dan nomor mesin (nosin) kendaraan</li></ul>
+  <ul>
+    <li>No rangka selalu diawali kode <strong>MH1</strong> — khusus Dealer Astra tidak wajib diawali MH1</li>
+    <li>Ada kode digit tahun: T = 2026, V = 2027 → cocokkan dengan tahun kendaraan</li>
+    <li>Selain Astra yang tidak diawali MH1 → return ke cabang</li>
+  </ul>
   <h4>KTP</h4>
-  <ul><li>Diperlukan jika BPKB atas nama non-konsumen</li></ul>
-  <h4>CN (Credit Note / Cover Note)</h4>
+  <ul><li>Diperlukan jika BPKB atas nama selain konsumen</li></ul>
+  <h4>CN (Cover Note Pelunasan)</h4>
   <ul>
-    <li>Struktur kredit harus sesuai</li>
-    <li>Nama di STNK-BPKB sudah benar</li>
-    <li>Nama leasing tercantum</li>
-    <li>Redaksi waktu penyerahan jelas</li>
-    <li>Tanggal pengesahan valid</li>
+    <li>Struktur kredit: angsuran dan tenor</li>
+    <li>Nama STNK / BPKB dan Nama Leasing</li>
+    <li>Redaksi waktu penyerahan BPKB: <strong>max 3 bulan</strong> (dihitung dari tanggal TTD cover note, bukan dari tanggal jadi STNK) — khusus Benelli bisa sampai 6 bulan</li>
+    <li>Jika nama konsumen pengajuan berbeda dengan nama di BPKB → lampirkan atas nama BPKB</li>
   </ul>
-  <div class="note"><strong>Revisi dokumen:</strong> Harus ada paraf + cap dari pihak terkait</div>
+  <div class="note-blue">
+    <strong>Redaksi CN yang WAJIB ada salah satunya:</strong> "Selambat-lambatnya" / "Maximal" / "Dalam kurun waktu" / "Dalam periode"<br>
+    <strong>Redaksi yang TIDAK BOLEH:</strong> "kira-kira" / "kurang lebih" / "kemungkinan" → langsung return ke cabang
+  </div>
+  <h4>Akta Perusahaan</h4>
+  <ul><li>Opsional, jika konsumen PT atau atas nama PT → cek ada nama direktur/komisaris dan nama perusahaan</li></ul>
+  <div class="note"><strong>Revisi dokumen:</strong> Wajib ada paraf + cap Dealer. Paraf dealer harus sama dengan spesimen di Portal → jika beda, return ke cabang, minta MC Operation Cabang update di portal.</div>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Dokumen KPM (Kredit Pemilikan Motor)</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Cek Tagihan Dealer — KPM &amp; Multiguna</div><div class="acc-body">
+  <h4>KPM (Kredit Pemilikan Motor)</h4>
   <ul>
-    <li>Sama dengan KSM ditambah: <strong>Kwitansi DP</strong> (uang muka)</li>
+    <li>Dokumen tagihan sama dengan KSM + tambahan <strong>Kwitansi DP</strong></li>
+    <li>Kwitansi DP: konsumen yang langsung bayar DP ke dealer → mempengaruhi nilai pencairan</li>
+    <li>Pastikan nominal DP sama dengan yang ada di Kwitansi Pelunasan</li>
+    <li>Kwitansi Pelunasan KPM: tidak wajib ada nama leasing · wajib nama nasabah (bukan atas nama BPKB)</li>
+    <li>DP KPM tidak ditanyakan saat vertel</li>
+  </ul>
+  <h4>Multiguna (Gadai BPKB)</h4>
+  <ul>
+    <li>PO</li><li>BPKB (wajib)</li><li>STNK</li><li>Noka Nosin</li>
+    <li>Inquiry tabungan (buku tabungan atau SS M-Banking)</li><li>Faktur</li>
+    <li>KTP pemohon</li><li>Surat penggunaan fasilitas (tujuan, rekening pencairan, nominal)</li>
+  </ul>
+  <div class="note-blue">Multiguna: tanggal JT &amp; tanggal terima menyesuaikan tanggal vertel, dan <strong>wajib di-vertel semua</strong> (setelah semua Done/DV)</div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Cek Object (Tab Piloting di CDA)</div><div class="acc-body">
+  <ul>
+    <li>Field <em>Project Tanpa Vertel (Iya/Tidak)</em> = Piloting</li>
+    <li>Jika foto piloting diupload di <strong>tab Object</strong> → otomatis jadi IYA</li>
+    <li>Jika diupload di tab lain → perlu di-invalid di Verification dulu, lalu ubah jadi IYA</li>
+  </ul>
+  <h4>Ketentuan Foto Piloting</h4>
+  <ul>
+    <li>Wajib foto dengan papan <strong>dan</strong> unit kendaraan</li>
+    <li>Tidak harus papan BCAF — bisa kertas, kardus, dll, yang penting isinya: <strong>nama konsumen, angsuran, tenor, warna dan tipe unit</strong></li>
+    <li>Jika tidak ada kendaraan → lakukan vertel</li>
+    <li>Jika yang foto bukan pengaju kredit (termasuk atas nama BPKB) → wajib lampirkan KTP · jika tidak ada KTP → vertel</li>
+  </ul>
+  <h4>Pengajuan &gt;1 Unit</h4>
+  <ul>
+    <li>Cabang harus bikin <em>list pengajuan lebih dari 1 unit</em> (no aplikasi berbeda-beda)</li>
+    <li>Vertel hanya 1x saja, acuan dari list tersebut</li>
+    <li>Jika belum ada list → konfirm ke konsumen: jika semua unit sudah diterima → return untuk buat list · jika ada unit yang belum diterima → vertel yang sudah diterima dulu</li>
   </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Dokumen Multiguna</div><div class="acc-body">
-  <ul>
-    <li>PO</li><li>BPKB asli</li><li>STNK</li><li>Gesekan Noka + Nosin</li>
-    <li>Inquiry tabungan konsumen</li><li>Faktur kendaraan</li>
-    <li>KTP pemohon</li><li>Surat penggunaan fasilitas multiguna</li>
-  </ul>
-</div></div>
-
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Dokumen Autodebet (Khusus KSM — Wajib)</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Cek Dokumen Autodebet</div><div class="acc-body">
+  <div class="note-blue">KSM wajib autodebet. KPM bisa autodebet juga (opsional).</div>
   <table>
-    <tr><th>Dokumen</th><th>Keterangan</th></tr>
-    <tr><td>SKPR</td><td>Surat Kuasa Pendebetan Rekening — harus TTD + materai. Join 2 orang = wajib 2 TTD</td></tr>
-    <tr><td>SPADR</td><td>Surat Persetujuan Autodebet Rekening</td></tr>
-    <tr><td>KTP a.n. Rekening</td><td>KTP pemilik rekening autodebet</td></tr>
-    <tr><td>Inquiry Rekening</td><td>Bukti rekening aktif dan saldo cukup</td></tr>
+    <tr><th>Dokumen</th><th>Detail Pengecekan</th></tr>
+    <tr><td><strong>SKPR</strong> (Surat Kuasa Pendebetan Rekening)</td><td>TTD + materai · Bisa debet diri sendiri, PT, atau orang lain · Join 2 orang = wajib 2 TTD</td></tr>
+    <tr><td><strong>SPADR</strong> (Surat Pernyataan Autodebet Rekening)</td><td>Sama seperti SKPR + ada <em>tanggal pendebetan</em> · Nama sesuai kontrak = data pengaju kredit · Ada keterangan hubungan (anak/ortu/istri) · Rekening PT → isi alamat PT</td></tr>
+    <tr><td><strong>KTP a.n. Rekening</strong></td><td>Boleh rekening anak atau orang tua</td></tr>
+    <tr><td><strong>Inquiry</strong> (SS M-Banking)</td><td>Bukti rekening aktif</td></tr>
   </table>
+  <h4>Ketentuan Tambahan</h4>
+  <ul>
+    <li>Pakai rekening selain atas nama pengajuan → TTD pemilik rekening <strong>dan</strong> TTD atas nama pengajuan</li>
+    <li>Nama di KTP dan inquiry berbeda (disingkat/typo) → lampirkan <strong>Form Beda Nama Rekening</strong></li>
+    <li>Jika kepotong karena keterbatasan sistem → tidak perlu form</li>
+    <li>Rekening orang lain → wajib Form Beda Nama Rekening</li>
+    <li><strong>Ganti Tanggal Autodebet (CDD):</strong> Ada perbedaan JT dan tanggal autodebet → lewat pengajuan (ada biaya denda) · Wajib ada SKPR <em>dan</em> SPADR — jika salah satu tidak ada → tidak bisa CDD</li>
+    <li>Dokumen yang dicoret untuk diperbaiki → TTD pemilik rekening di setiap kolom yang dicoret</li>
+    <li>Tanggal JT Sabtu/Minggu → <strong>dipercepat ke Jumat</strong> (tidak bisa autodebet di akhir pekan)</li>
+  </ul>
 </div></div>
 
 <h3>🔍 Verifikasi Konsumen</h3>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Metode Verifikasi</div><div class="acc-body">
-  <ul>
-    <li><strong>Vertel (Verification Telephone):</strong> X-Lite, waktu ideal 8 menit</li>
-    <li><strong>Piloting:</strong> Konsumen foto sambil pegang papan tulisan nama/tanggal</li>
-    <li><strong>SS WA (Screenshot WhatsApp):</strong> Untuk BCA Prioritas / Solitaire</li>
-  </ul>
-  <h4>Flow Verifikasi (4 Langkah)</h4>
-  <div class="flow">
-    <div class="flow-step">Terima dok tagihan + autodebet</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Verifikasi data KTP</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Lakukan Vertel</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Buat Summary hasil verifikasi</div>
-  </div>
-</div></div>
-
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Status Kode Vertel</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">3 Metode Verifikasi</div><div class="acc-body">
   <table>
-    <tr><th>Kode</th><th>Keterangan</th></tr>
-    <tr><td>#GVE</td><td>Good Verified — verifikasi berhasil</td></tr>
-    <tr><td>VTS</td><td>Verified — To System (sudah terverifikasi di sistem)</td></tr>
-    <tr><td>DTS</td><td>Done — To System</td></tr>
-    <tr><td>ATS</td><td>Appointment — To System (janji hubungi ulang)</td></tr>
-    <tr><td>ITS</td><td>Invalid — To System</td></tr>
-    <tr><td>RPC</td><td>Right Party Contact — berhasil terhubung pihak yang tepat</td></tr>
-    <tr><td>#21</td><td>Kode khusus internal</td></tr>
-    <tr><td>RTD</td><td>Returned — dikembalikan/tidak dapat diproses</td></tr>
+    <tr><th>Metode</th><th>Ketentuan</th></tr>
+    <tr><td><strong>Vertel</strong> (Verifikasi Telepon)</td><td>Aplikasi X-Lite · No 1500850 · Durasi ideal 3–5 menit · Max 2x percobaan termasuk appointment · Waktu tunggu jika tidak diangkat: ±30 menit</td></tr>
+    <tr><td><strong>Piloting</strong></td><td>Konsumen foto pegang papan berisi: nama, angsuran, tenor, warna &amp; tipe unit · Jika penerima bukan YBS/pasangan → lampirkan KTP penerima · Tidak harus papan BCAF</td></tr>
+    <tr><td><strong>SS WA</strong> (Screenshot WhatsApp)</td><td>Khusus Nasabah Prioritas/Solitaire yang tidak mau ditelpon · Marketing yang chat WA (cek tipe, tenor, angsuran, no/nama kontak) · SS harus disetujui BM (nama + jabatan jelas) · Jika SS tidak jelas → telp 1x, jika tidak diangkat → return ke cabang untuk revisi</td></tr>
   </table>
-</div></div>
-
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Dial Result (11 Opsi)</div><div class="acc-body">
-  <ul>
-    <li><span class="chip chip-green">Verified</span> Berhasil terverifikasi</li>
-    <li><span class="chip chip-yellow">Tidak Diangkat</span> Telepon tidak dijawab</li>
-    <li><span class="chip chip-yellow">Appointment</span> Buat janji untuk call back</li>
-    <li><span class="chip chip-red">Rejected</span> Konsumen menolak verifikasi</li>
-    <li><span class="chip chip-gray">Nomor Tidak Valid</span> Nomor salah format</li>
-    <li><span class="chip chip-gray">Salah Sambung</span> Bukan konsumen yang dituju</li>
-    <li><span class="chip chip-gray">Customer Sibuk</span> Konsumen tidak bisa bicara sekarang</li>
-    <li><span class="chip chip-gray">Nomor Tidak Aktif</span> Nomor sudah tidak aktif</li>
-    <li><span class="chip chip-red">Tidak Bersedia</span> Konsumen tidak mau verifikasi</li>
-    <li><span class="chip chip-gray">Nomor Dialihkan</span> Call forwarding ke nomor lain</li>
-    <li><span class="chip chip-gray">Telepon Tidak Selesai</span> Panggilan terputus</li>
-  </ul>
+  <div class="note">Saat vertel, jika yang mengangkat adalah pasangan/penjamin → boleh, validasi pakai nama yang tercantum di sistem. Jika yang angkat bukan pasangan/penjamin yang terdaftar → appointment, tunggu konsumen sendiri yang telpon balik.</div>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Pertanyaan Vertel (Script Standar)</div><div class="acc-body">
-  <h4>Pertanyaan Wajib</h4>
   <ol>
     <li>Nama lengkap konsumen</li>
     <li>Tempat dan tanggal lahir</li>
@@ -936,31 +1027,192 @@ tr:nth-child(even) td{background:var(--gray-50);}
     <li>Nominal angsuran per bulan</li>
     <li>Tenor (jumlah bulan)</li>
     <li>Nama di BPKB dan STNK</li>
-    <li>Penerima unit dan hubungan dengan konsumen</li>
-    <li>Siapa yang TTD dokumen kredit</li>
-    <li>Tanggal jatuh tempo dan besaran denda (0.5%)</li>
-    <li>Informasi denda keterlambatan</li>
+    <li>Penerima motor dan hubungannya dengan konsumen</li>
+    <li>Apakah sudah dilakukan TTD dokumen</li>
+    <li>Tanggal jatuh tempo</li>
+    <li>Informasi denda angsuran → <strong>0.5%</strong> dari nominal angsuran</li>
   </ol>
-  <div class="note-blue"><strong>Khusus KSM:</strong> Tanyakan juga nominal DP (uang muka)</div>
-  <div class="note"><strong>Status kawin tanpa pasangan hadir:</strong> Lampirkan KK / buku nikah / surat kematian pasangan</div>
+  <div class="note-blue"><strong>Khusus KSM:</strong> Tanyakan juga nominal DP</div>
+  <div class="note"><strong>No rangka dan no mesin TIDAK ditanyakan</strong> ke konsumen saat vertel</div>
+  <div class="note"><strong>Status kawin tanpa pasangan:</strong> Harus lampirkan KK / Surat Tanda Menikah / Surat Kematian</div>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">📊 TL Evaluation (Quality Control Vertel)</div><div class="acc-body">
-  <h4>Sampling</h4>
-  <ul><li><strong>25 rekaman per staff</strong> dari sistem e-centrix</li></ul>
-  <h4>6 Indikator Penilaian</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Kode Hasil Penanganan (Output Vertel)</div><div class="acc-body">
+  <table>
+    <tr><th>Kode</th><th>Arti</th><th>Tindak Lanjut</th></tr>
+    <tr><td><span class="chip chip-green">#GVE</span></td><td>Good Verified — verifikasi berhasil</td><td>Lanjut ke TL WF Approval</td></tr>
+    <tr><td><span class="chip chip-yellow">#VTS</span></td><td>Vertel Tidak Sesuai (cth: angsuran tidak sesuai)</td><td>Return ke cabang</td></tr>
+    <tr><td><span class="chip chip-yellow">#DTS</span></td><td>Data Tertanggung Tidak Sesuai — data dari marketing tidak sesuai</td><td>Return ke cabang</td></tr>
+    <tr><td><span class="chip chip-yellow">#ATS</span></td><td>Autodebet Tidak Sesuai</td><td>Return ke cabang</td></tr>
+    <tr><td><span class="chip chip-blue">#DV</span></td><td>Don't Vertel = Piloting &amp; Cluster A</td><td>Proses dengan metode Piloting atau SS WA</td></tr>
+    <tr><td><span class="chip chip-blue">#DC</span></td><td>Done Check — pengecekan selesai</td><td>Lanjut submit</td></tr>
+    <tr><td><span class="chip chip-gray">#RPC</span></td><td>Return Permintaan Cabang — cabang minta langsung direturn</td><td>Return ke cabang</td></tr>
+    <tr><td><span class="chip chip-red">#T21</span></td><td>Tanggal vertel mendekati tanggal JT (maks 21 hari)</td><td>Pakai BA T21 dari cabang untuk majukan tanggal BASTK/tanggal terima → otomatis geser tanggal JT &amp; tanggal autodebet</td></tr>
+    <tr><td><span class="chip chip-red">#RTD</span></td><td>Tagihan Tidak Sesuai — dokumen tagihan tidak sesuai / nama dealer di sistem ≠ di dokumen</td><td>Return ke cabang</td></tr>
+  </table>
+  <h4>Dial Result (11 Opsi)</h4>
+  <ul>
+    <li><span class="chip chip-green">Verified</span> <span class="chip chip-yellow">Tidak Diangkat</span> <span class="chip chip-yellow">Appointment</span> <span class="chip chip-red">Rejected</span> <span class="chip chip-gray">Nomor Tidak Valid</span> <span class="chip chip-gray">Salah Sambung</span> <span class="chip chip-gray">Customer Sibuk</span> <span class="chip chip-gray">Nomor Tidak Aktif</span> <span class="chip chip-red">Tidak Bersedia Verifikasi</span> <span class="chip chip-gray">Nomor Dialihkan</span> <span class="chip chip-gray">Telepon Tidak Selesai</span></li>
+  </ul>
+  <div class="note-blue">Appointment cut-off jam <strong>16.30</strong> — jika sudah lewat dan tidak diangkat → langsung dialihkan ke cabang</div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Verification — Invalid vs Return</div><div class="acc-body">
+  <p>Setelah vertel selesai, staff bisa <strong>invalid</strong> data yang salah (akan diubah setelah masuk ke TL), atau <strong>return</strong> ke cabang untuk direvisi.</p>
+  <div class="g2">
+    <div class="note-green">
+      <strong>✅ Yang BISA di-Invalid (return saja, tidak perlu stop vertel):</strong>
+      <ul>
+        <li>No telp 1 (revisi/ganti) · No telp 2 (tambah)</li>
+        <li>Email</li><li>Nama ibu kandung</li>
+        <li>Tanggal Terima</li><li>Tanggal Jatuh Tempo</li>
+        <li>Warna unit</li><li>Metode bayar</li>
+        <li>Tanggal autodebet</li><li>No rekening &amp; nama autodebet</li>
+      </ul>
+    </div>
+    <div class="note-red">
+      <strong>❌ Yang TIDAK BISA di-Invalid (return + Stop Vertel — vertel ulang nanti):</strong>
+      <ul>
+        <li>Nama debitur</li><li>Nama sesuai KTP</li>
+        <li>Tanggal lahir</li><li>Merk &amp; model unit</li>
+        <li>Struktur kredit (angsuran dan tenor)</li>
+        <li>Nama BPKB</li>
+      </ul>
+    </div>
+  </div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Syarat OTS (On The Spot — Form OTS)</div><div class="acc-body">
+  <p>OTS digunakan jika nasabah tidak bisa ditelpon. Marketing yang kunjungan ke konsumen dan mengisi form OTS.</p>
+  <h4>Syarat Otomatis OTS</h4>
+  <ul>
+    <li>PK (Pengaju Kredit) tidak tau struktur kreditnya (angsuran dan tenor)</li>
+    <li>PK tidak merasa mengambil kredit</li>
+    <li>Gagal vertel 3 kali selama 3 hari berturut-turut</li>
+  </ul>
+  <h4>Di Luar Syarat Otomatis</h4>
+  <ul><li>Tetap bisa OTS, tapi perlu nasabah TTD ke DD (penyimpangan) — contoh: naik haji, umroh, dll</li></ul>
+  <ul><li>Dokumen OTS dilampirkan dari cabang ke CDApps</li></ul>
+</div></div>
+
+<h3>⚙️ Proses Khusus</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Disburse Manual &amp; Autodebet Manual</div><div class="acc-body">
+  <h4>Disburse Manual</h4>
+  <ul>
+    <li>Tiap jam tarik report Disburse → Fast Report</li>
+    <li>Cek di JogetDX → Inquiry Status CDA → cek aplikasi sudah di-disburse atau belum</li>
+    <li>Cek yang error gagal disburse: no kontrak tidak ada, no invoice dan PV tidak ada</li>
+  </ul>
+  <div class="flow">
+    <div class="flow-step">MC APP input manual via FAST (create invoice)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Gen AR</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Send to AP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek AP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Dok Cek (No kontrak + Invoice + PV terbentuk)</div>
+  </div>
+  <div class="note">Jika no kontrak terbentuk tapi invoice dan PV tidak → buat ticket ke IT</div>
+  <h4>Autodebet Manual (Khusus DSM — Direct Sales)</h4>
+  <ul>
+    <li>Produk DSM langsung di-disburse → perlu daftar autodebet manual</li>
+    <li>Login FAST as SSPK (MC APP) → Input no rekening, nama nasabah, cabang autodebet → Submit → masuk bucket TL (KSPK) → TL Verified → Autodebet terdaftar</li>
+    <li>Dokumen manual autodebet dimasukkan ke winSCP</li>
+    <li>Data autodebet disebarkan oleh TL tiap minggunya (ada jadwal piket)</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Buyback, Dakor (Data Correction) &amp; Updation</div><div class="acc-body">
+  <h4>Buyback</h4>
+  <ul>
+    <li>Aplikasi di-cancel → proses dari awal di cabang → vertel lagi</li>
+    <li>Salah satu penyebab buyback: <strong>salah input asuransi</strong> (masing-masing cabang punya plotting asuransinya sendiri)</li>
+  </ul>
+  <h4>Dakor (Data Correction)</h4>
+  <ul>
+    <li>Noka/nosin salah (tanpa MH1) → pengajuan dengan fidusia untuk tembak data oleh IT</li>
+  </ul>
+  <h4>Updation (Dilakukan oleh Cabang)</h4>
+  <ul>
+    <li>Perubahan nomor rekening dari cabang</li>
+    <li>Ubah no rekening konsumen karena tidak aktif ke yang aktif</li>
+    <li>Ubah tanggal jatuh tempo</li>
+  </ul>
+</div></div>
+
+<h3>👔 Team Lead (TL)</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Tugas TL &amp; WF Approval</div><div class="acc-body">
+  <h4>WF Approval</h4>
+  <ul>
+    <li>Setelah MC APP (SSPK) vertel dan submit → masuk bucket TL untuk double-check (tidak vertel lagi)</li>
+    <li><span class="chip chip-green">Approve</span> → Masuk ke Finance (Disburse)</li>
+    <li><span class="chip chip-yellow">Revise</span> → Dikembalikan ke MC APP (SSPK)</li>
+    <li><span class="chip chip-red">Return</span> → Dikembalikan ke Cabang</li>
+  </ul>
+  <ul>
+    <li>Setiap awal bulan: report SLA dan Ranking SSPK</li>
+    <li>Tarik realisasi data + rekaman untuk sidak vertel</li>
+    <li>TL monitoring pembagian tugas per bucket sesuai jadwal piket</li>
+    <li>Revisi dari cabang tidak ada batas berapa kali, tapi cabang hanya bisa revisi dalam <strong>3 hari</strong> jika debitur tidak angkat telp selama 3 hari tersebut</li>
+  </ul>
+  <h4>Spesimen TTD di Portal</h4>
+  <ul>
+    <li>Untuk pengecekan TTD pejabat dealer yang tercantum di dokumen tagihan</li>
+    <li>Jika ada pergantian orang → dealer/cabang harus update TTD di portal</li>
+    <li>Pendaftaran, verifikasi, upload ke portal = tugas TL Operation Cabang sesuai PKS dealer</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">📊 Penilaian SSPK (MC APP) — Tengah &amp; Akhir Bulan</div><div class="acc-body">
+  <h4>KPI Staff (Penilaian Tengah &amp; Akhir Bulan)</h4>
+  <table>
+    <tr><th>KPI</th><th>Target</th></tr>
+    <tr><td>SLA vertel</td><td>Max 5 menit</td></tr>
+    <tr><td>Get data (jumlah aplikasi)</td><td>500 per bulan (untuk insentif)</td></tr>
+    <tr><td>Sampling vertel</td><td>25 rekaman/orang dari e-centrix</td></tr>
+  </table>
+  <h4>6 Indikator Penilaian Rekaman Vertel</h4>
   <table>
     <tr><th>Indikator</th><th>Keterangan</th></tr>
-    <tr><td>Salam</td><td>Pembukaan dan penutup telepon standar</td></tr>
-    <tr><td>Volume suara</td><td>Jelas dan terdengar konsumen</td></tr>
-    <tr><td>Artikulasi</td><td>Pengucapan kata jelas tidak terburu-buru</td></tr>
-    <tr><td>Cara bertanya</td><td>Sesuai script standar</td></tr>
-    <tr><td>Kelengkapan</td><td>Semua pertanyaan wajib ditanyakan</td></tr>
-    <tr><td>Durasi</td><td>Ideal 3–5 menit per panggilan</td></tr>
+    <tr><td>Salam pembuka &amp; penutup</td><td>Sesuai standar</td></tr>
+    <tr><td>Volume suara</td><td>Stabil, tidak kencang dan tidak kecil</td></tr>
+    <tr><td>Artikulasi</td><td>Jelas, tidak terburu-buru</td></tr>
+    <tr><td>Cara bertanya</td><td>Terbuka/tertutup — jangan kasih tau jawaban duluan ke konsumen</td></tr>
+    <tr><td>Kelengkapan pertanyaan</td><td>Semua wajib ditanya, contoh: KSM tanya DP</td></tr>
+    <tr><td>Durasi vertel</td><td>Max 5 menit</td></tr>
   </table>
   <ul>
-    <li>Coaching: <strong>1x per semester</strong> (KPI + Issue)</li>
+    <li>Penilaian rekaman: <strong>1x/bulan</strong> oleh TL · Berpengaruh terhadap KPI setiap staff</li>
+    <li>Coaching: <strong>1x/semester</strong> — TL sampaikan KPI dan Issue dari staff terkait</li>
   </ul>
+  <h4>KPI TL</h4>
+  <ul>
+    <li>Coaching · 4DX · Improvement/Kaizen · 5R/Cleaning · Internal Audit</li>
+    <li>Time to Disburse: max 2 jam · Random sampling verifikasi dokumen</li>
+    <li>Jumlah aplikasi yang disburse (yang jadi no kontrak, bukan yang masuk data)</li>
+  </ul>
+</div></div>
+
+<h3>💡 Lain-lain &amp; Issue</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Catatan Operasional Penting</div><div class="acc-body">
+  <ul>
+    <li>Nomor telepon vertel: <strong>1500850</strong> (sama seperti no deskcoll motor, hasil adopsi dari ASR)</li>
+    <li>H-3 closing → broadcast ke cabang untuk kasih tau konsumen tentang vertel — no 1500850 sering dinilai aneh di get contact, konsumen takut angkat (ada yang sampai di-block provider)</li>
+    <li>Alur jika tidak diangkat: telepon 1x → tidak diangkat → appointment (tunggu ±30 menit) → telepon 1x lagi → tidak diangkat → return ke cabang</li>
+    <li>Cluster A / Nasabah Prioritas: dari marketing yang chat WA → SS chat dilampirkan ke CDA dengan persetujuan BM</li>
+    <li>Tanggal di BAST diambil yang terbaru; jika ada pembaruan PO juga mengikuti tanggal terbaru</li>
+    <li>Piloting tidak harus ada marketingnya, tapi marketing kadang bantu bawa papan ke rumah konsumen yang susah sinyal</li>
+    <li>Sistem sering lemot di malam hari saat closing — sudah diidentifikasi sebagai issue infrastruktur IT</li>
+    <li>Setelah vertel selesai: lakukan <strong>regis vertel di Excel</strong> → klik <strong>"Done Vertel"</strong> di sistem CDA</li>
+    <li>Ada <strong>laporan bulanan</strong>: penilaian vertel (intonasi &amp; informasi)</li>
+  </ul>
+  <h4>Issue &amp; Solusi</h4>
+  <table>
+    <tr><th>Issue</th><th>Solusi</th></tr>
+    <tr><td>Cabang upload dokumen → tidak terupdate ke terbaru di CDA (tidak boleh kirim via WA/email, di-save pun tidak boleh)</td><td>Sedang dalam perbaikan IT</td></tr>
+    <tr><td>No 1500850 banyak yang kasih komentar aneh di getcontact → konsumen tidak mau angkat / block</td><td>WA Coster dengan nomor official BCAF — konsumen diingatkan dulu sebelum vertel, bisa atur jadwal juga</td></tr>
+  </table>
 </div></div>
 </div>
 <div id="dsa" class="tab-pane">
@@ -1662,6 +1914,51 @@ tr:nth-child(even) td{background:var(--gray-50);}
 
 <h3>🏍️ DOCUST MOTOR</h3>
 
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">📖 Definisi &amp; Kebijakan Dasar</div><div class="acc-body">
+  <table>
+    <tr><th>Istilah</th><th>Definisi</th></tr>
+    <tr><td><strong>BPKB</strong></td><td>Aset perusahaan yang berfungsi sebagai jaminan atas kredit nasabah dan harus dikontrol dengan ketat</td></tr>
+    <tr><td><strong>Stok Opname BPKB</strong></td><td>Kegiatan membandingkan hasil pemeriksaan fisik BPKB beserta dokumen kelengkapannya dengan pencatatan stok yang ada di sistem</td></tr>
+    <tr><td><strong>Sentra Kustodi (Docust)</strong></td><td>Lokasi terpusat untuk penyimpanan dan pengelolaan BPKB dari beberapa cabang dalam satu area operasional</td></tr>
+    <tr><td><strong>Laci Transit</strong></td><td>Laci khusus dalam strong room yang digunakan untuk menyimpan BPKB yang sudah diterima secara sistem <em>tetapi belum melalui proses pemindaian (scanning)</em> untuk di-upload ke Document Imaging</td></tr>
+  </table>
+  <div class="note-blue">Dasar kebijakan pengelolaan BPKB di Sentra Kustodi: <strong>KBP/DOP/1109</strong> — mengatur siklus hidup BPKB mulai dari pengambilan di cabang hingga penyimpanan akhir</div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">📦 Kriteria BPKB yang Disimpan di Sentra Kustodi</div><div class="acc-body">
+  <ul>
+    <li>Kontrak <strong>aktif (Active)</strong> dengan sisa angsuran &gt; 1</li>
+    <li>BPKB atas kontrak <strong>Write Off (WO)</strong></li>
+    <li>BPKB yang sudah berada di cabang selama <strong>6 bulan</strong> sejak didistribusikan dari Sentra Kustodi (jika tidak ada reservasi oleh konsumen)</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">🚚 Proses Pick Up, Distribusi &amp; Penomoran Lemari</div><div class="acc-body">
+  <h4>Jadwal Pick Up</h4>
+  <ul>
+    <li>Kepala Unit Sentra Kustodi menginformasikan jadwal setiap <strong>awal bulan</strong> melalui email</li>
+    <li>Reschedule diperbolehkan maksimal <strong>H-1</strong> dari jadwal awal</li>
+    <li>Target keberhasilan Pick Up BPKB: <strong>100%</strong></li>
+    <li>Evaluasi dilakukan setiap <strong>tanggal 1</strong> oleh Kepala Departemen Layanan Pendukung Operasional</li>
+  </ul>
+  <h4>Transportasi (berdasarkan jarak pulang-pergi)</h4>
+  <table>
+    <tr><th>Kondisi</th><th>Moda Transportasi</th></tr>
+    <tr><td>Jarak &lt; 120 km</td><td>Sepeda motor pribadi staf terdaftar atau ekspedisi</td></tr>
+    <tr><td>Jarak &gt; 120 km</td><td>Mobil operasional atau ekspedisi (peminjaman dilakukan H-1 kegiatan)</td></tr>
+  </table>
+  <h4>Tata Cara Penomoran Lemari</h4>
+  <ul>
+    <li>Format: <strong>xx.yy.zz</strong> → xx = nomor lemari · yy = nomor laci · zz = nomor kolom</li>
+    <li>Kapasitas per kolom: <strong>40–80 BPKB</strong> (dibatasi untuk mencegah kerusakan fisik)</li>
+  </ul>
+  <h4>Pelaporan &amp; Closing Harian</h4>
+  <ul>
+    <li><strong>Closing Harian:</strong> Staf mengajukan rekonsiliasi harian melalui sistem <strong>MOVE</strong> setiap akhir hari kerja</li>
+    <li><strong>Berita Acara:</strong> Hasil SO dan rekonsiliasi harus dituangkan dalam BA yang disetujui pejabat berwenang dan diarsip berdasarkan urutan tanggal</li>
+  </ul>
+</div></div>
+
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">4 Lokasi Docust Motor &amp; Perbedaan dengan Mobil</div><div class="acc-body">
   <h4>4 Lokasi Sentra Kustodi Motor</h4>
   <table>
@@ -1710,6 +2007,7 @@ tr:nth-child(even) td{background:var(--gray-50);}
   </table>
   <div class="note-blue"><strong>Cut-off pengiriman: Hari Kamis</strong> (agar tidak sampai di hari libur)</div>
   <div class="note">Biaya titip BPKB: <strong>Rp 5.000/hari</strong> mulai hari ke-61 setelah pelunasan (per website BCAF)</div>
+  <div class="note-blue"><strong>Khusus Multiguna:</strong> BPKB tetap diambil oleh konsumen — yang melakukan cek <em>absah</em> dan <em>blokir</em> adalah <strong>MC Operation Cabang</strong> (bukan Docust)</div>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">7 Tugas Rutin TL Docust Motor</div><div class="acc-body">
