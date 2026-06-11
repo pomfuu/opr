@@ -2008,315 +2008,1022 @@ tr:nth-child(even) td{background:var(--gray-50);}
 
 <h3>📑 DOCUMENT SUPPORT</h3>
 <div class="section-intro">
-  Checker dokumen sebelum persetujuan kredit. Dibagi menjadi: <strong>Checker ME · NON ME · SHF · CC · AWC&amp;Revisi · CIC</strong>
+  Checker (verifikasi &amp; validasi data pengajuan pembiayaan dari marketing). Dibagi menjadi: <strong>Non ME · ONE ME · SHF · CC (Checker2) · Revisi &amp; AWC · CIC</strong><br>
+  Target harian: <strong>32–38 akun</strong> (rata-rata 35). SLA: <strong>13–15 menit</strong> (Non-PT) · <strong>30–40 menit</strong> (PT/Non ME)
 </div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">ONE ME (Perorangan) — CS / DS / KKB</div><div class="acc-body">
-  <h4>7 Aplikasi yang Digunakan</h4>
-  <ul>
-    <li><strong>Approva</strong> — untuk PDP (Pemilik Data Pribadi)</li>
-    <li><strong>Resume (BU)</strong> — untuk badan usaha</li>
-    <li><strong>Engine Application</strong> — cek RO + APP ID berjalan</li>
-    <li><strong>Sharingan Go Check</strong> — rangkuman persyaratan checklist</li>
-    <li><strong>Aplikasi Gabungan</strong> — cek rekening konsumen</li>
-    <li><strong>Financore + One View</strong> — data konsumen existing</li>
-    <li><strong>Watchlist</strong> — history kesamaan data antar aplikasi</li>
-  </ul>
-  <h4>Target &amp; SLA</h4>
+  <div class="note-blue">ONE ME = pengajuan perorangan. <strong>Review 1</strong> = cek semua field. <strong>Review 2</strong> = bekas pending, cek field yang di-pending aja.</div>
+  <h4>SLA &amp; Target</h4>
   <table>
-    <tr><th>Kategori</th><th>Target Harian</th><th>Target Bulanan</th><th>SLA Per Aplikasi</th></tr>
-    <tr><td>Checker Lama</td><td>38 aplikasi</td><td>250</td><td>15–20 menit</td></tr>
-    <tr><td>Checker Baru</td><td>32 aplikasi</td><td>250</td><td>15–20 menit</td></tr>
-    <tr><td>PDP</td><td>—</td><td>—</td><td>25–30 menit</td></tr>
+    <tr><th>Kategori</th><th>SLA</th><th>Keterangan</th></tr>
+    <tr><td>ONE ME</td><td>13–15 menit</td><td>Pengajuan perorangan</td></tr>
+    <tr><td>CS</td><td>—</td><td>Hanya 1 pengajuan per konsumen</td></tr>
   </table>
-  <h4>Flow Checker ONE ME (7 Langkah Detail)</h4>
-  <div class="flow">
-    <div class="flow-step">1. Inquiry QA</div><div class="flow-arrow">→</div>
-    <div class="flow-step">2. Watchlist (2 kesamaan = PENDING)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">3. Cek bucket prescreening (hijau/merah/kuning)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">4. RO konsumen</div><div class="flow-arrow">→</div>
-    <div class="flow-step">5. Cek 5 bucket</div>
-  </div>
-  <h4>5 Bucket yang Dicek</h4>
+  <h4>TAP Konsumen (Calon Debitur)</h4>
   <ul>
-    <li>Data konsumen (NIK, nama, alamat sesuai KTP)</li>
-    <li>FAP (Formulir Analisa Pembiayaan)</li>
-    <li>Matching result (data sistem vs dokumen)</li>
-    <li>Collateral (data kendaraan dan jaminan)</li>
-    <li>Loan data (struktur kredit, tenor, angsuran)</li>
+    <li><strong>KYC (NIK, Nama, Tgl Lahir):</strong> Jika ada salah di 1ME, cek di Aplikasi Gabungan (capil manual by APPID atau E-KTP Reader). <em>Reject</em> jika Nama+NIK+Tgl Lahir semua ❌</li>
+    <li><strong>KYC Wajah:</strong> Harus clean. Tidak boleh crop/pas foto <em>kecuali</em> KKB DS Klaster A (boleh pas foto) dan KKB DS lainnya (crop foto boleh)</li>
+    <li><strong>Watchlist:</strong> Cek apakah nasabah adalah PEP (Political Exposure Person)</li>
+    <li><strong>Data KTP (Nama/Tgl-Tempat Lahir/Agama/Status Kawin/Jenis Kelamin):</strong> Tidak boleh salah → jika salah = <em>REJECT</em> (bukan pending), karena mempengaruhi pengecekan SLIK. Nama dan marital status → penyimpangan ke BM</li>
+    <li>Jika data sudah sesuai tapi KYC merah → suruh update dukcapil dan update KTP reader</li>
+    <li><strong>Segmentasi KKB:</strong> Sesuai inquiry dengan di sistem. Untuk DS → cek RO: &gt;6 bulan = klaster mass, &lt;6 bulan = klaster B</li>
+    <li><strong>Engine Scoring:</strong> Reject 2 → pastikan sudah ada penyimpangan atau pengajuan BOD</li>
+    <li><strong>SLIK:</strong> Pastikan SLIK berhasil ditarik</li>
+    <li><strong>Foto konsumen:</strong> Tidak boleh pas foto (kecuali Klaster A). Tidak boleh AI. Jika foto tidak sesuai dukcapil → wajib ada "Deviasi foto tidak sesuai dukcapil"</li>
+    <li><strong>Validasi rekening:</strong> Wajib valid (autodebet). Barter/rekening BCA → dicek apakah bisa autodebet</li>
+    <li><strong>Dokumen pekerjaan:</strong> Profesional = surat ijin praktek; Karyawan = slip gaji 1 bulan (nama harus sama di sistem); Pengusaha = SIUP/NIB/TDP</li>
+    <li><strong>Cover KLIK BCA:</strong> KKB &amp; DS wajib (jika tidak ada → pending); CS = barter kontrak (lampiran menyusul setelah kontrak jadi)</li>
+    <li><strong>KK:</strong> Alamat di KK harus sama dengan KTP (kalau beda sedikit = pemekaran). Nama ibu kandung, barcode kelurahan, TTD Kepala Keluarga. Marital status+KTP+KK+NIK sama tapi alamat beda KTP/KK → harus paraf di KK oleh BM + note</li>
+    <li><strong>Slip Gaji:</strong> Tanggal wajib 1 bulan terakhir, pemilik = nasabah cadeb</li>
+    <li><strong>Mutasi Rekening:</strong> Kode 2211, 3 bulan terakhir, wajib bisa autodebet (KKB DS)</li>
+    <li><strong>Form Consent Konsumen:</strong> Wajib ada. Tanggal form consent tidak boleh lebih dari tanggal inisiasi</li>
+    <li><strong>Google Map (khusus CS):</strong> Jarak dari cabang BCA ke alamat domisili (minimal kelurahan) ≤60 KM. Jika &gt;60 KM → biaya tambahan (tiering sesuai jarak) + penyimpangan BM</li>
+    <li><strong>Bukti Rumah (PBB):</strong> Nama di PBB harus sama dengan konsumen, tanggal ≤2 tahun. Tidak bisa → penyimpangan ke DD. Bukti: SHM / PBB 2 tahun terakhir / Rekening Listrik 1 bulan (capture website PLN). Maks kepemilikan = orang tua (kakek/nenek tidak boleh)</li>
+    <li><strong>M-Survey:</strong> KKB &amp; DS Klaster A &amp; B → tidak perlu survey. Selain itu harus survey, alamat survey harus sama dengan domisili. Reguler 2 atau reject 1 → wajib BM mengetahui</li>
   </ul>
-  <div class="note"><strong>Jika ada RO</strong> (Reject Order): aplikasi masuk status Pending sampai RO diselesaikan</div>
-  <div class="note-blue"><strong>Jika semua OK</strong>: status aplikasi jadi <strong>Processed</strong></div>
-  <h4>Catatan ONE ME</h4>
+  <h4>TAP FAP</h4>
   <ul>
-    <li>NIK berbeda → pengkinian data ke CS terlebih dahulu</li>
-    <li>Mobil beban perorangan wajib penyimpangan (memo)</li>
-    <li>Nama ibu kandung harus sama dengan di FAP / KK</li>
-    <li>Pengajuan perorangan wajib lampirkan: bukti rumah/usaha, slip gaji, mutasi 3 bulan, survey</li>
-    <li>KKB wajib lampirkan bukti segmentasi kode <strong>9433</strong></li>
-    <li>CS wajib SS Google Maps, max jarak <strong>60 km</strong> (lebih dari 60 km perlu approval BOD)</li>
-    <li>Kluster A: tidak perlu bukti usaha, survey, slip gaji, bukti rumah</li>
+    <li>Nama di SID name (hanya nama tanpa gelar/singkatan)</li>
+    <li>Patokan rumah: nomor rumah, blok, warna rumah, acuannya</li>
+    <li>Rumah ECN tidak boleh sama seperti alamat pemohon. ECN boleh sedarah, tidak boleh sepupu jauh, maksimal kakak/adik/ipar/mertua</li>
+    <li>Jumlah tanggungan</li>
+    <li>Email wajib untuk KKB DS</li>
+    <li>Nomor HP tertaut WA</li>
+    <li>Jika ada UMKM → wajib ceklist wiraswasta</li>
+    <li>Penyimpangan KKB (jika ada)</li>
+    <li>Nominal penghasilan dan nomor rekening</li>
+    <li>Data pinjaman: Refinancing = Produktif modal kerja; Mobil beban = Produktif investasi; PT = bisa keduanya; Individu = Non produktif konsumsi</li>
+    <li>Cek maskapai asuransi di Gocek sesuai cabang</li>
+    <li>KKB DS → input sales agent &amp; sales office</li>
+    <li>Penjamin wajib untuk: usia &lt;21 tahun belum menikah, atau PT/Pemilik manfaat</li>
+  </ul>
+  <h4>TAP Matching</h4>
+  <ul>
+    <li>Ada customer ID tapi tidak matching = REJECT</li>
+    <li>Cek di OneView apakah orang yang sama atau bukan</li>
+    <li>Data history RO (overdue atau tidak, ada salah matching) → dicek di Financore via Engine Matching</li>
+    <li>Untuk PT → dicek per NPWP pengurus PTnya</li>
+    <li>Pengajuan &gt;1 → pending dan verifikasi ke CMO</li>
+  </ul>
+  <h4>TAP Collateral</h4>
+  <ul>
+    <li>Mobil bekas: wajib ada tab watchlist kendaraan, asset registry, Approva, Financore. Mobil baru tapi ada field ini → pending</li>
+    <li>CEK STNK tidak expired (bekas); mobil baru tidak ada STNK</li>
+    <li>Samain data STNK dengan di sistem</li>
+    <li>Tipe pembiayaan: Perorangan = konsumtif &amp; multiguna; Usaha = produktif &amp; modal kerja/investasi</li>
+    <li>CEK unit kendaraan di memo ketentuan → jika tidak ada = biaya admin +Rp 1 juta (dipastikan ada)</li>
+    <li>CEK bunga flat rate sesuai memo ketentuan (flat bottom + flat max)</li>
+    <li>CEK biaya admin sesuai ketentuan (+1 juta jika unit di luar ketentuan; +tiering jika Google Map &gt;60 KM)</li>
+    <li>CEK biaya fidusia sesuai tiering</li>
+    <li>CEK provisi maksimal 5,5%</li>
+    <li>CEK plottingan asuransi sesuai wilayah pengajuan. CS wajib CP → pakai deviasi jika CS tidak pakai CP. CS dengan PH &gt;1M → tidak perlu CP dan tidak perlu deviasi</li>
+    <li>CEK nama paket: mobil bekas ada CPR = nama paket mulai dengan WM; DS selalu ada MASS di nama paket (kecuali Klaster A)</li>
+    <li><strong>Khusus CS Mobil:</strong> cek identitas kendaraan dari STNK (plat nomor, masa berlaku STNK, noka/nosin BPKB, tipe mobil, collateral/bukti kepemilikan rumah). Jika tidak ada bukti rumah → DP minimal 30%</li>
+  </ul>
+  <h4>Dokumen Mandatory ONE ME</h4>
+  <table>
+    <tr><th>Dokumen</th><th>Status</th></tr>
+    <tr><td>KTP</td><td><span class="chip-red">WAJIB</span></td></tr>
+    <tr><td>Form Consent</td><td><span class="chip-red">WAJIB</span></td></tr>
+    <tr><td>FAP</td><td><span class="chip-red">WAJIB</span></td></tr>
+    <tr><td>Google Map (khusus CS)</td><td><span class="chip-red">WAJIB</span></td></tr>
+    <tr><td>Bukti rumah</td><td>Bisa deviasi jika tidak ada</td></tr>
+    <tr><td>Mutasi 3 bulan (bank sama)</td><td>Bisa deviasi jika tidak ada</td></tr>
+    <tr><td>Bukti usaha / slip gaji</td><td>Bisa deviasi jika tidak ada</td></tr>
+    <tr><td>Dokumen lainnya</td><td>Opsional</td></tr>
+  </table>
+  <h4>Barter Kontrak (CS New Car)</h4>
+  <div class="flow">
+    <div class="flow-step">Login PDP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Masukkan APP ID</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Pilih dokumen kredit (cover KLIK BCA / cover tabungan)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Submit</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Masuk bucket APP</div>
+  </div>
+  <h4>Catatan Lainnya</h4>
+  <ul>
+    <li>Minimal asuransi = TLO</li>
+    <li>PA tidak boleh untuk pekerjaan membahayakan</li>
+    <li>CS wajib TLP kecuali mobil beban. KKB &amp; DS boleh tidak TLP tapi penyimpangan RM</li>
+    <li>Setelah checker click proceed → masuk ke bucket MA (atau CC jika menggunakan K3)</li>
+    <li>ECN sudah tidak dicek lagi → jika salah = kesalahan marketing</li>
+    <li>Review 2 terjadi jika: field warna merah (di-pending checker), field kuning (sudah direvisi marketing), pengajuan &gt;1 ada di engine matching, konsumen masuk daftar blacklist (DP min 30%), kendaraan sudah dijaminkan di asset registry, unit Pajero/Fortuner wajib survey 2x dengan BM</li>
   </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">NON ME — ME Corporate &amp; PDP</div><div class="acc-body">
-  <h4>ME Corporate</h4>
+  <div class="note-blue">Nasabah PT bisa melalui ME Corpo. NON ME individu (via PDP) biasanya karena TPH &gt;5M atau &gt;3 unit. Approval lebih tinggi, wajib ada K3 di beberapa kasus.</div>
+  <h4>SLA &amp; Target NON ME</h4>
   <table>
-    <tr><th>Kondisi</th><th>Ketentuan</th></tr>
-    <tr><td>Pemegang saham perorangan</td><td>Tanpa K3 jika max 3 unit &amp; max Rp 5M</td></tr>
-    <tr><td>&gt;3 unit ATAU &gt;Rp 5M</td><td>Wajib K3 (Komite Kredit Khusus)</td></tr>
-    <tr><td>Ada memo plafon</td><td>Wajib K3</td></tr>
-    <tr><td>Penyimpangan</td><td>Wajib K3</td></tr>
+    <tr><th>Kategori</th><th>SLA</th><th>Target Harian</th></tr>
+    <tr><td>NON ME (umum)</td><td>30 menit</td><td>15–17 aplikasi</td></tr>
+    <tr><td>PDP (banyak input data)</td><td>Lebih lama</td><td>—</td></tr>
+    <tr><td>ME Corpo (cek dokumen terlampir)</td><td>Lebih lama</td><td>—</td></tr>
+    <tr><td>CV / Yayasan</td><td>2x lebih lama</td><td>—</td></tr>
   </table>
-  <h4>Flow ME Corporate (7 Langkah)</h4>
-  <div class="flow">
-    <div class="flow-step">Terima aplikasi</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek tabel naik MA / tidak</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Analisa dokumen BU</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek 5 bucket</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Processed / Pending</div>
-  </div>
-  <h4>PDP (Pemilik Data Pribadi / PT)</h4>
+  <h4>Dokumen Mandatory Nasabah PT</h4>
   <ul>
-    <li>Pemegang saham adalah PT lain</li>
-    <li>Wajib K3</li>
-    <li>THP lebih tinggi (threshold penghasilan lebih ketat)</li>
-    <li>Approval lebih tinggi dari ME biasa</li>
+    <li>FAP</li><li>SS pemilik manfaat</li><li>K3</li><li>Mutasi 3 bulan</li>
+    <li>Memo gathering (tergantung paket)</li><li>NPWP</li><li>SIUP</li>
+    <li>NIB</li><li>Bukti segmentasi</li>
   </ul>
-  <h4>Klasifikasi PDP yang Masuk Non ME</h4>
+  <h4>Dokumen Mandatory Nasabah Perorangan</h4>
   <ul>
-    <li>Perorangan: THP &gt;5M / diskon asuransi / OVK / UMK3 / restruktur</li>
-    <li>BU: pemegang saham tanpa NPWP / asing / &lt;21 tahun / penjamin PT</li>
+    <li>FAP</li><li>KTP</li><li>KK</li><li>K3</li><li>Bukti Rumah</li>
+    <li>Mutasi rekening</li><li>Bukti usaha / slip gaji</li><li>Nomor rekening</li>
   </ul>
-  <h4>Flow OVK di Non ME (8 Langkah)</h4>
+  <h4>Alur Kerja PDP</h4>
   <div class="flow">
-    <div class="flow-step">Terima pengajuan OVK</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek SLIK max C1</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Analisa risiko</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Memo penyimpangan jika C2 ovd &lt;10 hari</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Approval DD</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Processed</div>
+    <div class="flow-step">Pengajuan masuk PDP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Buka Approva → cari by APPID</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Isi customer data (mengacu resume/FAP)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Isi loan data (mengacu K3/FAP)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Isi notary note</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Isi resume PT (pemegang saham) — individu tidak ada</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Proceed 1x → status jadi Recommendation → isi deviasi</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Proceed lagi → naik ke CC untuk pengecekan inputan</div>
   </div>
+  <div class="note">Dokumen di PDP diberi keterangan OK atau Not OK (jika pending). Jika di-pending → balik ke marketing. 1 APP ID = 1 Unit.</div>
+  <h4>Alur Kerja ME Corporate</h4>
+  <ul>
+    <li>Data masuk ke bucket ME Corpo (nasabah PT)</li>
+    <li>Cek inputan ME Corpo berdasarkan dokumen pengajuan (FAP, K3, data diri)</li>
+    <li>K3 dipakai jika PH &gt;5M dan unit &gt;3</li>
+    <li>Kode lokasi proyek wajib diisi</li>
+    <li>Pastikan alamat sesuai</li>
+    <li>Pastikan ada email (konsumen PT biasanya KKB DS)</li>
+    <li>ECN minimal Manager</li>
+    <li>Pengurus wajib dilampirkan KTP</li>
+    <li>Lihat loan dari masing-masing pengurus → sesuai resume atau tidak</li>
+    <li>Cek 2211 (status rekening)</li>
+    <li>Cek pemilik manfaat / beneficial owner</li>
+    <li>Cek mutasi rekening</li>
+    <li>Expo → cek SPK dari program yang diambil. Jika tidak ada di data expo → pending. Cek: Paket, Unit, APPID/MID</li>
+    <li>FAP harus ada nomor registrasi</li>
+    <li>Benefit bunga &amp; admin sesuai</li>
+    <li>Sesuaikan detail kendaraan dengan nama BPKB (jika beda nama BPKB → deviasi lagi)</li>
+  </ul>
+  <h4>Tab di Aplikasi Checker ME Corporate</h4>
+  <ul>
+    <li>Corporate Data</li>
+    <li>Collateral and Loan Data</li>
+    <li>Matching Result</li>
+    <li>Poin Rekomendasi</li>
+  </ul>
+  <h4>Kondisi Reject Nasabah PT</h4>
+  <ul>
+    <li>Nama PT salah atau NPWP salah → di-reject karena berpengaruh ke SLIK</li>
+  </ul>
+  <h4>Catatan Lainnya NON ME</h4>
+  <ul>
+    <li>ME Corpo → pemegang saham perorangan dan PT</li>
+    <li>Jika tidak bisa lampirkan NPWP PT → masuk via PDP</li>
+    <li>PDP = wadah untuk CMO lampirkan dokumen → bisa di-pending jika Not OK</li>
+    <li>Khusus CV dan yayasan → proceed di ME dan approval juga diproses</li>
+    <li>Aplikasi Gabungan untuk cek rekening autodebet dan NPWP valid</li>
+    <li>Inquiry 2211 = bukti status rekening KKB/DS</li>
+    <li>Inquiry 9433 = bukti segmentasi individu</li>
+    <li>Inquiry 9435 = bukti segmentasi perusahaan</li>
+    <li>Asuransi sudah ada plottingan per wilayah (diisi oleh marketing). Bisa pilih asuransi lain (tetap rekanan) tapi pengajuan ke DD</li>
+  </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">SHF (Showroom Financing)</div><div class="acc-body">
-  <h4>3 Dokumen Utama</h4>
-  <ul><li>BPKB kendaraan stok showroom</li><li>STNK</li><li>Faktur pembelian</li></ul>
-  <h4>5 Aplikasi</h4>
+  <div class="note-blue">SHF = showroom gadaikan BPKB dengan bunga pasti 9% flat, tenor maks 3 bulan (min 1 bulan). Pengajuan via PDP atau ME SHF. Pengajuan pertama kali wajib via PDP.</div>
+  <h4>SLA &amp; Target SHF</h4>
+  <table>
+    <tr><th>Kondisi</th><th>SLA</th></tr>
+    <tr><td>SHF normal</td><td>10–15 menit</td></tr>
+    <tr><td>Pendingan (cek field di-pending saja)</td><td>Lebih cepat</td></tr>
+  </table>
+  <div class="note">Tidak ada reject di ME SHF. SHF hanya diproses di WPI (tidak di WTC dan Surabaya).</div>
+  <h4>Aplikasi yang Digunakan</h4>
   <ul>
-    <li>Watchlist</li><li>FAP</li><li>Asset Registry</li>
-    <li>Plafon Showroom System</li><li>Financore</li>
+    <li><strong>One Plafond</strong> — pengecekan plafond showroom</li>
+    <li><strong>One ME (s3 sso → QA SHF)</strong> — bucket sama seperti One ME, 1 aplikasi</li>
+    <li><strong>Aplikasi PDP</strong> — untuk pengajuan pertama kali</li>
+    <li><strong>Approva</strong> — untuk cek watchlist &amp; edit data</li>
   </ul>
-  <h4>11 Langkah Flow SHF</h4>
+  <h4>Alur Pengajuan SHF (Umum)</h4>
   <div class="flow">
-    <div class="flow-step">1. Watchlist</div><div class="flow-arrow">→</div>
-    <div class="flow-step">2. FAP</div><div class="flow-arrow">→</div>
-    <div class="flow-step">3. Cek Collateral (BPKB+STNK+Faktur+Foto)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">4. Matching</div><div class="flow-arrow">→</div>
-    <div class="flow-step">5. Asset Registry</div><div class="flow-arrow">→</div>
-    <div class="flow-step">6. Plafon Showroom</div><div class="flow-arrow">→</div>
-    <div class="flow-step">7. Cek OTR</div><div class="flow-arrow">→</div>
-    <div class="flow-step">8. Flat Rate 9%</div><div class="flow-arrow">→</div>
-    <div class="flow-step">9. Hitung Loan</div><div class="flow-arrow">→</div>
-    <div class="flow-step">10. Input No Rekening</div><div class="flow-arrow">→</div>
-    <div class="flow-step">11. Done</div>
+    <div class="flow-step">PDP / ME SHF</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Approva</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PDP (pending / pengajuan pertama)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Proceed</div><div class="flow-arrow">→</div>
+    <div class="flow-step">MA</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Upload kontrak di PDP (kontrak manual di Approva)</div>
   </div>
+  <h4>Dokumen Mandatory ME SHF (sudah pasti RO)</h4>
+  <ul>
+    <li>FAP</li><li>BPKB</li><li>STNK</li><li>Faktur</li><li>Foto kendaraan</li><li>KTP (opsional)</li>
+  </ul>
+  <h4>Dokumen Mandatory PDP</h4>
+  <ul>
+    <li>KTP YBS dan Pasangan</li><li>KK</li><li>K3</li>
+    <li>Asset Registry (SS → isi BPKB sedang dijaminkan atau tidak)</li>
+    <li>BPKB</li><li>Faktur &amp; STNK</li><li>Foto kendaraan</li><li>Cover buku tabungan</li>
+  </ul>
+  <h4>Alur Pengecekan via ME SHF (dari sisi checker)</h4>
+  <ul>
+    <li>Register berkas di Excel untuk laporan ke TL / pendataan pribadi</li>
+    <li>Cek plafond pakai nama showroom via Aplikasi Plafond KKB: masa berlaku, nominal dan sisa plafond, termasuk group plafond</li>
+    <li>Cek engine matching untuk watchlist kendaraan atau konsumen, termasuk resume</li>
+    <li>Cek validasi rekening di Aplikasi Gabungan (NIK valid, rekening bisa autodebet — wajib hukumnya)</li>
+    <li>Cek watchlist perorangan: jika NIK invalid → update NIK ke CS. Data tagihan, kredit internal/eksternal, repo, political exposure, WO, notif tidak sesuai engine matching</li>
+    <li>Cek FAP → samakan dengan sistem dan kertas FAP</li>
+    <li>Cek STNK/BPKB identitas kendaraan &amp; pemilik → STNK wajib hidup. Jika expired dan mau urus: pakai biro jasa BCAF = penyimpangan sampai BM; biro jasa luar = penyimpangan BOD. Jika tidak ada tipe umum di BPKB → penyimpangan RM</li>
+    <li>Cek nomor rangka dan mesin di BPKB → inquiry Financore, cek body no</li>
+    <li>Loan data: masa plafond max 3 bulan, DP 20% untuk rank 200 atau plafond 5M, bunga flat &amp; effective 9%, loan harus in arrear, payment wajib autodebet</li>
+    <li>Top 200: ada asset registry → cek BPKB di leasing lain. Jika ada deviasi sampai DD. Cek di BPKB admin untuk fisik BPKB</li>
+  </ul>
+  <h4>Hal Penting Lainnya di SHF</h4>
+  <ul>
+    <li>Untuk pengajuan RO = melalui ME SHF</li>
+    <li>Ketentuan SHF sama seperti CS Used. Bedanya: SHF boleh lebih dari 2 unit; CS Used hanya 1 unit</li>
+    <li>ME SHF = tidak pakai K3; PDP wajib pakai K3 + wajib input di Approva lagi</li>
+    <li>Tipe kendaraan di BPKB, Faktur, dan STNK harus sama. Jika berbeda → harus ada penyimpangan (dokumen acuan). Jika tidak ada penjelasan = pending</li>
+    <li>Selama pengajuan, plafond showroom harus tetap aktif</li>
+    <li>Cek tenor → pending jika tenor lewat masa aktif plafond</li>
+    <li>PH tidak boleh lebih dari plafond</li>
+    <li>Cek tipe kendaraan via memo (tabel: tipe kendaraan, tahun, DP min). Jika di luar ketentuan → penyimpangan BOD. Ada biaya admin +Rp 1 juta jika pengajuan di luar ketentuan unit kendaraan</li>
+    <li>Berlaku juga untuk KKB DS</li>
+    <li>Setelah aplikasi proceed/pending → hilang dari bucket</li>
+    <li>Jika di asset registry BPKB sudah dijaminkan: cek apakah showroom top 200 → jika ya bisa penyimpangan sampai DD → di-hold pas pencairan sampai jaminan di tempat lain diselesaikan</li>
+    <li>SHF murni hanya ada PH saja, tidak ada biaya admin dan tidak ada asuransi (diisi no insurance)</li>
+    <li>Alur SHF ME: Checker → KK → CIC. Alur SHF PDP: masuk bucket CC2 → final check → printing → disbursement</li>
+    <li>Setiap revisi di ME SHF setelah final check → wajib pakai nomor kontrak baru. Biasanya Rp 100.000 untuk bukti bayar revisi</li>
+    <li>Cek di VA Gabungan. Yang bisa direvisi sebelum final check: rubah hitungan, naikkan % DP. Ganti dokumen non-tagihan → tidak bayar. Setelah final check → semua inputan tidak bisa direvisi oleh Document Support</li>
+    <li>Wiraswasta wajib lampirkan NIB/SIUP. NIB atas nama pemilik dan pasangan ada nama pengaju</li>
+  </ul>
+  <h4>Mandatory SHF (Review TL)</h4>
+  <ul>
+    <li>Data FAP</li>
+    <li>Data kendaraan</li>
+    <li>Faktur kendaraan bermotor dari dealer</li>
+    <li>BPKB difoto lembar perubahan, identitas pemilik &amp; kendaraan</li>
+    <li>STNK</li>
+    <li>Status beda (marital) untuk pemilik showroom atau nasabah RO</li>
+    <li>Cek masa berlaku resume AHU dan plafond (sisa nominal plafond SHF). Pengajuan tidak boleh lebih dari 3 bulan atau sebelum masa expired plafond SHF</li>
+  </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">CC (Credit Committee)</div><div class="acc-body">
-  <h4>Alur Umum</h4>
-  <div class="flow">
-    <div class="flow-step">Data Entry</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Rekommend</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Processed</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Approval CC1</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Approval CC2</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Final Check</div>
-  </div>
-  <h4>Deviasi EP (11 Jenis)</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">CC — Checker 2 (Kontrak Manual, Karoseri)</div><div class="acc-body">
+  <div class="note-blue">CC (Checker2) = pengecekan kembali dari inputan NON ME (ME Corpo &amp; PDP), melakukan kontrak manual, dan revisi / data maintenance. Jobdesc utama: jembatan untuk proceed aplikasi jadi Printing tanpa lewat CC2.</div>
+  <h4>Aplikasi yang Digunakan</h4>
   <ul>
-    <li>Deviasi dari standar pengajuan → cetak manual (printing manual)</li>
-    <li>11 jenis deviasi yang diizinkan dengan approval CC</li>
+    <li>PDP</li>
+    <li>Approva</li>
+    <li>Inquiry QA (ME Corpo)</li>
   </ul>
-  <h4>Flow PDP di CC (7 Langkah)</h4>
-  <div class="flow">
-    <div class="flow-step">Input Approva</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Analisa risiko BU</div><div class="flow-arrow">→</div>
-    <div class="flow-step">CC1 (DH)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">CC2 (DD)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Final Check</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Printing kontrak</div>
+  <h4>Pengecekan Kembali oleh Checker CC</h4>
+  <ul>
+    <li>Meneruskan proses realisasi dari status CC1 menjadi Printing tanpa lewat CC2 (jika sudah pakai K3 di awal)</li>
+    <li>Proses yang pakai K3 di awal: pengajuan NON ME via PDP atau aplikasi ME Corporate untuk konsumen yayasan, CV, dan Firma → perlu input lagi di Approva karena jabatan direksi di resume tidak ada di sistem Approva (misal: bendahara organisasi → di Approva hanya ada direktur, komisaris)</li>
+    <li>Jika ada typo kecil → CC bisa langsung edit di Approva. Jika tidak sesuai tapi tidak ada deviasi/penyimpangan → di-pending</li>
+    <li>Overkredit, Reschedule, dan Restruktur pengajuannya juga lewat PDP</li>
+  </ul>
+  <h4>Karoseri (Mobil Box)</h4>
+  <div class="note">Karoseri = mobil box di mana chasis dan box bisa dilepas. Chasis dari dealer A, Box dari dealer B → bayar ke dua tempat.</div>
+  <div class="g2">
+    <div class="note-blue">
+      <strong>3 K3:</strong><br>
+      K3 Gabungan → yang diinput ke sistem<br>
+      K3 Unit Chasis<br>
+      K3 Unit Karoseri
+    </div>
+    <div class="note-yellow">
+      <strong>3 PO:</strong><br>
+      PO Gabungan → yang diinput ke sistem<br>
+      PO Dealer Chasis<br>
+      PO Dealer Karoseri
+    </div>
   </div>
+  <ul>
+    <li>Dokumen kontrak tetap jadi satu</li>
+    <li>Boleh 1 K3 + 1 PO jika chasis dan box di perusahaan/dealer yang sama</li>
+    <li>Tujuan 3 PO + 3 K3 = untuk memisahkan pembayaran</li>
+  </ul>
+  <h4>Kontrak Manual — Kapan Dilakukan</h4>
+  <ul>
+    <li>RUPS (perusahaan TBK)</li>
+    <li>Surat dikuasakan</li>
+    <li>Kontrak gabungan (1 kontrak berisi banyak unit dengan OTR/PH sama atau berbeda)</li>
+    <li>Kontrak karoseri</li>
+    <li>Juklak (program khusus dealer → PO dan kontrak berubah tapi sistem tidak)</li>
+    <li>SP Kom Terpisah</li>
+    <li>Istri lebih dari 1 → semua istri tanda tangan kontrak</li>
+    <li>Konsumen &lt;21 tahun belum menikah → sistem nama konsumen, tapi yang TTD kontrak adalah kedua orangtua</li>
+  </ul>
+  <div class="note">Untuk print kontrak manual → sistem perlu di-stop sampai status Printing. Caranya: pilih deviasi penyimpangan engine printing (di ME oleh marketing, atau di Approva Recommendation oleh checker)</div>
+  <h4>Alur Kontrak Manual</h4>
+  <div class="flow">
+    <div class="flow-step">CC1 → di-approve jadi Printing</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Buka Approva → pilih signer (BOH cabang)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Pilih dokumen yang di-print (sesuai tipe) → output Word</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Edit Word sesuai kebutuhan → save jadi PDF</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Proceed dari Approva: Printing → Final Check</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Upload PDF ke PDP (upload PO + Kontrak)</div>
+  </div>
+  <h4>Dokumen yang Di-Print (Kontrak Manual Badan Usaha)</h4>
+  <ul>
+    <li>Estimasi tabel angsuran</li><li>Ikhtisar</li><li>SKPB (SK Pengambilan Jaminan)</li>
+    <li>Blanko kwitansi</li><li>PO</li><li>SP Direktur</li><li>SK Fidusia</li>
+    <li>SP Dealer</li><li>Riplay</li><li>Perjanjian Pembiayaan</li>
+    <li>SP Komisaris</li><li>Resume (RUPS)</li>
+  </ul>
+  <h4>Dokumen yang Di-Print (Kontrak Manual Perorangan)</h4>
+  <ul>
+    <li>Estimasi tabel angsuran</li><li>Ikhtisar</li><li>SKPB</li>
+    <li>Blanko kwitansi</li><li>PO</li><li>SK Fidusia</li>
+    <li>SP Dealer</li><li>Riplay</li><li>Perjanjian Pembiayaan</li>
+  </ul>
+  <h4>Dokumen yang Di-Print (Kontrak Manual SHF)</h4>
+  <ul>
+    <li>Estimasi tabel angsuran</li>
+    <li>Lampiran perjanjian pembiayaan modal kerja</li>
+    <li>Surat konfirmasi dan penarikan showroom financing</li>
+  </ul>
+  <h4>Berkas Lainnya (SHF)</h4>
+  <ul>
+    <li>SHF wajib lampirkan Faktur Kendaraan, BPKB, dan STNK AKTIF (jika expired → pengajuan perpanjangan STNK ke BCAF dulu)</li>
+    <li>Bisa lampirkan memo plafond. SHF wajib cek status BPKB di BCAF (perpanjangan harus status Released/Borrow), maks pengajuan 2x per showroom. Boleh pindah showroom jika status Closed</li>
+    <li>Refinancing: wajib BPKBnya. Topup: status di Financore lancar &amp; borrow. Refinancing 1: Close</li>
+  </ul>
+  <h4>ONE ME — Catatan Tambahan</h4>
+  <ul>
+    <li>Inputan dari CS, KKB, dan DS. KKB &amp; DS boleh foto pas/crop. KKB DS wajib lampirkan email</li>
+    <li>Peka terhadap perhitungan marketing (loan data) dan penyimpangan/deviasi (dicek di Gocek)</li>
+    <li>Review 1 = cek semua; Review 2 = cek field yang di-pending saja</li>
+    <li>Bisa edit langsung di Engine Printing (biasanya Ikhtisar, PO, Riplay/Juklak)</li>
+    <li>Jika di-pending CC → langsung balik ke marketing</li>
+    <li>Menggunakan One View untuk cek deskripsi kendaraan dan riwayat klaim asuransi di BCAF. Jika pernah klaim asuransi di BCAF → tidak boleh diajukan. Jika klaim di luar BCAF → boleh</li>
+  </ul>
+  <h4>Perbedaan Refinancing</h4>
+  <table>
+    <tr><th>Jenis</th><th>Kondisi BPKB</th><th>Usia Kendaraan</th><th>Bunga</th><th>Branch Name</th></tr>
+    <tr><td>Semi Leaseback (Reff 2)</td><td>Belum jadi (Cover Note)</td><td>≤3 bulan</td><td>Mobil baru reguler KKB</td><td>REFF 2</td></tr>
+    <tr><td>Refinancing for New (Semi Reff)</td><td>Sudah jadi</td><td>4–12 bulan</td><td>Mobil baru</td><td>REFF 1 (sistem = bekas)</td></tr>
+    <tr><td>Refinancing 1</td><td>Sudah jadi</td><td>&gt;12 bulan</td><td>Mobil bekas</td><td>REFF 1</td></tr>
+  </table>
+  <div class="note">Pengajuan refinancing melalui KKB/DS, bukan dari CS. Pengambilan BPKB → ada showroom yang hanya mau diambil oleh konsumen sendiri → BCAF dan konsumen ambil bersama ke dealer</div>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">AWC vs Revisi Kontrak</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Revisi &amp; AWC</div><div class="acc-body">
+  <div class="note-blue">Bucket Revisi → aplikasi PDP + Tasklist Revisi dokumen kontrak. Ada 2 pekerjaan PIC Revisi: <strong>Revisi Kontrak</strong> (status Approva = Final Check) dan <strong>AWC</strong> (status Approva = CC2).</div>
   <div class="g2">
     <div class="note-blue">
       <strong>AWC (Amendment Without Contract)</strong><br>
-      Kontrak <em>belum</em> dicetak · Internal K3 · Gratis<br>
-      12 langkah flow
+      Status Approva: CC2 · Tidak berbayar<br>
+      Paling banyak karena BBG
     </div>
     <div class="note-yellow">
       <strong>Revisi Kontrak</strong><br>
-      Kontrak <em>sudah</em> dicetak · Biaya Rp 100.000 (external)<br>
-      6 langkah flow
+      Status Approva: Final Check · Biaya Rp 100.000 (jika kesalahan dari marketing)<br>
+      Paling banyak karena hitungan (naik DP, ganti tenor)
     </div>
   </div>
-  <h4>Flow Revisi (6 Langkah)</h4>
+  <h4>Alur Revisi Kontrak</h4>
   <div class="flow">
-    <div class="flow-step">1. Identifikasi kesalahan</div><div class="flow-arrow">→</div>
-    <div class="flow-step">2. Input pengajuan revisi</div><div class="flow-arrow">→</div>
-    <div class="flow-step">3. Bayar Rp 100.000</div><div class="flow-arrow">→</div>
-    <div class="flow-step">4. Cetak kontrak baru</div><div class="flow-arrow">→</div>
-    <div class="flow-step">5. TTD ulang konsumen</div><div class="flow-arrow">→</div>
-    <div class="flow-step">6. Arsip kontrak lama</div>
+    <div class="flow-step">Buka Approva → pastikan status Final Check</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Buka PDP → buka K3 revisi → lihat penyimpangan (untuk tahu apa yang perlu direvisi)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek bukti bayar Rp 100.000 di PDP (bukti bayar maks hari H naikkan revisi, boleh H-1)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek pejabat wewenang approval dengan memo di K3 → jika belum sesuai = pending</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika sesuai → revisi data di Approva (data maintenance), samakan dengan K3</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Recalculate loan value (selalu setiap ada perubahan data) → samakan dengan K3 (jika beda = pending)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Save Approva → Proceed PDP → Save</div>
   </div>
+  <div class="note">Revisi yang berhubungan dengan hitungan → wajib lampirkan K3 di PDP. Revisi tidak berhubungan hitungan → tidak wajib K3, tapi lampirkan print out MA (SS) + TTD penyimpangan (tergantung memo). Boleh tanpa bayar revisi jika ada memo revisi (contoh: Revisi tipe mobil).</div>
+  <h4>Alur AWC</h4>
+  <div class="flow">
+    <div class="flow-step">Buka Aplikasi MA → bucket AWC → lihat permintaan AWC (contoh: ubah OTR)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Pastikan di Approva statusnya CC2</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek di PDP → K3 AWC → apa yang perlu diubah</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Bisa naik banding dengan approval DD</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Ubah data sesuai K3 di Approva (data maintenance)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Recalculate → cek nominal loan benar sama seperti di K3</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Save Approva → OK &amp; Proceed di PDP → Complete di MA</div>
+  </div>
+  <h4>BBG — Ubah Penjamin Showroom</h4>
+  <div class="note-yellow">AWC paling banyak karena BBG (ubah penjamin showroom)</div>
+  <h4>Dokumen BBG</h4>
+  <ul>
+    <li>KTP penjamin showroom (biasanya pemilik)</li>
+    <li>FAP bagian belakang (ada data penjaminnya)</li>
+    <li>Form BBG (penjamin showroom)</li>
+  </ul>
+  <h4>Alur BBG</h4>
+  <div class="flow">
+    <div class="flow-step">Ubah di Approva → Customer Data</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Recalculate → Save</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Save Approva → PDP Proceed → AWC Complete</div>
+  </div>
+  <div class="note-red">Inputan data KTP tidak bisa direvisi → pasti di-reject</div>
+  <h4>Catatan Lainnya di Revisi</h4>
+  <ul>
+    <li><strong>Renvoi:</strong> Alur sama seperti revisi → di kontrak tidak berubah tapi di sistem berubah</li>
+    <li>Komponen nomor VA di Aplikasi Gabungan untuk revisi: <code>710000 + Revisi ke berapa (1) + APPID + 001</code></li>
+    <li>Cek app ID, tanggal, dan VA online di Aplikasi Gabungan (search by no VA)</li>
+    <li>Jika belum bayar = revisi di-pending</li>
+    <li>Bisa hapus deviasi di Approva → Recommendation → Deviation (jika deviasi sebelumnya tidak berlaku lagi karena AWC/revisi)</li>
+    <li>AWC 1 = masih diproses marketing. AWC 2 = sudah di-OK/pending dari checker</li>
+  </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">CIC (Central Internal Control)</div><div class="acc-body">
-  <h4>3 Lokasi CIC</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">CIC (Checker Information Center)</div><div class="acc-body">
+  <div class="note-blue">CIC = penghubung antara BM/marketing dengan Checker, supaya aplikasi yang masuk minimal kesalahannya (berpengaruh ke insentif checker). CIC juga menjadi penengah antara target realisasi marketing dan kepatuhan SOP checker.</div>
+  <h4>3 Group Central CIC</h4>
+  <table>
+    <tr><th>Group</th><th>Lokasi</th><th>Keterangan</th></tr>
+    <tr><td>WPI</td><td>Jakarta</td><td>Handle cabang WPI + proses SHF (SHF hanya di WPI)</td></tr>
+    <tr><td>WTC</td><td>Jakarta</td><td>Handle cabang WTC</td></tr>
+    <tr><td>Surabaya</td><td>Surabaya</td><td>Handle cabang Surabaya</td></tr>
+  </table>
+  <div class="note">Masing-masing group handle cabangnya masing-masing (sudah ada plottingan). Checker Surabaya boleh dapat aplikasi Jakarta, tapi jika ada pending → BM tetap koordinasi dengan tim CIC Surabaya. CIC tidak bisa cancel aplikasi di luar group centralnya.</div>
+  <h4>Aplikasi yang Digunakan</h4>
   <ul>
-    <li>WPI (Jakarta)</li><li>WTC (Jakarta)</li><li>Surabaya</li>
+    <li><strong>Menu Inquiry Aplikasi di PDP</strong> — pengecekan meskipun sudah di-proceed atau sedang dibuka checker (tidak nabrak)</li>
+    <li><strong>Tools Maintain</strong> — logging staff checker. Cek by APP ID: log aktivitas, username, tanggal, status. Fungsi: (1) lihat pekerjaan checker (list proceed/pending); (2) regist kesalahan checker untuk penilaian; (3) reminder checker "seharusnya tidak di-pending ini". Dipegang CIC saja</li>
+    <li><strong>Sharing Go Check</strong> — rangkuman persyaratan pengajuan; cek deviasi (kode deviasi) untuk penyimpangan ke KK/Engine Printing; cek segmentasi (approve 1&amp;2, regular 1&amp;2, reject 1&amp;2); cek order maskapai asuransi per cabang; cek cabang tertentu masuk ke group central CIC mana</li>
+    <li><strong>Approva</strong> — input manual data (struktur kepengurusan yayasan dengan banyak pemegang kuasa)</li>
+    <li><strong>Resume AHU</strong> — masa berlaku 15 bulan dari last proceed/dibuat. Biasanya sudah terlampir NIB, KTP, NPWP</li>
+    <li><strong>Engine Matching</strong> — melihat konsumen RO dan APP ID berjalan</li>
+    <li><strong>Aplikasi Gabungan</strong> — cek rekening (pending jika NPWP tidak valid / rekening tidak bisa didebet), cek capil manual jika NIK/nama di 1ME semua X (jika NIK dan nama beda = lampirkan surat dari kelurahan/pengadilan negeri)</li>
+    <li><strong>Financore + One View</strong> — data konsumen, cek RO. Konsumen Mass bisa naik ke Klaster B jika Active Order &gt;6 bulan atau RO lunas ±6 bulan. Cek status BPKB dan Total Pokok Hutang (TPH)</li>
+    <li><strong>Watchlist</strong> — cek history kesamaan data (konsumen, showroom, BPKB sedang digadai atau tidak)</li>
+    <li><strong>PDP</strong> — lihat inputan kontrak manual/lainnya. Perorangan atau RO harus meet requirement TPH 5M dan/atau unit &gt;3</li>
+    <li><strong>ME SHF</strong> — melihat pengajuan SHF via ME SHF (sejak 2023). Pengajuan SHF baru pakai PDP. Tidak boleh ada tanda baca. KTP pasangan wajib dilampirkan jika sudah menikah</li>
+    <li><strong>Asset Registry</strong> — cek BPKB sedang dijaminkan atau tidak</li>
   </ul>
-  <h4>Sigma Approva — 2 Jenis</h4>
+  <h4>Jobdesc CIC</h4>
   <ul>
-    <li><strong>Maintain:</strong> Update/maintain data existing</li>
-    <li><strong>Checker/Biasa:</strong> Cek aplikasi baru</li>
+    <li>Update memo baru dari Bispro dan CMC (dari email) → dibaca, dirangkum, dishare ke group checker insight. Memo lengkap ditaruh di cloud</li>
+    <li>Memo gathering: nasional = di-email oleh CMC; cabang = dilampirkan di pengajuan. Isi memo gathering: contoh biaya admin dikurangi (di luar ketentuan berlaku)</li>
+    <li>Koordinasi dengan BM dan Marketing terkait pendingan atau pertanyaan dari cabang</li>
+    <li>Jika ada AWC rancu dari RM/DD → konfirmasi lewat atasan dulu</li>
+    <li>Inputan field pending terbatas → BM/marketing bisa informasikan ke CIC untuk tambahan pending</li>
+    <li>Upload data urgent aplikasi yang diminta konsumen: data dari BM (send APP ID di WA Group CIC &amp; BM cabang) → kabari checker untuk dikerjakan langsung</li>
+    <li>Jaga registeran expo (data dari CMC, dikirim per 15 menit oleh IT) → data digunakan checker untuk cek nomor VM nasabah KKB DS yang order di periode EXPO. Pastikan nama, FAP tipe unit, dan benefitnya (paketnya) sudah sesuai</li>
+    <li>Sosialisasi dengan checker terkait kesalahan pending; sosialisasi ke cabang oleh unit head</li>
+    <li>Kesalahan pending paling banyak: salah paket, salah bunga, seharusnya tidak di-pending tapi malah di-pending</li>
   </ul>
   <h4>Cancel Aplikasi</h4>
+  <table>
+    <tr><th>Status</th><th>Yang Bisa Cancel</th></tr>
+    <tr><td>Data Entry s/d CC2</td><td>CIC</td></tr>
+    <tr><td>Final Check</td><td>Yang reject APP (bukan CIC)</td></tr>
+    <tr><td>Initiation</td><td>Marketing</td></tr>
+  </table>
+  <h4>Alasan Aplikasi Di-Cancel</h4>
   <ul>
-    <li>Bisa dilakukan hanya pada status: <em>Recommendation / Data Entry / CC1 / CC2 / Printing</em></li>
-    <li>Status <strong>Final Check</strong>: hanya bisa di-cancel oleh AP (Authorized Person)</li>
+    <li>Pengajuan double (error sistem, atau konsumen setuju di 2 tempat sekaligus)</li>
+    <li>Konsumen batal pengajuan</li>
+    <li>Data salah (NIK, tempat/tanggal lahir, agama, jenis kelamin, status nikah)</li>
+  </ul>
+  <div class="note">Untuk cancel → harus ada form cancel di PDP (dibuat oleh cabang). Bisa cancel printing di Approva (ada menunya) → status jadi cancel/gugur.</div>
+  <h4>Catatan Lainnya CIC</h4>
+  <ul>
+    <li><strong>APP ID vs MID:</strong> APP ID = dibuat di Approva (dari PDP) → Creator: angka; MID = dibuat dari mobile (ONE ME) → Creator: Mobile. Multiguna (dari MAC) → Creator: angka</li>
+    <li>Pengajuan UMK3, Restruktur, COP, Overkredit = melalui PDP. Restruktur = kontrak baru, yang lama tertutup</li>
+    <li>Perbedaan Deviasi vs Penyimpangan: Deviasi = sudah di-list Bispro, langsung connect ke aplikasi. Penyimpangan = dari pejabat wewenang, berupa free text</li>
+    <li>Status CC3/CC4 di Approva sudah tidak ada → jika muncul biasanya karena error</li>
+    <li>JF/SF dipilih oleh Finance → semua pengajuan default SF. Usia lunas maks 64 tahun; jika &gt;64 tahun (khusus Klaster A &amp; B) harus lampirkan strong rekomendasi dari kanwil (tanda tangan kepala kanwil) agar status JF. Jika tidak ada = SF</li>
+    <li>Pengajuan mini for max = otomatis JF jenis pembiayaannya</li>
+    <li>Multiguna: by system, no checker. Jika mau tanya struktur kredit atau plafond kurang → langsung ke Bispro, kecuali mau edit data non-KYC</li>
+    <li>Untuk konsumen tanpa survei harus penyimpangan klaster: A &amp; B → RM; Klaster Mass → DD</li>
+    <li>Badan usaha wajib punya fixed line kantor (jika tidak ada → deviasi). ECN wajib ada, tidak boleh sama dengan alamat konsumen, minimal manager/direktur</li>
+    <li>Klasterisasi PT = selalu reguler untuk engine scoring</li>
+    <li>Hitung usia lunas: 2026 + tahun tenor – tanggal lahir</li>
+    <li>Rekening tidak bisa autodebet biasanya karena baru buka rekening</li>
   </ul>
 </div></div>
 
 <h3>💰 APP — Account Payable Payment</h3>
-<div class="section-intro">4 Bagian: Register · Checker Jabo · Checker Non Jabo · Approval · Analis</div>
+<div class="section-intro">
+  3 Proses Utama: <strong>Register → Checker → Approval</strong>. APP juga ada di cabang (handle semua jobdesc). APP di KP (WPI) handle: 8 cabang KKB · 5 Cabang DS · 2 Cabang CS Used · 2 Cabang CS New.<br>
+  Tim KP: Register 2 orang · Checker 5 orang · TL 2 orang · Checker Non Jabo 2 orang · UH 1 orang
+</div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Register APP</div><div class="acc-body">
-  <h4>3 Tugas Utama</h4>
-  <ul>
-    <li>Menerima dan mendaftarkan dokumen dari Docsupp</li>
-    <li>CL Lock: print tanggal di MAP (Map Aplikasi Pembiayaan)</li>
-    <li>Pemisahan MAP berdasarkan warna</li>
-  </ul>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Register APP (Jabo)</div><div class="acc-body">
+  <div class="note-blue">Bagian APP yang menerima dokumen Tagihan dan Dokumen Kontrak fisik yang sudah di-TTD CMO dan Konsumen. Status di Approva saat diterima = <strong>Final Check</strong>.</div>
   <h4>Kode Warna MAP</h4>
   <table>
     <tr><th>Warna</th><th>Jenis Pembiayaan</th></tr>
-    <tr><td>Kuning</td><td>DS (Dealer Subsidi)</td></tr>
-    <tr><td>Biru</td><td>CS New + Used (regular)</td></tr>
     <tr><td>Hijau</td><td>KKB (Kredit Kendaraan Bermotor)</td></tr>
+    <tr><td>Biru</td><td>CS New + CS Used</td></tr>
+    <tr><td>Kuning</td><td>DS (Dealer Subsidi)</td></tr>
     <tr><td>Biru Dongker</td><td>UMK3 + Multiguna</td></tr>
     <tr><td>—</td><td>SHF: via e-invoice, tanpa fisik MAP</td></tr>
   </table>
-  <h4>10 Langkah Flow Register</h4>
-  <div class="flow">
-    <div class="flow-step">Terima dokumen</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek kelengkapan</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Input sistem</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Print tanggal MAP</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Pisah berdasarkan warna</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Serahkan ke Checker</div>
-  </div>
-  <h4>2 Batch</h4>
+  <h4>Jam Penerimaan Dokumen (2 Batch)</h4>
+  <table>
+    <tr><th>Batch</th><th>Jam</th><th>Realisasi</th></tr>
+    <tr><td>Batch 1</td><td>08.30 – 10.30</td><td>Hari H (langsung jika tidak ada pending)</td></tr>
+    <tr><td>Batch 2</td><td>10.30 – 16.00</td><td>H+1</td></tr>
+  </table>
+  <h4>Pengantar Dokumen</h4>
   <ul>
-    <li><strong>Batch 1:</strong> 08.30 – 10.30 (hari H, realisasi hari ini)</li>
-    <li><strong>Batch 2:</strong> 10.30 – 16.00 (H+1, realisasi besok)</li>
+    <li>Messenger</li><li>CMO</li><li>Dealer (tagihan saja)</li><li>Marketing Support</li>
   </ul>
-  <h4>Batal Realisasi (4 Kondisi)</h4>
+  <h4>Alur Dokumen Masuk</h4>
+  <div class="flow">
+    <div class="flow-step">Pengantar stempel waktu di mesin (halaman Checklist Penyusunan Dokumen Tagihan &amp; Kontrak)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Admin register terima → masukkan ke map berwarna sesuai asal + tempel stiker (nama konsumen, no kontrak, APP ID) + form checklist aplikasi APP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek form Checklist Penyusunan → lanjut ke Prepare Dokumen</div>
+  </div>
+  <h4>Form yang Ada</h4>
   <ul>
-    <li>Konsumen batal kredit</li><li>Dokumen tidak lengkap</li>
-    <li>Dealer tidak siap</li><li>Fraud terdeteksi</li>
+    <li><strong>Form Checklist Penyusunan Dokumen Tagihan &amp; Kontrak</strong> — diisi CMO berdasarkan kelengkapan dokumen. Berbeda untuk mobil baru vs bekas. Dilampirkan di halaman depan set dokumen (untuk internal).</li>
+    <li><strong>Form Checklist Aplikasi APP</strong> — disteples di depan map. Isi: tanggal &amp; jam tagihan/kontrak diberikan, PIC Register, PIC Checker.</li>
+    <li><strong>Form Permohonan Maintenance Data</strong> — menyatu dengan Form Checklist Aplikasi APP. Bisa diisi CMO saat menyerahkan dokumen (jika konsumen ingin perubahan data), atau oleh checker jika ada perubahan saat konfirmasi (contoh: perubahan nomor telepon). Ubah cara bayar / ubah CMO bisa via memo. Ubah tipe kendaraan → harus diajukan ulang oleh CMO via PDP. Maintenance dilakukan oleh Analis APP di Sigma Approva.</li>
+  </ul>
+  <h4>Alur Prepare Dokumen</h4>
+  <div class="flow">
+    <div class="flow-step">Susun urutan dokumen sesuai form checklist</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Dokumen kontrak = di-klip; Dokumen tagihan = di-bolongin</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika dokumen lengkap → stamp semua lembar Form Checklist Aplikasi APP di mesin clock-in (dapat tanggal dokumen lengkap)</div>
+  </div>
+  <div class="note">Jika hanya kasih tagihan → tanggal di tagihan saja, tanggal kontrak menyusul saat kontrak diserahkan.</div>
+  <h4>Alur Register</h4>
+  <div class="flow">
+    <div class="flow-step">Register di Excel (tanggal &amp; jam masuk tagihan/kontrak · yang menyerahkan · PIC Checker)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Search APP ID di Approva → catat Branch ID, nama konsumen, no kontrak</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Map dimasukkan ke box: "Tagihan Masuk" (kontrak+tagihan atau tagihan saja) / "Kontrak Masuk" (kontrak saja tanpa tagihan)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Checker ambil dari box → jika pending, masukkan map ke kotak pending masing-masing</div>
+  </div>
+  <div class="note">Dokumen kontrak tidak boleh dibolongin, hanya di-klip. Dokumen tagihan boleh dibolongin dan disatukan di map. Jika pendingan sudah OK → stempel tanggal di bawah kanan Form Permohonan Maintenance Data.</div>
+  <h4>Dokumen Pasca Realisasi — Cek Autodebet</h4>
+  <ul>
+    <li>Dokumen selesai realisasi masuk ke APP Register → cek autodebet: pastikan nama &amp; nomor rekening di Financore = buku tabungan</li>
+    <li>Jika nomor rekening buku tabungan ≠ Financore → konsumen ajukan SKPR (Surat Kuasa Pendebetan Rekening) ditempel meterai → approve perubahan nomor rekening</li>
+    <li>Keesokan paginya → tim Register serah terima dokumen ke Legal Admin</li>
+  </ul>
+  <h4>Dokumen Mobil Baru</h4>
+  <div class="g2">
+    <div>
+      <strong>Dokumen Tagihan</strong>
+      <ul>
+        <li>Kuitansi Pelunasan</li><li>Blanko Kuitansi</li><li>Kuitansi DP</li>
+        <li>Delivery Order</li><li>Persetujuan Pembiayaan / PO</li>
+        <li>FAP</li><li>Formulir Aplikasi Asuransi</li>
+      </ul>
+    </div>
+    <div>
+      <strong>Dokumen Kontrak</strong>
+      <ul>
+        <li>1 set PPK &amp; Ikhtisar</li><li>Gesekan no rangka &amp; no mesin</li>
+        <li>Estimasi tabel angsuran</li><li>RIPLAY Personal</li>
+        <li>Cover Note / SP BPKB</li><li>SK Fidusia</li>
+        <li>RIPLAY Maskapai Asuransi</li>
+      </ul>
+    </div>
+  </div>
+  <strong>Dokumen Tambahan Mobil Baru</strong>
+  <ul>
+    <li>Personal Guarantee / Corporate Guarantee (jika ada permintaan dari management / penyimpangan)</li>
+    <li>Form Hasil Survey / SK Pengambilan Barang Konsumen (kalau tidak menggunakan M-Survey)</li>
+    <li>Cover Buku Tabungan &amp; Copy Klik BCA / Inquiry Status Rekening (2211)</li>
+    <li>SP Dealer yang tidak mengeluarkan CN (F04 = surat dealer pengganti CN)</li>
+    <li>Form Consent</li>
+    <li>Surat Pernyataan Pemahaman PPK &amp; Riplay (customer consent)</li>
+    <li>SKPR (jika didebet ke rekening selain debitur)</li>
+    <li>SP Refinancing (jika refinancing)</li>
+  </ul>
+  <strong>Dokumen Tambahan Khusus Badan Usaha (Baru &amp; Bekas)</strong>
+  <ul>
+    <li>Surat Pernyataan Direktur / Surat Persetujuan Komisaris (salah satu, boleh keduanya)</li>
+    <li>Surat Pernyataan Pemegang Saham (jika TBK)</li>
+    <li>Berita Acara RUPS (jika TBK)</li>
+    <li>Surat Pelepasan Hak (SP Hak)</li>
+    <li>Form Pendaftaran di Aplikasi FINA (SS halaman Y/N)</li>
+  </ul>
+  <h4>Dokumen Mobil Bekas</h4>
+  <div class="g2">
+    <div>
+      <strong>Dokumen Tagihan</strong>
+      <ul>
+        <li>Kuitansi Pelunasan</li>
+        <li>PO + SPT (jika di PO ada lebih dari 1 no rekening showroom)</li>
+        <li>Kuitansi Pelunasan khusus Penjual Non-Dealer (boleh kwitansi pasar: tertulis "telah terima dari PT BCAF/KKB qq Nama Konsumen", di-TTD Penjual Non-Dealer &amp; bermaterai)</li>
+        <li>FAP</li><li>Kuitansi Down Payment (kecuali Refinancing)</li>
+        <li>Formulir Aplikasi Asuransi</li>
+      </ul>
+    </div>
+    <div>
+      <strong>Dokumen Kontrak</strong>
+      <ul>
+        <li>1 set Perjanjian Pembiayaan Konsumen &amp; Ikhtisar Fasilitas Pembiayaan</li>
+        <li>Estimasi tabel angsuran</li><li>Copy BPKB</li>
+        <li>RIPLAY Personal</li><li>RIPLAY Maskapai Asuransi</li>
+        <li>Copy STNK</li><li>SK Fidusia</li>
+        <li>Form Survey Maskapai, Foto Kendaraan &amp; Gesekan no rangka/mesin (jika tidak ada di M-Survey)</li>
+      </ul>
+    </div>
+  </div>
+  <strong>Dokumen Tambahan Mobil Bekas</strong>
+  <ul>
+    <li>Personal Guarantee / Corporate Guarantee (jika ada permintaan management)</li>
+    <li>Tanda Terima BPKB</li><li>SK Pengambilan Barang</li>
+    <li>SP Refinancing (jika refinancing)</li>
+    <li>Form Hasil Survey Konsumen (jika tidak ada di M-Survey)</li>
+    <li>SP Showroom</li><li>BAST</li>
+    <li>Cover Buku Tabungan &amp; Copy Klik BCA / Inquiry Status Rekening (2211)</li>
+    <li>Customer Consent</li>
+    <li>Surat Pernyataan Pemahaman PPK &amp; RIPLAY</li>
+    <li>SKPR (jika didebet ke rekening selain debitur)</li>
+  </ul>
+  <div class="note">Mobil bekas → BAST; mobil baru → Delivery Order. Refinancing: set dokumen mirip used car, bedanya TTD di PO = konsumen sendiri (bukan dealer) + ada kuitansi pelunasan atas nama konsumen.</div>
+  <h4>Dokumen Tagihan Khusus Refinancing Top Up</h4>
+  <ul>
+    <li>Kuitansi Pelunasan</li>
+    <li>Formulir Konfirmasi BPKB (cek melalui sistem)</li>
+    <li>Memo Potong Pencairan melalui Controlling Account (MEMO CA)</li>
+  </ul>
+  <h4>Catatan Lainnya di Register</h4>
+  <ul>
+    <li>Tiap pagi ada rekap pendingan (Excel) → dikirim email ke BM cabang</li>
+    <li>Register bisa cancel aplikasi (karena marketing request atau konsumen batal) dan cek autodebet-nya. Bisa juga <em>change payment type</em></li>
+    <li>Cancel aplikasi ≠ cancel realisasi. Cancel aplikasi: status masih Final Check</li>
+    <li>Form cancel isinya: nama konsumen, APP ID, no kontrak, alasan batal, nama CMO, nama cabang. Di-TTD BM → Upload ke PDP → aplikasi cancel oleh CMO → PIC Register cek form cancel di PDP. Cancel hanya bisa dilakukan di cabang masing-masing</li>
+    <li>Dokumen PO di-stamp: tanggal realisasi, diperiksa oleh (checker), disetujui oleh (approval)</li>
+    <li>Mobil bekas → STNK 1 dan 5 tahunan harus aktif</li>
+    <li>Register ngecek penyimpangan di ONE ME → di-pending jika dokumen penyimpangan tidak lengkap</li>
+    <li>Personal Guarantee / Corporate Guarantee: tergantung komite minta yang mana. Jika konsumen tidak bayar 6 bulan → guarantee bertanggung jawab</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Register Non Jabo</div><div class="acc-body">
+  <div class="note-blue">Menerima dan mengelola dokumen yang dikirim oleh APP cabang. Untuk checker non jabo = ada di cabang masing-masing. Di KP hanya ada register non jabo (tidak melakukan pengecekan lagi karena sudah pernah dicek).</div>
+  <h4>Limit Approval</h4>
+  <div class="g2">
+    <div>
+      <strong>Di Kantor Pusat (KP)</strong>
+      <table>
+        <tr><th>Nominal</th><th>Pejabat</th></tr>
+        <tr><td>0 – 500 juta</td><td>TL</td></tr>
+        <tr><td>500 – 750 juta</td><td>UH</td></tr>
+        <tr><td>750 juta – 1 miliar</td><td>DH</td></tr>
+        <tr><td>&gt;1 miliar</td><td>DD</td></tr>
+      </table>
+      <div class="note">DD/DH untuk tanda tangan &amp; proceed. DD cuti bisa diganti DH OA.</div>
+    </div>
+    <div>
+      <strong>Di Cabang Non KP</strong>
+      <table>
+        <tr><th>Kelas Cabang</th><th>Limit TL</th><th>Limit BOH</th></tr>
+        <tr><td>A &amp; B</td><td>250 juta</td><td>500 juta</td></tr>
+        <tr><td>C</td><td>250 juta</td><td>350 juta</td></tr>
+        <tr><td>D</td><td>—</td><td>300 juta</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="note-blue">BOH cuti → kewenangan naik ke KP</div>
+  <h4>Kenapa Cabang Masuk ke Register Non Jabo?</h4>
+  <ul>
+    <li>Dokumen realisasi via Bank Transfer &gt;500 juta atau di luar batas approval kewenangan cabang</li>
+    <li>Dokumen realisasi Control Account (refinancing, top up) → semua nominal pelunasan harus dikirim ke KP → dokumen diprint dan didistribusikan ke FSM (close akun lama) dan Payment (pencairan)</li>
+  </ul>
+  <div class="note">Jika realisasi Bank tapi limit approval melebihi cabang → langsung masuk ke aplikasi disbursement di KP (tidak perlu lewat register non jabo).</div>
+  <h4>Flow Register Non Jabo</h4>
+  <div class="flow">
+    <div class="flow-step">Cabang input regist di Excel tracking monitoring (via GForm): jam · nama cabang · APP ID · Batch ID</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cabang kirim memo disbursement lewat email ke KP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Admin register non jabo terima → cari APP ID di Sigma Approva → cek status "Approval Disbursement" → cek limit proceed</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika limit masih dalam kewenangan cabang (misal control account) → dokumen dikumpulkan di keranjang → didistribusikan messenger → cabang proceed → masuk bucket payment</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika melebihi kewenangan cabang → diberikan ke approver di KP (TL/UH/DH/DD) sesuai limit → ditandatangan &amp; diproceed</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Admin cek Sigma Approva memastikan pengajuan sudah diproceed approver terkait</div>
+  </div>
+  <h4>Distribusi Memo Disbursement (jika Controlling Account)</h4>
+  <table>
+    <tr><th>Tujuan</th><th>Kondisi</th></tr>
+    <tr><td>FSM</td><td>Ada proses buka tutup akun (top up, SHF Relokasi: SHF → laku mobilnya → jadi reguler) → dikembalikan ke APP → ke Payment</td></tr>
+    <tr><td>Payment</td><td>Karoseri, Hold Dana</td></tr>
+    <tr><td>CMC</td><td>Juklak (subsidi dealer) → di-approve CMC dulu → dikembalikan ke APP → up ke Payment</td></tr>
+  </table>
+  <div class="note">Distribusi Memo Disbursement ke FSM = buka tutup akun: ada 2 akun (lama &amp; baru), akun lama ditutup karena tidak digunakan lagi. Contoh: reff top up.</div>
+  <h4>Dokumen yang Dilampirkan</h4>
+  <div class="g3">
+    <div class="note-blue">
+      <strong>Top Up</strong><br>
+      Memo disbursement · PO · Memo CA (dibuat marketing) · Hitungan ET · K3 / MA
+    </div>
+    <div class="note-yellow">
+      <strong>Juklak</strong><br>
+      Memo disbursement · Memo paket (nominal dibayar sesuai PO + nominal disubsidi) · PO · Excel perhitungan juklak · MA/K3 · SPT · Ikhtisar · Form persetujuan paket · SPK
+    </div>
+    <div class="note-green">
+      <strong>Hold Dana</strong><br>
+      MD (ada note hutang/kekurangan dokumen, TTD BOH) · PO
+    </div>
+  </div>
+  <h4>Catatan Lainnya</h4>
+  <ul>
+    <li>Di Excel ada field jam distribusi → diisi jam berapa dokumen didistribusikan (dokumen fisik)</li>
+    <li>Di Financore bisa narik report terkait memo dan approval disbursement → untuk tahu aplikasi yang belum diproceed (contoh: cabang lupa naikkan ke KP)</li>
+    <li>Jika ada pending atau revisi → koordinasi via Sparks. Di Spark tidak bisa kirim file → jika revisi selesai, kirim ulang via email</li>
+    <li>Cabang tidak bisa distribusi sendiri, harus lewat KP</li>
+    <li>Di cabang: jika mau data maintenance, dari BOH-nya. Disbursement memo Bank = lewat AppDis. Disbursement memo CA = harus fisik memo disbursement</li>
   </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Checker APP (Jabo)</div><div class="acc-body">
-  <div class="note-blue">Checker APP berbeda dengan Docsupp: pegang fisik dokumen, bekerja setelah kontrak terbit, merupakan <strong>pintu terakhir</strong> sebelum realisasi</div>
-  <h4>Vertel APP</h4>
-  <ul>
-    <li>Maksimal <strong>3x percobaan</strong></li>
-    <li><strong>9 pertanyaan standar KKB</strong></li>
-  </ul>
-  <h4>Konsumen Tidak Perlu Ditelpon (4 Kondisi)</h4>
-  <ul>
-    <li>Refinancing 1 (top-up pertama)</li>
-    <li>Top-Up BU (Badan Usaha)</li>
-    <li>SHF (Showroom Financing)</li>
-    <li>Multiguna</li>
-  </ul>
-  <h4>List Dealer — Realisasi Tanpa Terima Unit</h4>
-  <ul><li>Ada daftar khusus dealer yang diizinkan realisasi tanpa konsumen terima unit lebih dulu</li></ul>
-  <h4>Flow Cek Kelengkapan</h4>
+  <div class="note-blue">Checker APP = validasi berdasarkan dokumen fisik + konfirmasi by phone. Berbeda dengan Docsup: pegang fisik dokumen, bekerja setelah kontrak terbit, merupakan <strong>pintu terakhir</strong> sebelum realisasi. Multiguna tidak dicek di sini (dicek di aplikasi multiguna).</div>
+  <h4>KPI &amp; SLA</h4>
+  <table>
+    <tr><th>Metrik</th><th>Target</th></tr>
+    <tr><td>KPI harian</td><td>15 konsumen pencairan</td></tr>
+    <tr><td>SLA APP</td><td>2 jam (dari dokumen masuk register hingga proceed)</td></tr>
+  </table>
+  <h4>Alur Kerja Checker APP</h4>
   <div class="flow">
-    <div class="flow-step">ACA absah</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Dok tagihan New/Used</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Dok kontrak</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Validasi rekening</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Watchlist</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Penyimpangan?</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Nama ibu kandung</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Hitungan</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Sigma Approva Final Check</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Ceklis + Add tagihan</div>
+    <div class="flow-step">Ambil map dari kotak register (Tagihan Masuk / Kontrak Masuk)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Buka aplikasi: Engine Matching · Cek Absah · MA · Mobile Survey · Specimen Dealer · PDP (jika ada perubahan K3)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek dokumen di map vs sistem</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Ceklis dokumen di Sigma Approva</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Register ke Excel (lanjut pengisian yang sama dengan register)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika pending → letakkan map di File Pendingan, tunggu marketing lengkapi</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika OK → konfirmasi by phone ke konsumen</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jika konsumen bisa dikonfirmasi → proceed di Approva: Final Check → Disbursement Memo (pilih CA atau Bank) → masuk bucket Approver</div>
   </div>
-  <h4>2 Cap Checker APP</h4>
+  <h4>Pengecekan Dokumen di Checker APP</h4>
   <ul>
-    <li>Cap <strong>Konfirmasi Konsumen</strong></li>
-    <li>Cap <strong>Data Kendaraan</strong></li>
+    <li>Cek penyimpangan di MA dan PDP (penyimpangan tambahan). Cari by MID di MA, by APP ID di aplikasi lainnya</li>
+    <li>Pastikan dokumen pendukung berdasarkan pendingan tersedia</li>
+    <li>Cek track record di Financore (jika dulu unit bekas lelang → jika diajukan pembiayaan lagi jadi SF agar tidak dobel jaminan)</li>
+    <li>Cek K3 di PDP: jika ada → tidak perlu diprint dan ditaruh di map, kecuali ada penyimpangan tambahan baru → baru diprint dan dilampirkan</li>
+    <li>Nasabah PT: cek pengurus dan SP Direktur di resume + ME Corpo. One View baru ada data setelah realisasi</li>
+    <li>Cek validasi rekening dan NPWP (tidak valid → penyimpangan ke BM)</li>
+    <li>Mobil bekas: cek STNK expired? Jika expired dan mau diperpanjang via BCAF → harus pakai dokumen Memo CA + OTTPSB (urus di CS manual) beserta hitungannya dari CS</li>
+    <li>Multiguna: cek di OneView pastikan tenor multiguna ≤ tenor individu</li>
+    <li>Cek nomor rangka &amp; nomor mesin antara dokumen tagihan vs foto gesek di Mobile Survey</li>
+    <li>Cek hasil cek absah di aplikasi ACA</li>
+    <li>Cek PO (ada revisi dari komite kredit? Pastikan PO terbaru)</li>
+    <li>Cek TTD di blanko kuitansi vs capture di MA (KTP konsumen, cover buku tabungan)</li>
+    <li>Cek capture Klik BCA → memastikan keaslian nomor rekening</li>
+    <li>Cek foto TTD kontrak di Mobile Survey → konsumen harus memegang kontrak bagian TTD. Jika tidak sesuai → pending, CMO ajukan penyimpangan ke RM via MA manual. Jika RM OK → baru konfirmasi konsumen. Klaster A KKB tidak perlu; KKB klaster B dan MASS perlu; CS Mobil perlu</li>
+    <li>Cek TTD pejabat dealer di Specimen Dealer vs Kuitansi Pelunasan (harus sama). Jika tidak ada TTD+stempel di Specimen Dealer → minta CMO, register data dealer di aplikasi Specimen Dealer</li>
+    <li>Cek hitungan pembiayaan</li>
+    <li>Cek BPKB di FKB (menu konfirmasi BPKB di One ME) → jika sudah approve = sudah aman dari BM. KKB wajib ada inquiry; DS dan CS Mobil tidak wajib (cukup klik + cover tabungan)</li>
   </ul>
-  <h4>Prossed 1 vs Prossed 2</h4>
+  <h4>Data Krusial yang Dicek Checker APP</h4>
+  <div class="g2">
+    <div class="note-blue">
+      <strong>Customer Data (dicek):</strong>
+      NIK · Noka Nosin · SID name / pengurus · Nama gadis ibu kandung · Alamat email · Rekening konsumen · No HP · Tanggal lahir
+    </div>
+    <div class="note-yellow">
+      <strong>Customer Data (tidak perlu dicek):</strong>
+      ECN · Alamat rumah (juga tidak divertel) · Status kawin · Pekerjaan · Penghasilan konsumen
+    </div>
+  </div>
+  <div class="note-red"><strong>Loan Data = SEMUA crucial</strong> (dari atas sampai bawah, tidak bisa ditawar)</div>
+  <h4>Konfirmasi by Phone (bukan "vertel")</h4>
+  <h4>Siapa yang Wajib Dikonfirmasi?</h4>
+  <table>
+    <tr><th>Jenis Konsumen</th><th>Wajib Konfirmasi?</th><th>Pengecualian</th></tr>
+    <tr><td>Perorangan</td><td>Wajib SEMUA aplikasi</td><td>Multiguna &amp; Refinancing 1 perorangan (BPKB sudah di BCAF, tidak perlu). Reff 2 = masih CN/SP BPKB → tetap dikonfirmasi</td></tr>
+    <tr><td>Badan Usaha</td><td>Wajib semua</td><td>Termasuk refinancing dan multiguna</td></tr>
+  </table>
+  <h4>Pertanyaan Konfirmasi by Phone</h4>
   <ul>
-    <li><strong>Prossed 1:</strong> Dokumen lengkap → disburse memo dibuat</li>
-    <li><strong>Prossed 2:</strong> Approval disbursement final</li>
+    <li>Data konsumen (konfirmasi dengan FAP/sistem)</li>
+    <li>Email dan nomor telepon</li>
+    <li>Tanggal lahir konsumen dan nama gadis ibu kandung</li>
+    <li>Data kendaraan (konfirmasi dengan PO): tipe mobil, tahun, warna, showroom/dealer, STNK atas nama siapa</li>
+    <li>Sudah terima unit atau belum, dan kapan terima kendaraan</li>
+    <li>Mobil dipakai untuk apa</li>
+    <li>Sudah tanda tangan kontrak atau belum</li>
+    <li>Angsuran per bulan berapa</li>
+    <li>Informasikan jatuh tempo</li>
+    <li>Konfirmasi cara bayar, nomor rekening jika autodebet</li>
+    <li><strong>TIDAK menanyakan alamat</strong></li>
   </ul>
-  <h4>Ketentuan Mandatory</h4>
+  <div class="note">Jika konsumen tidak bisa jawab detail kendaraan → masih ditoleransi, yang penting bisa menyebutkan garis besar (tipe dan merk). Konfirmasi dilakukan jika unit sudah diterima konsumen.</div>
+  <h4>Kondisi Khusus Konfirmasi</h4>
   <ul>
-    <li>Foto M Survey: konsumen pegang Pasal 15 kontrak</li>
-    <li>FOGE (Form Orientasi Kendaraan): &lt;15 hari dari realisasi</li>
-    <li>Odometer: &lt;200 km dari realisasi</li>
-    <li>CP (Credit Protection): konsumen &lt;65 tahun, PH &lt;Rp 1M</li>
+    <li>KKB: bisa penyimpangan BM jika unit belum diterima (agar tetap diproses) → MA manual. Penyebab unit belum diterima: tidak ada hubungan antara CMO dengan dealer, atau dealer tertentu (misal Auto 2000) harus pencairan dulu baru dikirim</li>
+    <li>CS: info ke marketing → marketing beri tahu APP Checker jika unit sudah diterima → APP konfirmasi ulang</li>
+    <li>3x berdering tidak diangkat → informasikan ke marketing agar konsumen standby</li>
+    <li>Data tidak sesuai saat konfirmasi → pending, minta marketing sesuaikan data</li>
+    <li>Konsumen tidak ingin dikonfirmasi → penyimpangan dengan TTD BOD</li>
+    <li>Unit belum turun &amp; sudah dikonfirmasi → tidak perlu konfirmasi ulang, kirim email verifikasi via IT. APP menerima 'report konsumen realisasi belum terima kendaraan' di Financore</li>
   </ul>
+  <h4>Controlling Account vs Bank</h4>
+  <table>
+    <tr><th>Pilihan</th><th>Kondisi</th><th>Proses Tambahan</th></tr>
+    <tr><td><strong>Bank</strong></td><td>Tidak ada potongan pada pencairan</td><td>Proceed langsung → AppDis → Payment</td></tr>
+    <tr><td><strong>Controlling Account (CA)</strong></td><td>Ada potongan: Multiguna (perpanjang STNK), Reff TopUp, Paket subsidi/juklak, Perpanjangan STNK</td><td>Print Memo Disbursement (MD) di Approva dulu → proceed → TL (Approval Disbursement) → distribusikan MD fisik ke dept terkait</td></tr>
+  </table>
+  <h4>Hold Dana</h4>
+  <div class="g2">
+    <div class="note-yellow">
+      <strong>Hold Dana karena hutang dokumen (FOGE belum ada)</strong><br>
+      Marketing buat memo persetujuan proceed + TTD Pak Frans (DD Operation). Memo dikirim ke admin register non jabo untuk diprint dan dilampirkan ke Payment. Harus di-TTD UH dan Dept Head sebelum ke DD.
+    </div>
+    <div class="note-yellow">
+      <strong>Hold Dana 10%</strong><br>
+      Dana yang dicairkan ke dealer hanya 90%, ditahan 10% sampai BPKB jadi. Untuk dealer mobil mewah non-ATPM (meminimalisir risiko karena harga mahal dan pembuatan BPKB lama).
+    </div>
+  </div>
+  <h4>Perbedaan TTD Tidak Sesuai</h4>
+  <ul>
+    <li>Jika TTD berbeda antara dokumen kontrak dan sistem → masuk bucket Approver</li>
+    <li>Jika menurut Approver TTD tidak bermasalah → dikembalikan ke checker untuk dikonfirmasi</li>
+    <li>Jika menurut Approver memang beda TTD → masukkan ke File Dokumen Pending</li>
+  </ul>
+  <div class="note">Foto TTD kontrak dikirim konsumen ke CMO → diupload ke Mobile Survey → di-approve BM. Jika belum di-approve BM → tidak akan muncul di Mobile Survey bucket checker.</div>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Distribusi Dokumen Pasca Realisasi (H+1)</div><div class="acc-body">
   <table>
     <tr><th>Dokumen</th><th>Dikirim ke</th></tr>
     <tr><td>Dossier asli + copy</td><td>Legal Admin</td></tr>
-    <tr><td>CN + Blanko BPKB</td><td>BPKB Admin</td></tr>
+    <tr><td>CN + Blanko BPKB</td><td>BPKB Admin (dipisahkan oleh Approver setelah proceed)</td></tr>
     <tr><td>Polis Asuransi</td><td>Asuransi</td></tr>
     <tr><td>OTTPSB</td><td>CS</td></tr>
   </table>
+  <div class="note">Setelah Approver proceed → blanko kuitansi dan CN dipisah dari set kontrak untuk BPKB Admin. Dokumen yang sudah diproceed di sistem kemudian diambil kembali oleh tim admin register.</div>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Checker APP Non Jabo &amp; Approval Pejabat</div><div class="acc-body">
-  <h4>5 Kriteria Controlling Account (Non Jabo)</h4>
-  <ul>
-    <li>TOP UP</li><li>Relokasi</li><li>Paket Subsidi</li>
-    <li>Caroseri (modifikasi karoseri)</li><li>UMK3 + Hold Dana</li>
-  </ul>
-  <h4>Cut-off Waktu</h4>
-  <ul>
-    <li>FSM: jam <strong>14.00</strong></li>
-    <li>Payment: jam <strong>15.30</strong></li>
-    <li>SLA: <strong>2 jam</strong> dari prossed hingga payment</li>
-    <li>Stop prossed: jam <strong>15.30</strong></li>
-  </ul>
-  <h4>Approval Pejabat Cabang</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Approval APP</div><div class="acc-body">
+  <div class="note-blue">Approval dilakukan oleh TL. Status Approva di sini: <strong>Approval Disbursement</strong>. Tujuan: cek ulang apa yang sudah dicek checker, lalu proceed ke bucket Payment/FSM. Poin kritis = semua dokumen harus valid dan lengkap.</div>
+  <h4>Perbedaan Approval vs Checker</h4>
   <table>
-    <tr><th>Kelas Cabang</th><th>BOH</th><th>TL</th></tr>
-    <tr><td>A &amp; B</td><td>0 – 500 juta</td><td>0 – 250 juta</td></tr>
-    <tr><td>C</td><td>0 – 350 juta</td><td>0 – 250 juta</td></tr>
-    <tr><td>D</td><td>0 – 300 juta</td><td>—</td></tr>
+    <tr><th>Aspek</th><th>Checker</th><th>Approval (TL)</th></tr>
+    <tr><td>Telepon konsumen</td><td>Ya</td><td>Tidak</td></tr>
+    <tr><td>Input noka/nosin, CN</td><td>Ya</td><td>Tidak</td></tr>
+    <tr><td>Input di Sigma Approva</td><td>Ya</td><td>Tidak</td></tr>
+    <tr><td>Cek usia &amp; kendaraan</td><td>Ya</td><td>Ya (juga hitung usia &amp; rate)</td></tr>
+    <tr><td>Cek bukti survei</td><td>Ya</td><td>Ya (di Mobile Survey)</td></tr>
   </table>
-  <div class="note-blue">BOH cuti → kewenangan naik ke KP</div>
-  <h4>Approval Pejabat KP</h4>
+  <h4>Aplikasi yang Digunakan</h4>
+  <ul>
+    <li><strong>AppDis (Approval Disbursement)</strong> — proceed sebelum masuk ke FSM/Payment</li>
+    <li><strong>Approva</strong> — melihat data lengkap yang diinput checker</li>
+    <li><strong>MA (Mobile Approval)</strong> — cek penyimpangan dan persetujuan dari BM/RM/DD</li>
+    <li><strong>PDP</strong> — melihat penyimpangan tambahan dari K3 atau dokumen lainnya yang tidak ada di ME</li>
+    <li><strong>One View</strong> — data customer dan kendaraan</li>
+    <li><strong>Aplikasi Gabungan</strong> — cek validasi rekening</li>
+  </ul>
+  <h4>Pengecekan Dokumen Fisik</h4>
+  <ul>
+    <li>Kelengkapan dokumen: jika PT → cek SP Direktur, samakan data perusahaan dengan resume di aplikasi resume; cek perhitungan pembiayaan di K3 dan PO</li>
+    <li>Cek tanda tangan</li>
+    <li>Cek jika ada revisi: apakah kontrak sudah direvisi atau belum</li>
+  </ul>
+  <h4>Pengecekan Sigma Approva</h4>
+  <ul>
+    <li><strong>Loan Data:</strong> kondisi mobil, tipe mobil, nomor BPKB, no mesin, no rangka, total DP (samakan dengan ME), bunga, tipe pembiayaan</li>
+    <li><strong>Customer Data:</strong> nama tidak boleh ada tanda baca, cek jenis kelamin, nomor NPWP</li>
+    <li><strong>Memo Pencairan:</strong> cek no rekening konsumen, nama rekening</li>
+  </ul>
+  <h4>Tab di AppDis</h4>
+  <ul>
+    <li>Memo pencairan</li>
+    <li>MA vs Approva</li>
+    <li>Summary MA (Deviasi, Approval Komite Kredit)</li>
+    <li>Customer Loan Data</li>
+    <li>Loan Data</li>
+    <li>Persyaratan Realisasi Lainnya (sudah survey/belum, dll)</li>
+  </ul>
+  <h4>Status &amp; Tombol di AppDis</h4>
   <table>
-    <tr><th>Pejabat</th><th>Limit</th></tr>
-    <tr><td>TL</td><td>0 – 500 juta</td></tr>
-    <tr><td>UH</td><td>0 – 750 juta</td></tr>
-    <tr><td>DH</td><td>0 – 1 miliar</td></tr>
-    <tr><td>DD</td><td>&gt;1 miliar (wajib fisik)</td></tr>
+    <tr><th>Tombol/Status</th><th>Fungsi</th></tr>
+    <tr><td>Proceed</td><td>Realisasi</td></tr>
+    <tr><td>Pending</td><td>Dikembalikan ke cabang</td></tr>
+    <tr><td>Cancel</td><td>Batalkan aplikasi</td></tr>
+    <tr><td>Save</td><td>Simpan sementara</td></tr>
+    <tr><td>Reject (TL Docsup)</td><td>Status berubah dari Approval Disbursement → Final Check. TL Docsup checker hanya berwenang ubah noka/nosin jika salah input. Analis bisa ubah: email, nama ibu kandung, JF/SF, purpose pembiayaan, dana pencairan</td></tr>
   </table>
+  <div class="note">Ketika sudah masuk ke TL, harusnya dokumen sudah lengkap (tidak mungkin pending). Nominal &gt;1M → bucket AppDis langsung ke DD, tetapi yang proceed = DH/UH. Sistem di AppDis tidak vertikal, langsung sesuai kewenangan.</div>
+  <h4>Alur Pencairan Setelah Proceed</h4>
+  <table>
+    <tr><th>Kondisi</th><th>Alur</th></tr>
+    <tr><td>Reguler</td><td>FSM dulu → Payment</td></tr>
+    <tr><td>Memo CA (topup, tutup akun)</td><td>FSM dulu → dikembalikan ke APP → Payment</td></tr>
+    <tr><td>Subsidi / Hold Dana</td><td>CMC dulu → dikembalikan ke APP → Payment</td></tr>
+  </table>
+  <div class="note">Payment langsung full bayar ke dealer (tidak dicicil). Feedback dari Payment/FSM via memo tolakan → TL cek alasan dan informasikan ke marketing untuk pelengkapan dokumen.</div>
+  <h4>Memo CA (Control Account) — Berkaitan Dengan</h4>
+  <ul>
+    <li>Perubahan nomor kontrak lama ke baru (contoh: Refinancing Top Up)</li>
+    <li>Selisih nominal: juklak (subsidi dari dealer, biasanya paket) atau kepengurusan BBN (estimasi biaya dari CS)</li>
+    <li>Showroom: tanggungan STNK harus diselesaikan dulu sebelum di-SHF-kan</li>
+    <li>Topup: bisa ada memo CA karena perpanjangan STNK atau BBN yang dilampirkan OTTPSB dari CS</li>
+  </ul>
+  <h4>Keterkaitan APP dengan CMC (Memo Juklak)</h4>
+  <ul>
+    <li>Dokumen dilampirkan ke CMC by Messenger (analyst) via GForm (pilih juklak atau hold dana). Isi:</li>
+  </ul>
+  <ul>
+    <li>a. Persetujuan dealer</li><li>b. Juklak</li><li>c. Memo CA</li>
+    <li>d. PO</li><li>e. SPT (opsional)</li><li>f. Mobile Approva capture</li>
+    <li>g. SPK</li><li>h. Memo disbursement</li><li>i. Ikhtisar</li>
+  </ul>
+  <div class="note">Juklak kebanyakan dari electric vehicle: Cherry, Jaecoo, Geely, dsb. CMC akan melihat harga OTR dan berkas scan untuk dokumentasi berdasarkan PKS yang berlaku antara BCAF dengan dealer.</div>
+  <h4>Non-Jabo Checker — Dokumen Fisik di KP</h4>
+  <ul>
+    <li>PIC Non-Jabo (Checker) bisa menerima dokumen fisik di WPI jika: cabang realisasi tapi dealer di Jakarta, atau sebaliknya, atau konsumen minta TTD kontrak di Jakarta</li>
+    <li>Alur: Cabang/KP verifikasi &amp; informasikan ke PIC KP/Cabang → PIC terima &amp; cek dokumen → TTD by nasabah → scan &amp; kirim ke cabang/KP → realisasi → kirim berkas via messenger</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Aplikasi yang Digunakan di APP</div><div class="acc-body">
+  <table>
+    <tr><th>Aplikasi</th><th>Fungsi</th></tr>
+    <tr><td><strong>AppDis (Approval Disbursement)</strong></td><td>Proceed sebelum masuk FSM/Payment. Tab: Memo pencairan, MA vs Approva, Summary MA, Customer Loan Data, Loan Data, Persyaratan Realisasi Lainnya</td></tr>
+    <tr><td><strong>Approva (Sigma Approva)</strong></td><td>Melihat data lengkap yang diinput checker</td></tr>
+    <tr><td><strong>MA (Mobile Approval)</strong></td><td>Pengecekan penyimpangan dan persetujuan dari BM/RM/DD</td></tr>
+    <tr><td><strong>PDP</strong></td><td>Penyimpangan tambahan dari K3 atau dokumen lainnya yang tidak ada di ME</td></tr>
+    <tr><td><strong>One View</strong></td><td>Data customer dan data kendaraan</td></tr>
+    <tr><td><strong>Aplikasi Gabungan</strong></td><td>Cek validasi rekening</td></tr>
+    <tr><td><strong>FKB</strong></td><td>Konfirmasi keberadaan BPKB di BCA Finance. Masa berlaku 1 bulan. Diproses oleh document custodian, harus di-order dengan marketing (topup, refinancing, atau BPKB diambil lalu mau refinancing lagi)</td></tr>
+    <tr><td><strong>M Survey</strong></td><td>Pengecekan survei konsumen, TTD kontrak, kendaraan, dan konsumen</td></tr>
+    <tr><td><strong>Engine Matching</strong></td><td>Memastikan watchlist, double-check nomor rangka dan nomor mesin</td></tr>
+    <tr><td><strong>ME (One ME, ME Corporate, ME SHF)</strong></td><td>Pengajuan aplikasi</td></tr>
+    <tr><td><strong>Aplikasi Multiguna (MAC)</strong></td><td>Multiguna langsung dicek oleh APP (diisi CMO → masuk bucket APP). Multiguna tidak survey. Wajib autodebet. Terhubung otomatis ke Approva &amp; AppDis. Ada info deviasi-deviasi</td></tr>
+    <tr><td><strong>Resume</strong></td><td>Cek resume, biasanya pengajuan dari PT</td></tr>
+    <tr><td><strong>ACA (Cek Absah)</strong></td><td>Mengecek keaslian BPKB dan blokir di BPKB Admin</td></tr>
+    <tr><td><strong>Aplikasi B2B Asuransi</strong></td><td>Jika ada kasus cover mundur</td></tr>
+    <tr><td><strong>Specimen Dealer</strong></td><td>Cek TTD pejabat dealer dan blokir di BPKB Admin</td></tr>
+  </table>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Analyst APP</div><div class="acc-body">
+  <h4>Tugas Utama</h4>
+  <ul>
+    <li><strong>Maintain Data</strong> — contoh: alamat email, SID name, alamat. Request datang dari map dossier (sticker Form Permohonan Update/Maintain Data), atau via chat Spark. Data yang tidak bisa diubah = berkaitan dengan hitungan kredit</li>
+    <li>Perubahan data tidak perlu approval (terkait dokumen pendukung dan pengecekan → checker yang kerjakan). Perubahan data terlihat di report (siapa yang edit)</li>
+    <li>Diusahakan proses data maintenance tidak ada kesalahan</li>
+  </ul>
+  <h4>Report Bulanan</h4>
+  <table>
+    <tr><th>Laporan</th><th>Tujuan</th><th>Deadline</th></tr>
+    <tr><td>Report SL APP (2 jam)</td><td>OSD</td><td>H+5 awal bulan</td></tr>
+    <tr><td>Report SL Docsup (15–30 menit)</td><td>OSD</td><td>H+5 awal bulan</td></tr>
+    <tr><td>Exception Report</td><td>OSD</td><td>H+5 awal bulan</td></tr>
+  </table>
+  <div class="note">SL dilihat berdasarkan rata-rata cabang (bukan per MPP). Report per cabang; untuk KP per group central (untuk Docsup). Exception report dari OSD → yang kerjakan TL, analyst hanya backup.</div>
+  <h4>Pembuatan Report</h4>
+  <div class="flow">
+    <div class="flow-step">Cabang kirim Excel regist via email</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Analyst rekap dan olah data</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Bandingkan dengan tarikan data di Microsoft Access</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Diolah dalam bentuk PPT</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Dikirim ke OSD</div>
+  </div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Pendaftaran Autodebet</div><div class="acc-body">
+  <div class="note-blue">Tugas: memastikan tidak ada trouble dalam pendaftaran autodebet. SL pendaftaran: Mobil = H+2 dari tanggal realisasi; Motor = H+1 dari tanggal realisasi.</div>
+  <h4>Proses Harian</h4>
+  <div class="flow">
+    <div class="flow-step">Tiap pagi TL export Excel report list akun yang akan didaftarkan autodebet</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Motor: tarik data via Fast App → report registrasi autodebet → lihat yang belum dapat status</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Jam 11: dapat feedback dari BCA → tarik report lagi → list process harus sudah hilang semua (artinya berhasil)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Masih ada di list process → minta IT untuk pengecekan</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Ada tolakan → monitor dan reminder cabang untuk segera diselesaikan</div>
+  </div>
+  <h4>Status Autodebet</h4>
+  <table>
+    <tr><th>Kode</th><th>Arti</th></tr>
+    <tr><td>NW</td><td>New Entry</td></tr>
+    <tr><td>UP</td><td>Updation (setelah ditolak lalu diselesaikan cabang)</td></tr>
+    <tr><td>RT</td><td>Return (tolakan)</td></tr>
+    <tr><td>AC</td><td>Active</td></tr>
+    <tr><td>CL</td><td>Close</td></tr>
+    <tr><td>PC</td><td>Process Close</td></tr>
+  </table>
+  <div class="note-blue">Saat order → pastikan status UP atau NW. Mata uang rekening = IDR. Rekening tidak boleh ada perjanjian khusus dengan BCA (misal lock dana).</div>
+  <h4>Penanganan Tolakan</h4>
+  <table>
+    <tr><th>Jenis Tolakan</th><th>Lokasi</th><th>Cara Beresin</th></tr>
+    <tr><td>Tolakan Autodebet</td><td>Aplikasi Gabungan</td><td>Beresin di Change Payment Method (Financore mobil) · Fast App (motor)</td></tr>
+    <tr><td>Tolakan Realisasi</td><td>Financore</td><td>Yang beresin = CS (pengkinian data)</td></tr>
+  </table>
+  <ul>
+    <li>Tolakan paling sering: nama rekening tidak sesuai → cek mobile banking ejaan nama vs Approva → sesuaikan</li>
+    <li>Beresin di Financore (mobil): menu Change Payment Method → status harus dari Retur ke Autodebet</li>
+    <li>Tolakan motor: di Fast App</li>
+    <li>Akun dormant → konsumen harus ke BCA untuk isi form</li>
+    <li>Rekening sudah tutup → buat rekening baru</li>
+    <li>Akhir hari: tarik report perubahan payment → cek jika ada autodebet ke non-konsumen (nama tidak sesuai)</li>
+    <li>Reporting internal ke UH jika ada perubahan data autodebet</li>
+  </ul>
+  <h4>SKPR (Surat Kuasa Pendebetan Rekening)</h4>
+  <ul>
+    <li>Jika konsumen ingin change payment atau autodebet ke rekening berbeda → wajib lampirkan SKPR</li>
+    <li>SKPR: 2 lembar (1 ada kop BCA Finance), keduanya ditempel meterai</li>
+    <li>Setelah SKPR dilampirkan → ubah data di Financore oleh admin register (atas nama rekening baru)</li>
+    <li>Jika ingin autodebet beda rekening dari awal → marketing harus minta konsumen isi SKPR + ajukan penyimpangan ke RM</li>
+  </ul>
+  <h4>Penginputan Rekening di Sistem</h4>
+  <table>
+    <tr><th>Jenis Konsumen</th><th>Approva</th><th>Financore</th></tr>
+    <tr><td>Individu</td><td>No rekening di customer data &amp; loan data saling terhubung (boleh input salah satu)</td><td>Tab Customer Data → Bank Info = rekening untuk realisasi; Tab Loan Data/Account → Bank Info = untuk autodebet</td></tr>
+    <tr><td>Badan Usaha</td><td>No rekening di customer data &amp; loan data tidak terhubung → wajib input di loan data</td><td>Sama seperti individu</td></tr>
+  </table>
+  <div class="note">Konsumen perorangan tapi rekening autodebet ke PT → pastikan orang tersebut adalah pengurus di PT tersebut (cek di resume). Field Handphone 1 di Approva → digunakan oleh CS Pengiriman untuk kirim kontrak via WA jika email gagal.</div>
 </div></div>
 </div>
 <div id="lf" class="tab-pane">
