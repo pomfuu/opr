@@ -3030,24 +3030,35 @@ tr:nth-child(even) td{background:var(--gray-50);}
 <h2>⚖️ Legal &amp; Fidusia</h2>
 
 <h3>📋 LEGAL ADMIN</h3>
+<div class="section-intro">
+  Proses Legal Admin: <strong>Reprint → Tera Materai → Checker → Renvoi (jika ada revisi) → Scan</strong>. Setelah di-scan, yang upload ke DMS adalah Archive Management. Hasil scan dossier asli dicek oleh QC (CS Pengiriman).
+</div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">5 Bagian Legal Admin</div><div class="acc-body">
-  <div class="info-grid">
-    <div class="info-item"><strong>1. Reprint</strong>H+1 pasca realisasi · Cap tanggal + tera materai · Data kendaraan dari Approva+Financore</div>
-    <div class="info-item"><strong>2. Checker</strong>One View + Resume + DMS · Tembak sistem DRONE · Register maintenance → renvoi jika perlu</div>
-    <div class="info-item"><strong>3. Tera Materai</strong>Ikhtisar hal. 3 + SK Fidusia wajib · SKPR + F04 opsional</div>
-    <div class="info-item"><strong>4. Renvoi</strong>Terima dari admin · Pengetikan ulang "dibenarkan" · Kirim ke Legal → Tera materai</div>
-    <div class="info-item"><strong>5. Scan &amp; Upload</strong>6 urutan scan · Upload DMS oleh archive · Dossier copy di-scan cabang</div>
-  </div>
-  <h4>Urutan Scan Dokumen (6 Urutan)</h4>
-  <ol>
-    <li>PK depan (Perjanjian Kredit halaman pertama)</li>
-    <li>Pasal-pasal PPK</li>
-    <li>Ikhtisar kontrak</li>
-    <li>Lampiran (perjanjian tambahan)</li>
-    <li>Tabel angsuran</li>
-    <li>RIPLAY personal</li>
-  </ol>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">5 Bagian Legal Admin — MPP, SLA &amp; Cabang</div><div class="acc-body">
+  <h4>MPP (Man Power Plan)</h4>
+  <table>
+    <tr><th>Bagian</th><th>Jumlah</th></tr>
+    <tr><td>Reprint</td><td>2 orang</td></tr>
+    <tr><td>Tera Materai</td><td>1 orang</td></tr>
+    <tr><td>Checker</td><td>3 orang</td></tr>
+    <tr><td>Renvoi</td><td>1 orang</td></tr>
+    <tr><td>Scan</td><td>1 orang</td></tr>
+  </table>
+  <h4>SLA Pengerjaan</h4>
+  <table>
+    <tr><th>Bagian</th><th>SLA</th></tr>
+    <tr><td>Reprint</td><td>H+1 realisasi</td></tr>
+    <tr><td>Tera Materai</td><td>H+1 realisasi</td></tr>
+    <tr><td>Checker</td><td>H+2 realisasi</td></tr>
+    <tr><td>Renvoi</td><td>H+2 realisasi</td></tr>
+    <tr><td>Scan</td><td>H+3 realisasi</td></tr>
+  </table>
+  <h4>Cabang yang Di-handle Legal Admin KP (9 Cabang)</h4>
+  <ul>
+    <li><strong>JABO WPI:</strong> Bekasi · Daan Mogot · Depok · Tangerang · Bogor · Karawang · Kelapa Gading</li>
+    <li><strong>WTC:</strong> 1 cabang</li>
+    <li>Di luar cabang di atas → proses dilakukan rangkap dengan APP di cabang masing-masing</li>
+  </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Isi Dossier Asli &amp; Copy</div><div class="acc-body">
@@ -3055,7 +3066,7 @@ tr:nth-child(even) td{background:var(--gray-50);}
   <ul>
     <li>PK (Perjanjian Kredit)</li><li>Pasal-pasal PPK</li><li>Ikhtisar kontrak</li>
     <li>Lampiran perjanjian</li><li>Tabel angsuran</li><li>RIPLAY personal</li>
-    <li>SKPB (Surat Keterangan Pembiayaan Berlaku)</li><li>Sp Reply</li>
+    <li>SKPB (Surat Keterangan Pembiayaan Berlaku)</li><li>SP Reply</li>
     <li>BAST (khusus mobil bekas)</li><li>SK Fidusia</li>
   </ul>
   <h4>Dossier Asli — Badan Usaha (Tambahan)</h4>
@@ -3068,137 +3079,513 @@ tr:nth-child(even) td{background:var(--gray-50);}
   <ul><li>Dokumen di luar dossier asli, contoh: PO, Kwitansi dealer, lampiran tambahan</li></ul>
 </div></div>
 
-<h3>🏛️ ADMIN FIDUSIA</h3>
-
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Prepare — Order Sertifikat Fidusia</div><div class="acc-body">
-  <h4>Jabodetabek — B2B (Bank to Bank)</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Reprint</div><div class="acc-body">
+  <h4>Alur Harian Reprint</h4>
+  <ol>
+    <li>Tarik laporan realisasi pakai Financore → upload di cloud</li>
+    <li>Setiap pagi: serah terima dokumen dari APP (Dossier Asli di-klip = kontrak; Dossier Copy di-bolongin = tagihan + tambahan); KP ambil di LT 7 APP, cabang diantar messenger</li>
+    <li>Pengecekan kelengkapan dokumen kontrak</li>
+    <li>Stempel dokumen: isi hari dan tanggal realisasi (H+1 kalau sudah di Legal Admin)</li>
+    <li>Print data kendaraan di bagian Ikhtisar (Pasal 14)</li>
+    <li>Buat laporan harian (excel) untuk balancing</li>
+    <li>Di akhir proses: Ikhtisar + Tabel Angsuran → ke Authorized Signer untuk di-TTD di samping TTD konsumen</li>
+    <li>Dokumen kemudian diproses oleh PIC Tera Materai</li>
+  </ol>
+  <h4>Dokumen yang Di-stempel</h4>
+  <table>
+    <tr><th>Jenis Kontrak</th><th>Dokumen yang Di-stempel</th></tr>
+    <tr><td>Perorangan</td><td>PK (A1 + lampiran) · SK Fidusia · SP Riplay · SKPB</td></tr>
+    <tr><td>PT / BU</td><td>PK (A1 + lampiran) · SK Fidusia · SP Riplay · SKPB · SP Direktur/SP</td></tr>
+    <tr><td>SHF</td><td>Surat konfirmasi dan penarikan (tanggal penarikan → stempel; angsuran → tulis manual)</td></tr>
+    <tr><td>Multiguna</td><td>Ikhtisar halaman pertama · Lampiran · SK Fidusia · Persetujuan perubahan akta jaminan fidusia</td></tr>
+  </table>
+  <h4>Print Data Kendaraan (Pasal 14 / Ikhtisar)</h4>
+  <table>
+    <tr><th>Kondisi</th><th>Tindakan</th><th>Data yang Di-print</th></tr>
+    <tr><td>New Car (SKBP kosong)</td><td>Di-reprint dari Approva</td><td>Warna · No BPKB · No Rangka · No Mesin · Tgl bayar angsuran · Tgl akhir angsuran</td></tr>
+    <tr><td>Used Car (SKBP sudah ada)</td><td>Tidak perlu print ulang</td><td>Data kendaraan sudah ada di dokumen fisik SKBP</td></tr>
+  </table>
+  <h4>Laporan Harian &amp; Catatan</h4>
   <ul>
-    <li>H+4: cek data One ME + One View + DMS</li>
-    <li>H+5: order sertifikat fidusia ke notaris rekanan</li>
-    <li>Proses via sistem, tidak perlu fisik ke notaris</li>
-  </ul>
-  <h4>Non B2B</h4>
-  <ul>
-    <li>Order manual via aplikasi FIDUSIA</li>
-    <li>Dokumen fisik dikirim ke notaris:</li>
-  </ul>
-  <ul>
-    <li>FC PPK</li><li>SK Fidusia asli</li><li>NIB perusahaan</li>
-    <li>AKTA pendirian</li><li>KTP Komisaris + Direksi</li>
-    <li>NPWP perusahaan</li><li>SK Domisili</li>
-    <li>SIUP</li><li>SIB (Surat Izin Berusaha)</li><li>CN + BPKB</li>
-  </ul>
-  <h4>Non-Jabodetabek</h4>
-  <ul>
-    <li>Cabang scan dokumen dulu → email ke KP</li>
-    <li>Setelah fisik diterima PIC → serah terima resmi</li>
-    <li>Bukti tanda terima → TTD Legal Admin Authorized</li>
+    <li>Laporan harian digunakan untuk balancing; kalau pending → tulis keterangan di excel + note serah terima untuk messenger besoknya</li>
+    <li>Report simpan di cloud → kasih Bu Telly</li>
+    <li>Kalau salah stempel: bisa dicoret tapi kurang estetika → lebih baik di-print ulang</li>
+    <li>Toleransi keterlambatan: H+2 (karena H+3 sudah harus di-scan)</li>
+    <li>Kalau pending: diusahakan jangan terlalu lama (follow up via WA)</li>
   </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Adendum (PIC Mas Adam)</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Tera Materai</div><div class="acc-body">
+  <p>Tera materai menggunakan mesin tersendiri.</p>
+  <h4>Dokumen yang Di-tera Materai</h4>
+  <table>
+    <tr><th>Dokumen</th><th>Bagian yang Di-tera</th></tr>
+    <tr><td>PPK</td><td>Seluruh dokumen</td></tr>
+    <tr><td>Ikhtisar</td><td>Halaman 3 — di bagian TTD</td></tr>
+    <tr><td>SK Fidusia</td><td>Halaman 2 — di bagian TTD</td></tr>
+    <tr><td>SKPR / F04</td><td>Kalau sudah ada materai → tidak perlu di-tera lagi</td></tr>
+  </table>
+  <h4>Biaya Tera</h4>
+  <ul>
+    <li><strong>Gratis</strong> dari Legal Admin untuk dokumen di atas</li>
+    <li><strong>KECUALI:</strong> SP Riplay dan SP Direksi → wajib ada materai; jika belum ada, wajib dibayar oleh Marketing Support + lampirkan bukti TF fisik</li>
+  </ul>
+  <h4>Setelah Di-tera</h4>
+  <ul>
+    <li>Regist di report harian: dokumen apa (PPK, SK Fidusia, SP Riplay, kwitansi, dll) · nama konsumen · no kontrak · sisa saldo mesin tera (harus balance antara mesin dan report excel)</li>
+    <li><strong>Dossier asli (kontrak):</strong> serah terima ke archive melalui JogetDX (PIC Archive turun periksa dokumen sesuai input JogetDX → diambil ke atas)</li>
+    <li><strong>Dossier copy (tagihan):</strong> serah terima ke archive melalui PIC Checker</li>
+    <li>Dokumen yang diserahkan ke archive: semuanya <strong>kecuali SK Fidusia Asli</strong></li>
+  </ul>
+  <h4>Catatan Tera Materai</h4>
+  <ul>
+    <li>Kalau saldo tera di bawah 50 juta → bikin rekapan → kasih Bu Telly (UH)</li>
+    <li>Cabang motor Bekasi dan Karawang kadang nitip tera → kirim ke WPI; yang di-tera: PPK dan Fidusia; setiap sore report di-print + lampirkan bukti bayar</li>
+    <li>SHF kalau ada fisik: di-tera juga; kalau melalui e-invoice: tidak perlu di-tera</li>
+    <li><strong>Kenapa tidak pakai materai manual/e-materai?</strong> Materai manual lebih rumit (ditempel, TTD, perlu ke kantor pos untuk dilegalisir); e-materai bukan kebijakan kantor</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Checker — Pengecekan Dokumen</div><div class="acc-body">
+  <h4>3 Tugas Utama Checker</h4>
+  <ol>
+    <li>Pengecekan kelengkapan dokumen</li>
+    <li>Pengecekan data konsumen</li>
+    <li>Pengecekan data kendaraan + menyusun dokumen kontrak sesuai urutan untuk di-scan</li>
+  </ol>
+  <h4>Susunan Dokumen Kontrak (untuk Di-scan)</h4>
+  <ol>
+    <li>PPK (Perjanjian Kredit)</li><li>Pasal-pasal PPK</li><li>Ikhtisar</li>
+    <li>TLO (penjelasan cara klaim asuransi)</li><li>Tabel Angsuran</li>
+    <li>Riplay</li><li>Riplay Personal</li><li>SP Riplay</li>
+    <li>SKBP</li><li>SK Fidusia</li>
+  </ol>
+  <h4>Aplikasi yang Digunakan</h4>
+  <table>
+    <tr><th>Aplikasi</th><th>Fungsi</th></tr>
+    <tr><td>DMS</td><td>Cek data konsumen dan data kendaraan (dari KTP, STNK, dll)</td></tr>
+    <tr><td>One View</td><td>Cek data pasangan</td></tr>
+    <tr><td>One ME / ME Corpo</td><td>Cek data konsumen dan kendaraan kalau tidak ada di DMS</td></tr>
+    <tr><td>Resume</td><td>Cek badan usaha</td></tr>
+    <tr><td>JogetDX</td><td>Serah terima dossier copy ke Archive Management</td></tr>
+  </table>
+  <h4>Pengecekan Perorangan</h4>
+  <ul>
+    <li>KTP harus sama dengan di PPK · KTP Pasangan · KK</li>
+    <li>Data kendaraan (New Car → cocokkan Covernote + foto gesek; Used Car → cocokkan BPKB/Faktur/STNK):</li>
+    <li>Merk · Tipe · Tahun · Kondisi · A/N BPKB · No BPKB · Warna · Nopol · Noka · Nosin</li>
+  </ul>
+  <h4>Pengecekan Badan Usaha</h4>
+  <ul>
+    <li>KTP Direktur · KTP Komisaris · SIUP · NIB · SK Domisili · NPWP Perusahaan</li>
+    <li>Data kendaraan BU: Tipe · Tahun pembuatan · A/N BPKB · Warna · Nosin · Noka · No BPKB · No Pol</li>
+    <li>Patokan data kendaraan: ikhtisar fasilitas pembiayaan + dossier copy</li>
+    <li><strong>CV/Yayasan:</strong> Lampirkan (print fisik) KTP komisaris, SIUP, TDP, SK Domisili, NPWP perusahaan → di belakang SK Fidusia</li>
+    <li><strong>PT:</strong> Arahan management sekarang sudah tidak perlu dilampirkan lagi</li>
+  </ul>
+  <h4>Pengecekan Multiguna</h4>
+  <ul>
+    <li>Cek alamat sesuai KTP; pastikan dokumen lengkap:</li>
+    <li>PK · Pasal-pasal · Ikhtisar fasilitas pembiayaan · Lampiran pembiayaan multiguna · Tabel angsuran · Riplay · Riplay personal · Formulir aplikasi pembiayaan multiguna · Dokumen perubahan akta penjaminan fidusia · SP Riplay · SK Fidusia</li>
+  </ul>
+  <h4>Pengecekan SHF</h4>
+  <ul>
+    <li>Tidak di-cek, hanya dipisahkan saja untuk tera</li>
+    <li>Surat konfirmasi + Tabel angsuran → scan pakai tanda terima; sisanya ke Archive Management</li>
+    <li>Kalau melalui e-invoice: regist di excel → kasih ke bagian scan → scan kasih ke LT 7</li>
+  </ul>
+  <h4>Penanganan Renvoi/Revisi</h4>
+  <ul>
+    <li>Regist di excel: no kontrak · nama konsumen · data salah (before) · data benar (after)</li>
+    <li>Regist diberikan ke Authorized Signer → AS memutuskan: <strong>Revisi kontrak</strong> (renvoy kontrak) dan/atau <strong>Tembak data</strong> (ubah di sistem)</li>
+    <li>Kalau pending karena kekurangan dokumen: infokan ke TL → TL koordinasi dengan cabang</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Renvoi</div><div class="acc-body">
+  <p>Memperbaiki kontrak menggunakan mesin TIK.</p>
+  <h4>Proses Renvoi</h4>
+  <ol>
+    <li>Terima info dari Checker dan AS melalui regist di excel (data salah → data benar)</li>
+    <li>Kalau ada yang dicoret di kontrak: pakai slic (/)</li>
+    <li>Ketik data baru menggunakan mesin TIK (hasil ketikan bisa dihapus seperti pensil)</li>
+    <li>Setelah selesai: kasih ke TL untuk dicek → baru ke PIC Scan</li>
+  </ol>
+  <div class="note-blue"><strong>Revisi kontrak = renvoy kontrak</strong> (benerin di fisik dokumen) | <strong>Tembak data = salah ketik di sistem</strong> (ubah di aplikasi)</div>
+  <ul>
+    <li>Semua dokumen bisa di-renvoy; yang paling banyak: data konsumen dan data kendaraan</li>
+    <li>Biasanya proses renvoy dimulai jam 2 siang</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Scan</div><div class="acc-body">
+  <h4>Dokumen yang Di-scan (dari Checker)</h4>
+  <ul>
+    <li>PPK hal 1 · Pasal-pasal · Ikhtisar · Lampiran perjanjian · Tabel Angsuran · Riplay</li>
+    <li>Setelah di-scan → dikasih lagi ke PIC Tera untuk diserahkan ke Archive</li>
+  </ul>
+  <h4>Urutan Scan per Cabang</h4>
+  <ul>
+    <li>Dipisahkan per cabang; dipisahkan juga perorangan dan PT</li>
+    <li>Urutan (dari terbawah abjad): <strong>WTC → KP → Tangerang → Kelapa Gading → Karawang → Depok → Daan Mogot → Bogor → Bekasi → WPI (Jabo)</strong></li>
+    <li>Tujuan: agar serah terima ke archive lebih mudah</li>
+  </ul>
+  <h4>Proses Scan</h4>
+  <ol>
+    <li>Dokumen renvoy di-scan belakangan (biasanya mulai jam 2)</li>
+    <li>Nama file = nomor kontrak → file masuk ke komputer TL untuk dicek TL</li>
+    <li>Setelah scan → dijadikan satu map → diserahkan ke TL</li>
+    <li>Hasil scan di-upload ke cloud (agar dapat diakses Bu Emi ACM)</li>
+  </ol>
+  <h4>Scan Revisi (Dokumen Sudah di MMI)</h4>
+  <div class="flow">
+    <div class="flow-step">Pengajuan retrieve ke MMI</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Proses renvoy</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Scan ulang</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Info ke Bu Emi ACM</div>
+  </div>
+  <div class="note">Biasanya yang direvisi: nama BPKB</div>
+  <h4>Penanganan Kesalahan Scan</h4>
+  <ul>
+    <li>Jenis kesalahan: kelipet / blur / ketinggalan di-scan</li>
+    <li>Kalau ada cacat: ambil dokumen di archive untuk scan ulang → infokan ke Bu Emi setelah selesai</li>
+  </ul>
+</div></div>
+
+<h3>🏛️ ADMIN FIDUSIA</h3>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Order Fidusia — 2 Kategori &amp; 2 Cara Order</div><div class="acc-body">
+  <h4>2 Kategori Order</h4>
+  <table>
+    <tr><th>Kategori</th><th>Cara Penerimaan Berkas</th></tr>
+    <tr><td><strong>Jabo</strong></td><td>Berkas langsung dari Legal Admin (SK Fidusia asli saja); dokumen lainnya ke Archive Management</td></tr>
+    <tr><td><strong>Non Jabo</strong></td><td>Berkas dari 9 cabang Jabodetabek dikirim melalui kurir ke Sekre KP</td></tr>
+  </table>
+  <h4>2 Cara Order</h4>
+  <table>
+    <tr><th>Cara</th><th>Aplikasi</th><th>Untuk Pengajuan</th></tr>
+    <tr><td><strong>Otomatis</strong></td><td>B2B (Biru)</td><td>Perorangan · PT · Multiguna · Dibawah umur · CV (beberapa)</td></tr>
+    <tr><td><strong>Manual</strong></td><td>Aplikasi Fidusia (Hijau)</td><td>Yayasan · Firma · CV (beberapa)</td></tr>
+  </table>
+  <h4>Flow Order B2B Otomatis</h4>
+  <ol>
+    <li>Sekre terima berkas (SK Fidusia Asli saja untuk order otomatis)</li>
+    <li>PIC Order ambil dokumen di sekre</li>
+    <li>Pilah: perlu AS BCAF atau tidak (kalau notaris BU = tidak perlu AS BCAF, karena punya AS sendiri)</li>
+    <li>PIC non-jabo isi regist order</li>
+    <li>Pengecekan data: kendaraan di OneView (noka nosin, tahun, warna, tipe, no BPKB); konsumen di ME/DMS (disamakan dengan KTP); kalau PT: pake Resume untuk cek data debitur+komisaris, alamat perusahaan cek NIB</li>
+    <li>Kalau ada pendingan: konfirmasi TL → cabang terkait → info ke notaris untuk hold → lampiran tambahan dikirim ke notaris via email</li>
+    <li>Tarik report (tanda terima) di aplikasi B2B format excel</li>
+    <li>Sistem order otomatis ke notaris melalui API</li>
+    <li>Notaris buat sertifikat fidusia → upload ke B2B Fidusia</li>
+    <li>Messenger notaris datang ke BCAF: berikan akta fidusia + tagihan (kwitansi)</li>
+    <li>BCAF berikan SK Fidusia asli + tanda terima + minuta</li>
+  </ol>
+  <h4>Flow Order Manual via Aplikasi Fidusia</h4>
+  <p>Dokumen yang diperlukan: SK Fidusia Asli, Dossier Copy, PPK, Ikhtisar (sisanya fotokopi); kalau BU tambah: SP Dir, SP Com, KTP Dir, KTP Kom, NPWP BU, SK Domisili, CN/BPKB, Akta-akta, SIUP/TDP (untuk NIB)</p>
+  <ol>
+    <li>Sekre terima kelengkapan dokumen</li>
+    <li>Kalau pendingan: register di cloud → cabang kirim email untuk lengkapi (paling banyak karena alamat direksi beda dan dokumen tidak lengkap)</li>
+    <li>Order di aplikasi Fidusia (Hijau): pilih notaris → pilih tanggal realisasi (H+5) → centang konsumen → klik order</li>
+    <li>Tarik report (tanda terima) di B2B → input notaris + AS</li>
+    <li>Messenger notaris datang ambil: tanda terima + dokumen lengkap + SK Fidusia asli</li>
+    <li>Notaris buat sertifikat fidusia</li>
+    <li>Messenger notaris datang lagi: berikan sertifikat fisik + akta + tagihan (kwitansi)</li>
+    <li>BCAF berikan SK Fidusia asli + minuta + tanda terima</li>
+  </ol>
+  <h4>Catatan Lain Order Fidusia</h4>
+  <ul>
+    <li>Order gagal otomatis (ada alasannya) → akan di-order manual</li>
+    <li>Tanggal order maks <strong>15 hari</strong> (SLA fidusia 15 hari)</li>
+    <li>Bisa kirim via email dulu kalau messenger tidak datang (biar diproses), tetapi notaris tetap akan datang untuk ambil fisik</li>
+    <li>Kalau konsumen batal realisasi: info ke notaris untuk tidak diproses fidusianya</li>
+    <li>SK Fidusia asli diserahkan ke notaris untuk dijadikan jaminan</li>
+    <li>Refinancing dan multiguna ada fidusianya (ada sertifikatnya juga)</li>
+    <li>Pembayaran ke notaris: fee notaris + PNBP (tiering)</li>
+    <li>Kalau pendingan terkait dokumen PT: langsung ke archive untuk minta dokumennya</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Adendum Fidusia — BBN &amp; UBJ</div><div class="acc-body">
   <h4>2 Jenis Adendum</h4>
   <ul>
     <li><strong>BBN (Balik Nama):</strong> Perubahan nama di dokumen jaminan fidusia</li>
-    <li><strong>UBJ (Ubah Barang Jaminan):</strong> Penggantian kendaraan jaminan</li>
+    <li><strong>UBJ (Ubah Barang Jaminan):</strong> Penggantian kendaraan jaminan (kebanyakan mobil baru, contoh: beli baru lalu accident, konsumen mau ganti unit baru)</li>
   </ul>
-  <h4>Dokumen Adendum Perorangan (15 Dokumen)</h4>
+  <p>Proses addendum berlaku untuk cabang <strong>Jabo dan Non Jabo</strong>. Order addendum hanya ke <strong>1 notaris: Ivan Jon Haris</strong>.</p>
+  <h4>Dokumen Adendum Perorangan</h4>
   <ul>
-    <li>KTP konsumen, KTP penerima baru, KK, Akta nikah/cerai (jika perlu)</li>
-    <li>STNK baru, BPKB baru, Surat keterangan dealer</li>
-    <li>Form adendum yang sudah diisi lengkap</li>
-    <li>Dan dokumen pendukung lainnya (total 15 item)</li>
+    <li>Addendum · PPK · Sertifikat fidusia · SK Fidusia asli · SKPB</li>
+    <li>Permohonan balik nama · SP Konsumen · SPPBMB (BBN) / IOM (UBJ)</li>
+    <li>KTP/KK konsumen · KTP/KK konsumen balik nama · KTP/KK konsumen pertama · KTP/KK konsumen kedua</li>
+    <li>STNK · BPKB · Blanko kwitansi · PNBP</li>
   </ul>
-  <h4>Dokumen Adendum PT (5 Dokumen)</h4>
+  <h4>Dokumen Adendum Badan Usaha (Tambahan)</h4>
   <ul>
-    <li>Akta perubahan perusahaan</li><li>SK Pengesahan baru</li>
-    <li>NPWP baru</li><li>NIB baru</li><li>KTP pejabat baru</li>
+    <li>SP Direktur · SP Bersama (SP Dealer) · KTP pengurus</li>
+    <li>NPWP Perusahaan · NIB/TDP · SIUP · SK Domisili · SK Menkeh · Akta · Resume</li>
   </ul>
-  <h4>Flow BBN Non-Jabo</h4>
-  <div class="flow">
-    <div class="flow-step">Terima berkas</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Bongkar</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Susun ulang</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Registrasi</div><div class="flow-arrow">→</div>
-    <div class="flow-step">TTD Signer (Mba Latifah)</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Order notaris</div>
-  </div>
-  <h4>Flow BBN Jabo</h4>
-  <div class="flow">
-    <div class="flow-step">Tera materai</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Insertion</div>
-  </div>
+  <h4>Flow Adendum Jabo (All Berkas Asli)</h4>
+  <ol>
+    <li>Berkas di taro di sekre → PIC Jabo ambil</li>
+    <li>Bongkar &amp; susun ulang dokumen</li>
+    <li>Checking: kalau tidak lengkap → cari di DMS; kalau masih tidak ada → minta cabang via Spark (dikirim lewat email)</li>
+    <li>Regis di excel</li>
+    <li>SK Fidusia di TTD Authorized Signer</li>
+    <li>Tera Materai (Addendum, SK Fidusia, SP Dealer)</li>
+    <li>Order manual ke notaris (berkas copy; asli hanya SK Fidusia)</li>
+    <li>Notaris terbitkan <strong>Sertifikat Perubahan Jaminan Fidusia</strong></li>
+    <li>Simpan berkas asli (difotokopi dulu)</li>
+    <li>Berkas asli → insertion (Dossier aslinya) → serah terima ke archive → insertion ke MMI</li>
+    <li>Pengiriman dokumen ke konsumen melalui CS (lembar addendumnya)</li>
+  </ol>
+  <h4>Flow Adendum Non-Jabo (All Berkas Fotokopi, kecuali SK Fidusia Asli)</h4>
+  <ol>
+    <li>Berkas (fotokopi) dari non-jabo</li>
+    <li>Bongkar &amp; susun</li>
+    <li>Checking (sama seperti Jabo)</li>
+    <li>Regis di excel</li>
+    <li>SK Fidusia di TTD AS</li>
+    <li>Order manual ke notaris</li>
+    <li>Notaris terbitkan Sertifikat Perubahan Jaminan Fidusia</li>
+    <li>Simpan berkas asli (fotokopi dulu) → insertion → serah terima ke archive → insertion ke MMI</li>
+    <li>Pengiriman ke konsumen melalui CS</li>
+  </ol>
+  <h4>Perubahan Jaminan Fidusia (Sertifikat Baru)</h4>
+  <ul>
+    <li>Nama pemberi semula → menjadi konsumen baru</li>
+    <li>No akta ada "02" di belakang (merujuk ke sertifikat 01)</li>
+    <li>Nama debitur tetap merujuk ke debitur pertama</li>
+    <li>UBJ: data kendaraan di sertifikat → noka nosin sebelumnya menjadi noka nosin baru</li>
+  </ul>
   <h4>Alasan Adendum</h4>
   <ul><li>Pajak progresif (perubahan nama agar pajak lebih rendah)</li><li>Hadiah (kendaraan dihibahkan)</li></ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Sertifikat Fidusia</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Sertifikat Fidusia — Proses, Revisi &amp; SHF</div><div class="acc-body">
+  <p>SLA OJK: <strong>30 hari</strong> (lebih dari 30 hari → SP Notaris). Terdapat <strong>2 PIC</strong> karena ada 16 notaris — beban kerja dibagi 2.</p>
+  <h4>Sertifikasi Fidusia by B2B (Otomatis)</h4>
+  <ol>
+    <li>Setelah order otomatis berhasil, notaris datang: Akta + Minuta + Tagihan</li>
+    <li>Buka aplikasi B2B → cek sertifikat fidusia yang di-upload notaris</li>
+    <li>2 halaman sertifikat: Hal. 1 = data konsumen · Hal. 2 = data kendaraan</li>
+    <li>Verifikasi sertifikat, cek no akta:
+      <ul>
+        <li>Sesuai → <strong>diHIJAUkan</strong> (approved)</li>
+        <li>Tidak sesuai → <strong>diMERAHkan</strong> + keterangan → notaris upload ulang</li>
+      </ul>
+    </li>
+    <li>Jika approve di B2B → no sertifikat + tgl sertifikat di aplikasi fidusia otomatis terisi</li>
+    <li>Cek tagihan → bikin list rekap tagihan (rekapitulasi sertifikat + salinan akta)</li>
+    <li>Rekap + kwitansi → checker tagihan untuk pengecekan</li>
+    <li>Checker tagihan buat memo approval pembayaran</li>
+    <li>Memo + kwitansi → PIC Sertif → ke payment</li>
+    <li>Sertif fidusia tetap di aplikasi B2B (<strong>tidak diberikan ke archive</strong>)</li>
+  </ol>
+  <h4>Sertifikasi Fidusia by Order Manual</h4>
+  <ol>
+    <li>Notaris datang: Akta + Minuta + Tagihan + Sertifikat fidusia (fisik)</li>
+    <li>Cek di aplikasi fidusia → input no invoice + no sertifikasi + tanggal sertifikasi</li>
+    <li>Sesuaikan nama konsumen dan PH di sertifikat; kalau salah → request ke notaris via email</li>
+    <li>Rekap + kwitansi → checker tagihan → buat memo approval → memo + kwitansi → PIC Sertif → ke payment</li>
+  </ol>
+  <h4>Approval Pembayaran Notaris</h4>
+  <table>
+    <tr><th>Nilai Tagihan</th><th>Approval</th></tr>
+    <tr><td>&lt; Rp 40 juta</td><td>Bu Telly (UH)</td></tr>
+    <tr><td>Rp 40 – 90 juta</td><td>Bu Lusti (DH)</td></tr>
+    <tr><td>&gt; Rp 90 juta</td><td>Pak Frans (DD)</td></tr>
+  </table>
+  <h4>Serah Terima ke Arsip</h4>
   <ul>
-    <li>SLA OJK: <strong>30 hari</strong> (lebih dari 30 hari → SP Notaris)</li>
+    <li>Akta fidusia → ke MMI</li>
+    <li>Sertifikat fidusia → ke MMI → Scan MMI → upload DMS</li>
   </ul>
-  <h4>Alur B2B (Sistem)</h4>
-  <div class="flow">
-    <div class="flow-step">Terima dari sistem</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Verifikasi data</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Approve / Reject</div>
-  </div>
-  <h4>Alur Manual</h4>
+  <h4>Revisi Sertifikat</h4>
+  <table>
+    <tr><th>Kondisi</th><th>Biaya</th></tr>
+    <tr><td>Revisi ≤ 1 bulan sejak sertifikat dikeluarkan</td><td>Rp 50.000</td></tr>
+    <tr><td>Revisi &gt; 1 bulan sejak sertifikat dikeluarkan</td><td>Rp 250.000</td></tr>
+    <tr><td>Revisi nilai PH</td><td>Sesuai tiering PNBP</td></tr>
+  </table>
   <ul>
-    <li>Input: nama notaris + order date + receive date + no sertifikat + invoice</li>
+    <li>Cari tau siapa yang salah: notaris atau BCAF</li>
+    <li>Jika salah notaris → 3 pilihan: (1) diganti baru dengan nilai PNBP sama; (2) dikerjakan menyusul + difollow up PIC; (3) dihapus dan buat invoice baru</li>
   </ul>
-  <h4>Satu Set Serah Terima (BU)</h4>
+  <h4>Showroom Financing (SHF) Fidusia</h4>
   <ul>
-    <li>Salinan akta fidusia</li><li>Minuta fidusia</li>
-    <li>Invoice notaris</li><li>Sertifikat fidusia fisik</li>
+    <li>Berkas order dari Bu Vita → regist di excel → daftar stock (salah satu berkas Bu Vita) di-scan</li>
+    <li>Sertif jadi → di-foldering bersamaan dengan daftar stock</li>
+    <li>Terima tagihan → checker tagihan buat memo → naikkan ke payment</li>
+    <li>SHF = order manual; sertif SHF <strong>tidak ke archive</strong> → langsung ke unit SHF</li>
+    <li>Addendum SHF: lebih ke update stock; di-order langsung Bu Vita; Bu Vita kirim daftar stock terupdate; akta + sertif baru menjelaskan total unit sebelum dan sesudah</li>
   </ul>
-  <h4>Perbedaan Sertifikat</h4>
+  <h4>Lain-lain</h4>
   <ul>
-    <li><strong>Kode 01:</strong> "Sertifikat Jaminan Fidusia" — akta baru</li>
-    <li><strong>Kode 02:</strong> "Perubahan Jaminan Fidusia" — adendum</li>
+    <li>Biaya notaris = tiering PNBP + fee Rp 175.000</li>
+    <li>Regist di excel (copas dari kwitansi)</li>
+    <li>Akta di TTD notaris</li>
+    <li>Minuta = isi sama seperti akta tapi tanpa cover (pasal-pasal); fungsi: arsip jaminan di notaris</li>
+    <li><strong>Aplikasi B2B dan DMS tidak terkoneksi</strong></li>
+    <li>Perbedaan kode sertifikat: <strong>Kode 01</strong> = "Sertifikat Jaminan Fidusia" (akta baru); <strong>Kode 02</strong> = "Perubahan Jaminan Fidusia" (adendum)</li>
   </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Fidusia Motor (Mas Robby)</div><div class="acc-body">
-  <h4>4 Aplikasi</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">PIC Fidusia Motor</div><div class="acc-body">
+  <p>Di motor, semua proses ditangani <strong>1 orang</strong>. Flow umum: <strong>Order → Receive Sertif → Revisi → Pembayaran Tagihan</strong>.</p>
+  <h4>Aplikasi yang Digunakan</h4>
   <ul>
-    <li>Fast APP</li><li>Move</li><li>Web Report</li><li>Dok Imaging</li>
+    <li>Fast APP · Fast Mob · Fast Web Report · Document Imaging</li>
   </ul>
-  <h4>4 Notaris Rekanan</h4>
-  <ul><li>Ario</li><li>Leodi</li><li>Joniva</li><li>Hafidz</li></ul>
-  <h4>Pengecekan Nomor Kendaraan</h4>
+  <h4>Report Harian &amp; Bulanan</h4>
+  <table>
+    <tr><th>Jenis Report</th><th>Isi</th></tr>
+    <tr><td>Daily — Tarikan Booking</td><td>Berapa banyak yang akan di-order</td></tr>
+    <tr><td>Daily — Tarikan Order</td><td>Yang di-order ke notaris (dari Fast Web Report → kirim ke notaris); antara tarikan booking dan tarikan order harus sama; cek cabang notaris sesuai plottingan</td></tr>
+    <tr><td>Bulanan — Report Monitoring Fidusia</td><td>Cek yang sudah didaftarkan fidusianya ke notaris; feedback dari notaris; penilaian notaris</td></tr>
+  </table>
+  <h4>Order</h4>
   <ul>
-    <li>No rangka: <strong>17 digit</strong></li>
-    <li>No mesin: <strong>12 digit</strong></li>
+    <li>Order ke notaris manual menggunakan excel by email</li>
+    <li>4 notaris rekanan: Ario · Leodi · Joniva · Hafidz</li>
   </ul>
-  <h4>Sampling</h4>
+  <h4>Receive Sertifikat (H+5 Maks)</h4>
+  <ol>
+    <li>Notaris kirim balikan excel + sertif fidusia via email</li>
+    <li>Excel dari notaris diisi: no akta, tgl akta, no sertifikat, tgl sertifikat</li>
+    <li>Excel di-save CSV → upload di FAST → keluar tagihan + masuk report bulanan</li>
+    <li>Notaris juga kirim kwitansi pembayaran (tagihan) tapi tidak langsung ke payment; kwitansi untuk cek nominal saja; proceed pembayaran lewat FAST</li>
+  </ol>
+  <h4>Pengecekan Sertifikat</h4>
   <ul>
-    <li><strong>20%</strong> dari total sertifikat yang diterima</li>
+    <li>Sampling <strong>20%</strong> dari total</li>
+    <li>Cek: no sertifikat · tanggal sertifikat · PDF fidusianya</li>
+    <li>No rangka: <strong>17 digit</strong> · No mesin: <strong>12 digit</strong></li>
     <li>Upload manual format: <em>Kode Cabang–No Kontrak–Fidusia</em></li>
   </ul>
+  <h4>Tagihan &amp; Pembayaran</h4>
+  <ol>
+    <li>Biaya fidusia (PNBP + fee notaris) di-hold dulu sampai seminggu</li>
+    <li>Setiap minggu: proceed tagihan di FAST (menu tagihan notaris)</li>
+    <li>Isi: tanggal · notaris → keluar nominal yang harus dibayar (cek dengan kwitansi fisik)</li>
+    <li>Save → keluar no memo invoice fidusia → kirim ke payment</li>
+  </ol>
+  <ul>
+    <li>Semua sertif digital; kalau ASR perlu baru order lagi ke ASR</li>
+  </ul>
 </div></div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Resume AHU (PIC Sandi) &amp; Cek Dokumen BU</div><div class="acc-body">
-  <h4>Resume AHU</h4>
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Resume AHU — Order, Request, Cek Dokumen &amp; Approval</div><div class="acc-body">
+  <p>Resume diproses <strong>sebelum marketing melakukan data entry di ME</strong>. Flow: <strong>Marketing order Resume → Order Profile AHU → Request Akta → Check Document → Approval</strong>.</p>
+  <p>SLA: <strong>1 hari</strong> · Berlaku nasional · ~40 order/hari; kalau expo bisa ratusan.</p>
+  <h4>Voucher SIMPADHU</h4>
   <ul>
-    <li>SLA: <strong>1x24 jam</strong></li>
-    <li>Aplikasi: Resume AHU / Ditjen AHU / AHU Fidusia Online</li>
-    <li><strong>RAD BCA:</strong> tidak perlu order AHU (sudah terintegrasi)</li>
+    <li>1 voucher = Rp 500.000; jaga minimal <strong>90 voucher</strong>; max beli 5 voucher per pembelian</li>
+    <li>Cara order voucher: website AHU → Simpadhu → isi form (pelayanan jasa hukum = badan hukum, nama pemohon = BCA Finance, NIK = PIC Order, email = email dept resume, no HP = no kantor BCAF, jumlah = maks 5) → klik order → keluar no voucher</li>
+    <li>Regist no voucher di excel (NextCloud) → upload di aplikasi Reger agar payment bisa bayar</li>
+    <li>Setelah dibayar: cek status di website; excel kasih ke TL → TL upload ke aplikasi Resume (hanya TL dan Approver yang punya akses upload)</li>
   </ul>
-  <h4>Beli Voucher SIMPADHU (6 Langkah)</h4>
+  <h4>Isi Profile AHU</h4>
   <ul>
-    <li>Maksimal 5 voucher per pembelian</li>
-    <li>Masa berlaku: <strong>60 hari</strong></li>
+    <li>Pengesahan pendirian</li>
+    <li>Perubahan data perseroan (contoh: direksi, komisaris, masa jabatan habis)</li>
+    <li>RAD (Ringkasan Anggaran Dasar)</li>
   </ul>
-  <h4>4 Klasifikasi Risiko BU</h4>
+  <div class="note-blue">Kalau marketing lampirkan RAD BCA langsung → tidak perlu order profile AHU; action pilih "internal" di aplikasi resume</div>
+  <h4>Order Profile AHU</h4>
+  <ol>
+    <li>Masuk order dari marketing di aplikasi Resume</li>
+    <li>Cek NPWP; cek SIUP/TDP (untuk NIB)</li>
+    <li>Cari nama PT di inquiry status resume: cek apakah RO atau tidak; kalau RO cek masa berlaku (kalau expired → beli lagi)</li>
+    <li>Cek profile AHU di NextCloud</li>
+    <li>Cek perseroan + pemilik manfaat di aplikasi Fidusia Online: alamat kedudukan harus sama dengan di NIB dan website AHU</li>
+    <li>Cek no NPWP di fidusia online vs NIB vs inisiasi resume dari marketing</li>
+    <li>Regist order di excel</li>
+    <li>Action di aplikasi resume → pilih "order AHU" → keluar no voucher → regist no voucher</li>
+    <li>Website Ditjen AHU → klik "Profile Lengkap" → isi form (nama PT + no voucher)</li>
+    <li>Download profile (maks 7 hari) → upload ke aplikasi Resume → upload ke NextCloud</li>
+    <li>Masuk ke proses selanjutnya: request akta ke marketing</li>
+  </ol>
+  <h4>Jenis Action di Aplikasi Resume</h4>
   <table>
-    <tr><th>Risiko</th><th>Dokumen yang Diperlukan</th></tr>
-    <tr><td>Rendah</td><td>NIB saja</td></tr>
-    <tr><td>Menengah Rendah</td><td>NIB + Sertifikat Standard</td></tr>
-    <tr><td>Menengah Tinggi</td><td>NIB + Sertifikasi Terverifikasi</td></tr>
-    <tr><td>Tinggi</td><td>Izin penuh</td></tr>
+    <tr><th>Action</th><th>Kondisi</th></tr>
+    <tr><td>Internal</td><td>Untuk RAD, atau sudah pernah order tapi cancel karena double</td></tr>
+    <tr><td>Update</td><td>Belum expired tapi mau pengkinian data (tidak perlu order)</td></tr>
+    <tr><td>Finish</td><td>Selesai</td></tr>
+    <tr><td>Pending</td><td>Pengecekan belum sesuai (kasih note)</td></tr>
+    <tr><td>Notaris</td><td>Untuk CV → diproses langsung oleh notaris</td></tr>
   </table>
-  <div class="note">NIB saja → tambah Izin Usaha + Izin Lokasi / SK Domisili</div>
-  <div class="note-yellow">BU baru &lt;2 tahun → memo penyimpangan diperlukan</div>
+  <h4>Request Akta ke Marketing</h4>
+  <ul>
+    <li>Akta pendirian (wajib TTD notaris; materai + cap opsional)</li>
+    <li>Akta perubahan dan pengesahan</li>
+    <li>NPWP (disesuaikan dengan akta by notaris dan resume Ditjen AHU)</li>
+    <li>BNRI (sama seperti Akta Pengesahan)</li>
+    <li>Identitas Debitur: KTP Pengurus + pemegang saham</li>
+    <li>Akta pendirian dan perubahan sesuai nomor di profile order</li>
+    <li>NIB berbasis risiko → dokumen pendukung: Rendah = NIB/NPWP saja; Menengah Rendah = + sertifikat standar; Menengah Tinggi = + izin klasifikasi usaha tinggi; Tinggi = + semua dokumen pendukung</li>
+    <li>SIUP dan TDP sama saja → salah satu sudah cukup</li>
+    <li>Kalau RUPS → minta akta pendirian + dokumen identitas pemegang saham</li>
+  </ul>
+  <h4>Check Document</h4>
+  <p>Pengecekan dokumen dari CMO; sudah OCR (akta pendirian, perubahan, pemegang saham) — perlu dicek ulang dan bisa diedit kalau ada typo.</p>
+  <ol>
+    <li>Cek NPWP sesuai akta by notaris dan resume Ditjen AHU</li>
+    <li>Cocokkan dengan profile AHU yang didownload</li>
+    <li>Cek akta pendirian: pasal yang penting:
+      <ul>
+        <li>Pasal 1 → nama PT dan kedudukan</li>
+        <li>Pasal 4 → modal perusahaan</li>
+        <li>Pasal 11 → masa jabatan direksi</li>
+        <li>Pasal 12 → tugas dan wewenang direksi → input signer (wewenang TTD) dan approver (persetujuan)</li>
+        <li>Pasal 14 → masa jabatan komisaris</li>
+        <li>Pasal 20 → pemegang saham dan pengurus</li>
+        <li>Cek pasal 1–20 semua; pastikan dokumen lengkap dan saling berkesinambungan</li>
+      </ul>
+    </li>
+    <li>Cek akta perubahan: peningkatan modal disetor, direksi+komisaris+pemegang saham, maksud dan tujuan</li>
+    <li>Wajib TTD notaris; materai dan stempel opsional; wajib lampirkan SK Menkehukam</li>
+    <li>SP Data: tidak wajib; SK dilampirkan kalau akta pendirian di bawah 2007</li>
+    <li>Cek dokumen pengesahan: bagian memutuskan · nomor akta · tanggal akta · nama PT · kedudukan</li>
+    <li>Cek akta perubahan Pasal 3 + SK Menkehukam; pastikan NIB ada + dokumen pendukung</li>
+    <li>Input di resume wajib <strong>CAPSLOCK</strong></li>
+    <li>Cek data pemilik manfaat di website Ditjen AHU</li>
+    <li>Submit → masuk approval; isi regist excel</li>
+  </ol>
+  <h4>Approval</h4>
+  <ul>
+    <li>Recheck dokumen + hasil inputan dari PIC Cek Dokumen; fokus: <strong>KTP dan Akta</strong></li>
+    <li>Pastikan nama PT benar (patokan: SK Kemenhukam; kalau disingkat → disingkat juga di sistem; penulisan "PT" di belakang)</li>
+    <li>Cek kedudukan PT di profile AHU; cek NPWP (15 atau 16 digit; kalau tanggal tidak ada → isi 1/1/1900)</li>
+    <li>Kategori penanaman modal: PMDN = swasta nasional; MA = asing</li>
+    <li>Masa jabatan direksi dan komisaris harus diperhatikan dengan sangat</li>
+    <li>Kewenangan: "harus dengan persetujuan..." → approver; "direktur utama berhak untuk..." → signer (ada di point 2)</li>
+    <li>Pastikan setiap akta ada TTD notaris</li>
+  </ul>
+  <h4>Kondisi Khusus Approval</h4>
+  <table>
+    <tr><th>Kondisi di Akta</th><th>Implikasi</th></tr>
+    <tr><td>Akta dan profile berbeda</td><td>Pending</td></tr>
+    <tr><td>"Harus dengan persetujuan pemegang saham"</td><td>Bikin surat RUPS</td></tr>
+    <tr><td>"Tanpa persetujuan"</td><td>Ada signer, tidak ada approver di PT tersebut</td></tr>
+    <tr><td>"Harus dengan persetujuan dewan komisaris"</td><td>Semua komisaris ada approver</td></tr>
+  </table>
+  <ul>
+    <li>Di aplikasi Resume → set approver dan signer siapa</li>
+    <li>Kalau pemegang saham PT → bikin SP pemegang saham (checker) → upload di resume tambahan (kalau RUPS juga bikin)</li>
+    <li>SP pemegang saham ada kolom TTD para pemegang saham; PT TBK ada kolom masyarakat mengetahui</li>
+    <li>Pengurus/pemegang saham asing bisa; <strong>perusahaan asing tidak bisa</strong></li>
+    <li>Kalau approve → done, marketing bisa lihat resume untuk data entry</li>
+    <li>Kalau reject → balik ke PIC Check Document untuk diperbaiki</li>
+  </ul>
+  <h4>Lainnya</h4>
+  <ul>
+    <li>RAD: wajib lampirkan semua akta pengesahan dan pendirian sesuai RAD</li>
+    <li>Update karena expired: order lagi (kurang 3 bulan dari expired date)</li>
+    <li>Roya = dihapus kalau sudah lunas</li>
+    <li>OCR sudah baca akta pendirian, perubahan, dan pemegang saham — tapi perlu dicek ulang inputannya</li>
+    <li>CV order resume → tinggal proceed (action pilih notaris), otomatis masuk bucket notaris; marketing yang langsung deal dengan notaris</li>
+  </ul>
 </div></div>
 
 <h3>🏠 BPKB ADMIN</h3>
@@ -3535,8 +3922,24 @@ tr:nth-child(even) td{background:var(--gray-50);}
 </div></div>
 
 <h3>🗄️ ARCHIVE</h3>
+<div class="section-intro">
+  Archive adalah <strong>gerbang terakhir dokumen</strong> sebelum dikirimkan ke jasa penyimpanan dokumen MMI. Aplikasi yang digunakan: Eger · JogetDX Arsip · DMS · Move (motor: + OneView).
+</div>
 
-<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">5 Fungsi Archive &amp; Alur Dossier</div><div class="acc-body">
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Gambaran Umum, Jenis Dokumen & Alur Serah Terima</div><div class="acc-body">
+  <h4>3 Jenis Dokumen Utama Konsumen</h4>
+  <table>
+    <tr><th>Jenis</th><th>Keterangan</th></tr>
+    <tr><td><strong>Dossier Asli</strong></td><td>Dokumen kontrak</td></tr>
+    <tr><td><strong>Dossier Copy</strong></td><td>Dokumen tagihan</td></tr>
+    <tr><td><strong>Fidusia</strong></td><td>Sertifikat Fidusia</td></tr>
+  </table>
+  <h4>Cabang yang Di-handle Archive Management (9 Cabang)</h4>
+  <ul>
+    <li><strong>JABO WPI:</strong> Bekasi · Daan Mogot · Depok · Tangerang · Bogor · Karawang · Kelapa Gading</li>
+    <li><strong>WTC:</strong> 1 cabang</li>
+    <li>Di luar cabang di atas → dokumen disimpan di cabang masing-masing</li>
+  </ul>
   <h4>5 Fungsi Archive</h4>
   <ol>
     <li>Terima dan simpan dokumen (dossier)</li>
@@ -3545,29 +3948,238 @@ tr:nth-child(even) td{background:var(--gray-50);}
     <li>Rekonsil nasional (pencocokan data)</li>
     <li>Sampling nasional</li>
   </ol>
-  <h4>Alur Penerimaan Dossier</h4>
+  <h4>Alur Serah Terima Dokumen ke Archive Management</h4>
   <ul>
-    <li><strong>Dossier Copy:</strong> H+3 dari Legal Admin</li>
-    <li><strong>Dossier Asli B2B/Individu:</strong> Pisahkan SK Fidusia → fidusia admin; dossier → archive</li>
-    <li><strong>Dossier Asli Non-B2B:</strong> Semua ke fidusia admin; SLA H+5</li>
+    <li>Alur: <strong>APP → Realisasi → Legal Admin</strong></li>
+    <li>Legal Admin memisahkan dossier asli dan dossier copy</li>
+    <li><strong>Dossier Asli:</strong> di-reprint, di-tera, dicek kembali → kasih ke Archive <strong>H+5 realisasi</strong></li>
+    <li><strong>Dossier Copy:</strong> tidak diapa-apakan → kasih ke Archive <strong>H+5 realisasi</strong></li>
+    <li><strong>Fidusia:</strong> di-order dulu ke notaris, tidak ada SLA (secepatnya)</li>
   </ul>
   <h4>Register &amp; Indexing</h4>
   <ul>
     <li>Serah terima dokumen dicatat</li>
+    <li>PIC melakukan registrasi, lalu dimasukkan ke box sesuai kode box</li>
     <li>Indexing: sampling <strong>10% per box</strong></li>
   </ul>
   <h4>Kapasitas Box</h4>
   <table>
-    <tr><th>Jenis Box</th><th>Kapasitas</th></tr>
-    <tr><td>Box Asli</td><td>135 dokumen</td></tr>
-    <tr><td>Box Copy</td><td>120 dokumen</td></tr>
-    <tr><td>Box Fidusia</td><td>300 dokumen</td></tr>
+    <tr><th>Kode Box</th><th>Jenis Dokumen</th><th>Kapasitas</th></tr>
+    <tr><td>Box 01</td><td>Dossier Asli</td><td>150 dokumen</td></tr>
+    <tr><td>Box 02</td><td>Dossier Copy</td><td>120 dokumen</td></tr>
+    <tr><td>Box 04</td><td>Fidusia</td><td>200 dokumen</td></tr>
   </table>
-  <h4>MMI (Vendor Penyimpanan Eksternal)</h4>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Proses Pengelolaan Box & Insertion Dokumen</div><div class="acc-body">
+  <h4>Proses Pengelolaan Dokumen di Archive Management</h4>
+  <ol>
+    <li>Dossier Asli dan Dossier Copy diterima dari unit terkait</li>
+    <li>PIC melakukan registrasi → dimasukkan ke box sesuai kode box</li>
+    <li>Dilakukan sampling (cek) <strong>10% per box</strong></li>
+    <li>Setiap <strong>hari Kamis</strong>: archive email ke MMI untuk pengambilan hari Jumat; dicantumkan jumlah box 01, 02, dst.</li>
+    <li>Setiap <strong>hari Jumat</strong>: MMI datang mengambil box</li>
+    <li>Yang diterima MMI: box + softcopy list data isi box (hasil registrasi archive)</li>
+  </ol>
+  <h4>Insertion (Penyisipan Dokumen)</h4>
+  <p>Memasukkan dokumen susulan atau tambahan ke box induk yang ada di MMI.</p>
+  <table>
+    <tr><th>Jenis</th><th>Definisi</th><th>Contoh</th></tr>
+    <tr><td><strong>Dokumen Susulan</strong></td><td>Dokumen yang harus ada saat realisasi tapi terlambat (dari marketing telat)</td><td>Kontrak, tagihan, asuransi, SP Dir</td></tr>
+    <tr><td><strong>Dokumen Tambahan</strong></td><td>Dokumen yang timbul setelah kredit berjalan</td><td>Pengkinian data, addendum, ubah cara bayar, BBN</td></tr>
+  </table>
+  <div class="note-blue">Saat ini yang di-scan saat insertion hanya <strong>BBN</strong>. Saat kirim register ke MMI ada kolom perintah scan; setelah scan baru disisipkan ke box.</div>
+  <div class="note">Untuk <strong>top up, multiguna, dan restruktur</strong> → tidak melalui insertion; diperlakukan seperti kontrak baru biasa.</div>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Berita Acara CD (BACD) & Proses Scan MMI</div><div class="acc-body">
+  <h4>Dokumen yang Di-scan MMI</h4>
+  <table>
+    <tr><th>Box</th><th>Yang Di-scan</th></tr>
+    <tr><td>Box 02 (Dossier Copy)</td><td>Form survey dan peta lokasi (kalau ada)</td></tr>
+    <tr><td>Box 04 (Fidusia)</td><td>Sertifikat Fidusia — kalau B2B: tidak di-scan</td></tr>
+    <tr><td>Box 01 (Dossier Asli)</td><td>Tidak di-scan</td></tr>
+  </table>
+  <h4>Proses Lengkap Scan BACD</h4>
+  <ol>
+    <li>Semua cabang kirim box ke MMI di kota terdekat cabang BCAF</li>
+    <li>MMI scan (H+5) → kirim BA (2 rangkap) + CD + SS Aplikasi TIFF Teller ke KP; CD saja ke cabang untuk upload DMS</li>
+    <li>Isi CD dari MMI: hasil scan (image) · data hasil scan (PDF) · data register isi box</li>
+    <li>PIC scan KP cek: bandingkan file di-scan MMI vs file dikirim ke MMI (total harus sama); sampling per box 10%; cek jumlah file vs jumlah image (lembar)</li>
+    <li>Jika file scan kurang → email dokumen scan ke MMI</li>
+    <li>Buat Berita Acara pengecekan hasil scan → di-PDF-kan + SS Tiff Teller → TTD (Bu Emi)</li>
+    <li>Isi BA: nomor box · jumlah image · jumlah file · jumlah sampling image dan file</li>
+    <li>File hasil scan di-upload ke DMS (pakai BAT File / CLI)</li>
+    <li>Ada register upload DMS: keterangan ok/not ok</li>
+    <li>16 cabang yang tidak bisa upload DMS → dibantu KP</li>
+  </ol>
+  <h4>Macam-Macam Scan (Biaya Berbeda)</h4>
+  <table>
+    <tr><th>Jenis Scan</th><th>Untuk</th></tr>
+    <tr><td>Grayscale</td><td>Dossier Copy</td></tr>
+    <tr><td>Black &amp; White</td><td>Dossier Asli</td></tr>
+  </table>
+  <h4>Tiering Pengurangan Biaya Keterlambatan Scan MMI</h4>
+  <p>Batas pengiriman hasil scan dari MMI: <strong>H+6</strong> setelah dokumen di-pickup. Keterlambatan mempengaruhi penilaian MMI dan berdampak ke PKS.</p>
+  <table>
+    <tr><th>Batas Hari</th><th>Reduction Biaya</th></tr>
+    <tr><td>≤ H+6</td><td>0% (tidak ada pengurangan)</td></tr>
+    <tr><td>H+7 – H+15</td><td>5%</td></tr>
+    <tr><td>H+16 – H+30</td><td>25%</td></tr>
+    <tr><td>H+31 – H+60</td><td>50%</td></tr>
+    <tr><td>≥ H+61</td><td>100% (gratis biaya scan)</td></tr>
+  </table>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Retrieve & Peminjaman Dokumen</div><div class="acc-body">
+  <h4>3 Macam Retrieve</h4>
+  <table>
+    <tr><th>Jenis</th><th>Ketentuan</th></tr>
+    <tr><td><strong>Scan</strong></td><td>Minta scan; syarat: tidak ada di DMS atau ada di DMS tapi tidak lengkap/tidak jelas</td></tr>
+    <tr><td><strong>Fisik tanpa memo</strong></td><td>Fisik tidak boleh dibawa keluar dari archive (harus bersama PIC); SLA maks H+7 harus kembali ke MMI</td></tr>
+    <tr><td><strong>Fisik dengan memo</strong></td><td>Fisik boleh dibawa keluar; SLA pengembalian sesuai di memo; approval: dalam operation = s.d. DD; di luar operation = s.d. BOD</td></tr>
+    <tr><td><strong>Box</strong></td><td>Tidak direkomendasikan (biaya 5x lebih besar); self service ke MMI, hanya bayar admin</td></tr>
+  </table>
+  <h4>Alur Retrieve / Peminjaman</h4>
+  <ol>
+    <li>Pemohon mengajukan form ke email, cc ke TL &amp; UH archive</li>
+    <li>Centang kebutuhan: copy dokumen / dossier copy / dossier asli / fidusia (atau dirinci)</li>
+    <li>PIC registrasi di excel laporan harian (nomor kontrak, nama kontrak)</li>
+    <li>Proses order dengan template form order di excel</li>
+    <li>PIC &amp; UH/TL tanda tangan approval → file di-password → kirim ke MMI via email</li>
+    <li>Biasanya dikirim hari yang sama jika request sebelum jam 12 atau jam 3 sore; setelahnya dipending</li>
+    <li>Registrasi kembali di excel laporan harian: jam &amp; tanggal order + terima · berapa lembar · berkas apa · alasan · unit mana · jumlah order</li>
+    <li>Balancing weekly dari report MMI → cocokkan → TTD + setujui → untuk invoicing (invoice sebulan sekali)</li>
+  </ol>
+  <h4>Catatan Penting Retrieve</h4>
   <ul>
-    <li>Scan CD: greyscale untuk dossier copy + insertion</li>
-    <li>Scan CD: hitam putih (b&amp;w) untuk sertifikat fidusia</li>
-    <li>SLA BA (Berita Acara): H+6 dari tanggal realisasi</li>
+    <li>Request fisik: wajib satu bundle map lengkap — tidak bisa hanya satu lembar (scan bisa satu lembar)</li>
+    <li>Recheck apakah sudah pernah diminta sebelumnya di email atau DMS sebelum request</li>
+    <li>PPK Pasal lengkap tersedia di DMS untuk order tahun 2024 ke atas; sebelum 2024 harus order scan ke MMI</li>
+    <li>Dikumpulkan per batch (tergantung banyaknya permintaan); order via email</li>
+    <li><strong>Perbaikan SLIK:</strong> minta PPK Pasal lengkap | <strong>ASR:</strong> copy fidusia | <strong>Legal:</strong> dossier lengkap + fidusia</li>
+    <li>Hasil scan dikirim MMI ke unit yang meminta, di-password (password tidak dikirim bersamaan)</li>
+    <li>Fidusia manual bisa di-order ke MMI; kalau akta → B2B (order by sistem)</li>
+    <li>Jika dokumen unregistered/tidak ada → lempar ke unit fidusia untuk dikirimkan fidusianya</li>
+  </ul>
+  <h4>After Dokumen Diberikan</h4>
+  <ul>
+    <li>PIC assign reminder via email untuk pengembalian sesuai memo</li>
+    <li>Dokumen fisik pengembalian wajib lengkap sesuai yang diberikan di awal</li>
+    <li>Sebelum diambil: tanda tangan di kertas tanda terima</li>
+    <li>Saat dikembalikan: dicek kembali oleh PIC dan UH → TTD pemohon + PIC + TL/UH</li>
+    <li>Pengiriman: normal by MMI atau emergency by kurir (biaya sesuai jarak + service)</li>
+    <li>Untuk nomor kontrak: cek di OneView per cabang untuk proses order ke MMI cabang</li>
+  </ul>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Invoicing & Biaya MMI</div><div class="acc-body">
+  <h4>Jenis Tagihan Nasional dari MMI</h4>
+  <table>
+    <tr><th>Jenis</th><th>Keterangan</th><th>Biaya</th></tr>
+    <tr><td><strong>Data Entry</strong></td><td>Input rekonsil data di MMI, perhitungan dossier, scanning, double &amp; triple check dokumen kontrak</td><td>Rp 350/dokumen</td></tr>
+    <tr><td><strong>Insertion</strong></td><td>Dokumen susulan yang posisinya sudah di MMI, penambahan cara bayar/KTP konsumen</td><td>Rp 3.900/dokumen</td></tr>
+    <tr><td><strong>Scan B&amp;W</strong></td><td>Dossier Asli &amp; Fidusia</td><td>Rp 630/lembar</td></tr>
+    <tr><td><strong>Scan Grayscale</strong></td><td>Dossier Copy</td><td>Rp 680/lembar</td></tr>
+    <tr><td><strong>CD BA</strong></td><td>Biaya CD + biaya pengiriman (biaya kurir + 12,5% admin)</td><td>Rp 6.300/CD</td></tr>
+    <tr><td><strong>Pengarsipan</strong></td><td>Biaya sewa tempat di MMI; sebelum di-destroy wajib bayar sewa</td><td>Box kecil: Rp 3.500 · Box besar: Rp 5.100</td></tr>
+    <tr><td><strong>Destroy Shredding</strong></td><td>Per box</td><td>Rp 18.500/box</td></tr>
+    <tr><td><strong>Destroy Admin Pengkinian</strong></td><td>Per dokumen</td><td>Rp 2.600/dokumen</td></tr>
+    <tr><td><strong>Pulping &amp; Bakar</strong></td><td>Metode destroy alternatif</td><td>Gratis</td></tr>
+  </table>
+  <h4>Harga Box</h4>
+  <table>
+    <tr><th>Jenis Box</th><th>Pulau Jawa</th><th>Luar Jawa</th></tr>
+    <tr><td>Box Kecil</td><td>Rp 11.600</td><td>Rp 16.500</td></tr>
+    <tr><td>Box Besar</td><td>Rp 16.500</td><td>—</td></tr>
+  </table>
+  <h4>Perhitungan Dossier (Sebelum Pickup Jumat)</h4>
+  <ul>
+    <li>Setiap box dihitung jumlah dossier secara fisik → sesuaikan dengan data</li>
+    <li>Perhitungan bayar per pickup (1 pickup = 20 box)</li>
+    <li>Ditandatangani minimal PIC Pengiriman (tanggal scanning, tanggal realisasi, tanggal kirim)</li>
+    <li>Box yang sudah jadi: di-sampling dan disetujui minimal TL</li>
+  </ul>
+  <h4>Flow Invoice</h4>
+  <ol>
+    <li>Invoice diterima</li>
+    <li>Register manual di excel → cek lampiran fisik (invoice per tindakan berbeda: insertion / pengarsipan / scanning)</li>
+    <li>Cocokkan invoice dengan nota perhitungan dossier → konfirmasi ke cabang jika tidak ada TTD cabang</li>
+    <li>Input di e-GER (pilih biaya umum entry) → approval berdasarkan nilai:</li>
+  </ol>
+  <table>
+    <tr><th>Nilai Invoice</th><th>Approval</th></tr>
+    <tr><td>s.d. Rp 2 juta</td><td>TL</td></tr>
+    <tr><td>Rp 2 juta – Rp 25 juta</td><td>UH</td></tr>
+    <tr><td>Rp 25 juta – Rp 40 juta</td><td>DH</td></tr>
+    <tr><td>Rp 40 juta – Rp 100 juta</td><td>DD</td></tr>
+    <tr><td>&gt; Rp 100 juta</td><td>Minimal 1 BOD</td></tr>
+  </table>
+  <ol start="5">
+    <li>Cantumkan dari apa; upload dokumen tagihan (invoice dirinci per cabang)</li>
+    <li>Kirim ke Procurement + TTD approver + nomor BOP (e-GER)</li>
+    <li>Fisik invoice disimpan ke MMI kalau sudah full 1 box; retensi 10 tahun</li>
+  </ol>
+</div></div>
+
+<div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Masa Retensi, Destroy & Lain-lain</div><div class="acc-body">
+  <h4>Masa Retensi Dokumen — 10 Tahun</h4>
+  <table>
+    <tr><th>Kode Box</th><th>Jenis Dokumen</th><th>Hitungan Sejak</th></tr>
+    <tr><td>Box 01</td><td>Dossier Asli</td><td>Angsuran terakhir</td></tr>
+    <tr><td>Box 02</td><td>Dossier Copy</td><td>Angsuran terakhir</td></tr>
+    <tr><td>Box 03</td><td>Dokumen Pelunasan</td><td>Tanggal released</td></tr>
+    <tr><td>Box 04</td><td>Sertifikat Fidusia</td><td>Angsuran terakhir</td></tr>
+    <tr><td>Box 05</td><td>Hasil Blokir</td><td>Angsuran terakhir</td></tr>
+    <tr><td>Box 06</td><td>Dokumen Penanganan</td><td>Tanggal pengaduan masuk</td></tr>
+    <tr><td>Box 08</td><td>Tagihan</td><td>Tanggal pengaduan masuk</td></tr>
+    <tr><td>Box 09</td><td>Berkas Klaim &amp; Refund Asuransi</td><td>Tanggal pengajuan</td></tr>
+  </table>
+  <h4>Masa Retensi — 3 Tahun</h4>
+  <table>
+    <tr><th>Jenis Dokumen</th><th>Hitungan Sejak</th></tr>
+    <tr><td>Box 07 — Dokumen Administrasi</td><td>—</td></tr>
+    <tr><td>Report / Laporan</td><td>Tanggal pembuatan/pencetakan</td></tr>
+    <tr><td>Balancing</td><td>Tanggal pembuatan/pencetakan</td></tr>
+    <tr><td>Register</td><td>Tanggal pembuatan/pencetakan</td></tr>
+    <tr><td>Tanda Terima</td><td>Tanggal serah terima</td></tr>
+  </table>
+  <div class="note-blue"><strong>ET (Early Termination):</strong> Masa retensi tidak berubah — ikut tanggal angsuran terakhir awal</div>
+  <div class="note-blue"><strong>Write-Off (WO):</strong> Tidak ada masa retensi</div>
+  <h4>Proses Destroy</h4>
+  <ul>
+    <li>Tiap bulan MMI info dokumen yang akan di-destroy → diolah → destroy pakai mesin (shredding)</li>
+    <li>Sekali destroy: 200–300 box; proses ±2 hari; diberi bukti CCTV proses destroynya</li>
+    <li>H+60 setelah scan: CD di-destroy menggunakan gunting (shredding)</li>
+    <li>Kadang Docust menitipkan box untuk di-destroy ke MMI</li>
+  </ul>
+  <h4>Kenapa Destroy Pakai Shredding, Bukan Bakar?</h4>
+  <ul>
+    <li>Pembakaran: harus menggunakan pihak ke-4 yang tidak boleh diawasi, tidak ada CCTV, tidak ada saksi</li>
+    <li>Rawan data bocor (kertas bisa tidak sungguhan dibakar, malah dijual kembali)</li>
+    <li>MMI hanya menggunakan shredding → lebih aman dan terpantau</li>
+  </ul>
+  <h4>Sampling Tahunan</h4>
+  <ul>
+    <li>3 cabang MMI setiap tahun (semacam stock opname)</li>
+    <li>Pergi ke cabang MMI → cek box dan isinya (urutan sesuai, standar penyimpanan)</li>
+  </ul>
+  <h4>Dokumen Hilang</h4>
+  <ul>
+    <li>Lihat tracking terakhir dari mana</li>
+    <li>Hilang di BCAF → PIC terakhir bertanggung jawab</li>
+    <li>Hilang di MMI → denda <strong>Rp 50.000 per kehilangan</strong> + buat surat polisi + surat kehilangan + penilaian berkurang (berdampak ke PKS)</li>
+  </ul>
+  <h4>Lain-lain</h4>
+  <ul>
+    <li>Yang upload ke DMS adalah Archive Management</li>
+    <li>Dokumen yang masuk DMS hanya yang sering dipakai (storage mahal; dossier tagihan tidak worth it)</li>
+    <li>Ada 13 cabang MMI → sudah ada plotingan masing-masing cabang BCAF; cabang bisa langsung ke MMI untuk pengecekan</li>
+    <li>Di MMI ada proses data entry (input di sistem MMI) untuk triple check ulang</li>
+    <li>Ada form survey meski ada M Survey: double survey BM pakai form BM; KKB pakai vendor survey (tidak upload ke M Survey)</li>
+    <li><strong>Motor:</strong> upload ke Document Imaging by cabang masing-masing (bukan DMS)</li>
+    <li><strong>Motor ke MMI:</strong> pengajuan lewat MOVE ke archive → email ke MMI (dari archive) → MMI pickup ke cabang motor; untuk retrieve &amp; insertion: langsung kasih box, lebih murah biayanya</li>
+    <li>Total box: <strong>29.174</strong> hanya di Cikarang</li>
   </ul>
 </div></div>
 </div>
