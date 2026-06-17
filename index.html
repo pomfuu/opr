@@ -3592,8 +3592,28 @@ tr:nth-child(even) td{background:var(--gray-50);}
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Pra Realisasi — Cek Absah + Blokir</div><div class="acc-body">
   <ul>
-    <li><strong>Cek Absah:</strong> Verifikasi keaslian BPKB (bukan palsu/aspal)</li>
-    <li><strong>Cek Blokir:</strong> Pastikan BPKB tidak sedang dijaminkan ke leasing lain</li>
+    <li><strong>Cek Absah:</strong> Verifikasi keaslian BPKB (bukan palsu/aspal) — dilakukan langsung ke polisi</li>
+    <li><strong>Cek Blokir (e-blokir):</strong> Pastikan BPKB tidak sedang dijaminkan ke leasing lain; penyebab blokir: leasing lain, BNN, KPK, atau kasus polisi</li>
+    <li>JABO menggunakan e-blokir (lebih cepat); cabang luar kota masih manual</li>
+    <li><strong>Kenapa marketing tidak bisa cek absah sendiri:</strong> konflik of interest → rawan fraud</li>
+  </ul>
+  <h4>8 Cabang yang Di-handle KP</h4>
+  <ul>
+    <li>Bekasi · Bogor · Depok · Tangerang · WPI · WTC · Daan Mogot · Kelapa Gading</li>
+  </ul>
+  <h4>Cabut Blokir (Rp 50.000)</h4>
+  <div class="flow">
+    <div class="flow-step">BPKB Admin info CMO</div><div class="flow-arrow">→</div>
+    <div class="flow-step">CMO info konsumen</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Surat buka blokir</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Ke birojasa</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Ke kepolisian</div>
+  </div>
+  <h4>Batal Realisasi</h4>
+  <ul>
+    <li>Biaya: absah + blokir + birojasa + admin Rp 10.000</li>
+    <li>Jika sudah bayar Rp 500.000 di awal → tidak perlu bayar lagi</li>
+    <li>Bukti bayar via VA BPKB Admin → CMO kirim bukti bayar → Docust keluarkan BPKB</li>
   </ul>
 </div></div>
 
@@ -3636,41 +3656,76 @@ tr:nth-child(even) td{background:var(--gray-50);}
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">New Car — CN &amp; Blanko BPKB</div><div class="acc-body">
   <ul>
-    <li>New Car: tidak perlu cek absah dan blokir</li>
+    <li>New Car: tidak perlu cek absah dan blokir (BPKB diterima langsung dari dealer)</li>
     <li>CN (Cover Note) valid maksimal <strong>90 hari</strong></li>
     <li>Tanggal CN: maksimal <strong>60 hari</strong> sebelum realisasi</li>
+    <li>Outstanding covernote yang beredar maksimal <strong>75%</strong></li>
+    <li>Jatuh tempo order CN: <strong>4 hari kerja</strong>; bisa diperpanjang dengan TTD birojasa + keterangan alasan</li>
   </ul>
-  <h4>5 Birojasa New Car</h4>
-  <ul><li>Bisa Aja</li><li>858</li><li>Armando</li><li>Rudi Liwan</li><li>Karimuna</li></ul>
-  <h4>PIC Penerimaan CN + Blanko (4 Langkah)</h4>
+  <h4>Dokumen Pengganti CN</h4>
+  <table>
+    <tr><th>Dokumen</th><th>Kegunaan</th></tr>
+    <tr><td><strong>Form A</strong></td><td>Untuk kendaraan CBU/indent dari luar negeri (Porsche, Lamborghini, dll) — pengganti CN karena dealer luar negeri tidak pakai CN</td></tr>
+    <tr><td><strong>f04</strong></td><td>Surat BCAF sendiri untuk dealer Astra Daihatsu yang tidak mau keluarkan CN; juga untuk refinancing tertentu (konsumen beli cash, BPKB belum keluar tapi mau refinancing)</td></tr>
+  </table>
+  <h4>Dokumen Kelengkapan Set BPKB</h4>
   <ul>
-    <li>Terima CN dari dealer</li><li>Cek kesesuaian data</li>
-    <li>Input sistem</li><li>Simpan sesuai urutan</li>
+    <li><strong>Faktur:</strong> "Akta lahir BPKB" — mandatory meskipun setelah BPKB jadi faktur tidak berguna secara hukum</li>
+    <li><strong>OTTPSB putih:</strong> Dokumen syarat untuk potong pencairan / controlling account</li>
+    <li><strong>Kwitansi blanko:</strong> 2 jenis — (1) atas nama BPKB (paling penting) + (2) atas nama konsumen jika nama BPKB ≠ nama konsumen BCAF</li>
+    <li><strong>SP Hak:</strong> Untuk PT — balik nama aset perusahaan ke 1 orang perwakilan</li>
+    <li><strong>Sticker CN:</strong> Dipasang oleh APP (berisi no kontrak), baru H+1 setelah realisasi dikirim ke BPKB Admin</li>
   </ul>
-  <h4>PIC Order CN (5 Langkah)</h4>
+  <h4>6 Birojasa New Car</h4>
+  <ul><li>Bisa Aja</li><li>858</li><li>Armando</li><li>Rudi Liwan</li><li>Karimuna</li><li><strong>Tunas</strong> (Toyota, Daihatsu, BMW) — sebulan 2x, setiap Selasa awal/pertengahan/akhir bulan; sekali angkut 80–100 BPKB</li></ul>
+  <h4>PIC Penerimaan CN + Blanko</h4>
   <ul>
-    <li>4 angka depan = kode cabang</li>
+    <li>Terima CN dari dealer (H-1 realisasi) + cek kesesuaian: nopol, nama konsumen, BPKB owner, nama/alamat dealer, noka/nosin, TTD</li>
+    <li>Jika ada perbedaan → info ke cabang</li>
+    <li>Input sistem → scan → upload DMS → masukkan ke MAP (per cabang → per dealer)</li>
+    <li>CN retur: disimpan di <strong>map khusus CN retur</strong> (bukan dikembalikan ke map cabang) agar tidak perlu dicari-cari lagi</li>
   </ul>
   <h4>PIC Follow-up</h4>
   <ul>
-    <li>Metode: email / WA / kunjungan akhir bulan</li>
-    <li>&gt;90 hari → kirim <strong>SURAT PERINGATAN</strong></li>
+    <li>Tiap awal bulan tarik report di Financore (Control aging covernote)</li>
+    <li>Follow up: by phone / email / WA tiap hari + kunjungan akhir bulan; dilakukan cabang terdekat dealer</li>
+    <li>Prioritas: CN &gt;90 hari, lanjut yang mendekati 90 hari</li>
+    <li>&gt;90 hari → kirim <strong>Surat Pemberitahuan Dealer</strong> (lebih halus dari surat peringatan) — dikirim fisik 1x per bulan ke dealer</li>
+    <li>Penyebab CN telat: kendala internal (dealer minta PPH23 dari BCAF) atau eksternal (revisi BPKB)</li>
   </ul>
-  <h4>PIC Penerimaan BPKB New (9 Langkah)</h4>
+  <h4>PIC Order CN</h4>
+  <ul>
+    <li>Setiap pagi tarik data dari email birojasa + JogetDX Follow-up CN</li>
+    <li>4 angka depan CN = kode cabang</li>
+    <li>Input ORDER BPKB di JogetDX → submit → cetak tanda terima (isi: list BPKB, jatuh tempo 4HK, TTD BCAF + birojasa + dealer)</li>
+    <li>Jam 3 birojasa datang ambil CN → dibawa ke dealer untuk ditukar BPKB</li>
+  </ul>
+  <h4>PIC Penerimaan BPKB New</h4>
   <div class="flow">
-    <div class="flow-step">Terima dari birojasa</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek fisik BPKB</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cocokkan dengan blanko</div><div class="flow-arrow">→</div>
-    <div class="flow-step">H+1 gabung blanko</div><div class="flow-arrow">→</div>
-    <div class="flow-step">H+2 kirim ke Docust</div>
+    <div class="flow-step">Terima dari birojasa (tiap pagi)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek fisik BPKB + kelengkapan (Faktur WAJIB, NIK WAJIB, Form A opsional)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Input data di Financore (No BPKB, BPKB date, owner, warna, nopol, no faktur)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Scan BPKB (halaman identitas kendaraan + dokumen persyaratan + halaman belakang)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Masukkan ke amplop + sticker (no kontrak, nama konsumen, no BPKB, no urut)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Simpan di brankas</div><div class="flow-arrow">→</div>
+    <div class="flow-step">H+1: gabung blanko kwitansi + SP Hak (oleh PIC CN &amp; Blanko), TL cek + TTD</div><div class="flow-arrow">→</div>
+    <div class="flow-step">H+2: serahkan ke Docust (TL ke AS Docust)</div>
   </div>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Kepengurusan STNK</div><div class="acc-body">
+  <h4>4 Jenis Proses &amp; SLA</h4>
+  <table>
+    <tr><th>Proses</th><th>SLA</th><th>Keterangan</th></tr>
+    <tr><td><strong>Mutasi BBN</strong></td><td>33 hari kerja</td><td>Nama berubah → BPKB baru; mutasi alamat saja → tulis di halaman baru BPKB (tidak perlu BPKB baru)</td></tr>
+    <tr><td><strong>Cabut Berkas</strong></td><td>45 hari kerja</td><td>Ganti plat daerah (contoh: plat B → plat semarang)</td></tr>
+    <tr><td><strong>Silang Nopol</strong></td><td>23 hari kerja</td><td>—</td></tr>
+    <tr><td><strong>Perpanjangan STNK</strong></td><td>5 hari kerja</td><td>—</td></tr>
+  </table>
   <h4>Walk-in Luar Kota</h4>
   <ul>
     <li>Layanan: Balik Nama / Mutasi BBN / Perpanjangan STNK</li>
-    <li>OTTPS + dokumen cabut berkas diserahkan konsumen</li>
+    <li>OTTPS + dokumen cabut berkas diserahkan konsumen ke cabang</li>
   </ul>
   <h4>WPI (Walk-in Pusat)</h4>
   <ul>
@@ -3686,18 +3741,33 @@ tr:nth-child(even) td{background:var(--gray-50);}
     <tr><td>Rp 40 – 99 juta</td><td>DD</td></tr>
     <tr><td>&gt;Rp 100 juta</td><td>BOD</td></tr>
   </table>
-  <h4>Ex BBN (Setelah Balik Nama Selesai)</h4>
+  <h4>Dokumen Cabut Berkas</h4>
+  <ul>
+    <li>BPKB Asli · STNK Asli · Cek fisik bantuan (foto kendaraan) · Surat cabut blokir</li>
+    <li>Blanko atas nama BPKB · FC KTP tujuan · FC NIB berbasis risiko (jika PT) · SP Hak (jika PT)</li>
+  </ul>
+  <h4>Flow Cabut Berkas</h4>
   <div class="flow">
-    <div class="flow-step">Terima dari birojasa</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek BPKB vs FC STNK</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Maintenance Financore</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Register</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Cek e-blokir</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Blokir manual/online</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Maintenance no blokir</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Scan</div><div class="flow-arrow">→</div>
-    <div class="flow-step">H+1 ke Docust</div>
+    <div class="flow-step">AMAF cabang kirim berkas fisik ke WPI (form permohonan mutasi, BPKB+STNK asli, foto kendaraan, surat cabut blokir, blanko, FC KTP tujuan)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cetak tanda terima untuk birojasa (TL cek → order birojasa)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Birojasa proses: dapat BPKB Asli + SKF + SKP + STNK asli + form mutasi + SK 3 rangkap + memo tagihan</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Packing → kirim ke cabang tujuan</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cabang tujuan proses via birojasa tujuan</div>
   </div>
+  <div class="note-blue">2 birojasa: birojasa asal (create 1) + birojasa tujuan (create 2) di Financore</div>
+  <h4>Flow BBN (Setelah Balik Nama Selesai)</h4>
+  <div class="flow">
+    <div class="flow-step">Kumpulkan berkas BBN → order birojasa</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Terima BPKB baru dari birojasa</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek BPKB vs acuan STNK</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Scan → upload DMS</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Update data di Financore (nama, nopol, no BPKB baru)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Register di excel</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Lepas blokir dulu → blokir ulang</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Tanda terima TTD PIC + pejabat</div><div class="flow-arrow">→</div>
+    <div class="flow-step">H+1 serahkan ke Docust</div>
+  </div>
+  <div class="note">Plat B &amp; F kota: copy BPKB saja · Plat A: BPKB Asli · Plat F kabupaten: surat permohonan blokir + fisik BPKB</div>
 </div></div>
 </div>
 <div id="doc" class="tab-pane">
@@ -3709,88 +3779,172 @@ tr:nth-child(even) td{background:var(--gray-50);}
   <ul>
     <li>Mengelola BPKB, Polis (self cover + cover mundur), Surat Blokir, Dokumen Lelang (KP)</li>
     <li>Bagian dari Account Management: Docust + BPKB Admin + Archive + Asuransi</li>
+    <li><strong>Total inventori saat ini: ±160.000 BPKB</strong></li>
   </ul>
   <h4>2 Media Penyimpanan</h4>
-  <ul>
-    <li><strong>Kluis:</strong> Lemari tahan api (fireproof safe)</li>
-    <li><strong>Brankas:</strong> Besi tahan api</li>
-  </ul>
+  <table>
+    <tr><th>Tipe</th><th>Keterangan</th><th>Digunakan di</th></tr>
+    <tr><td><strong>Kluis</strong></td><td>Ruangan tahan api dengan lemari di dalamnya</td><td>KP, Cabang Kelas A, atau cabang yang punya gedung sendiri (tidak sewa)</td></tr>
+    <tr><td><strong>Brankas</strong></td><td>Lemari besi tahan api</td><td>Cabang yang tidak menggunakan kluis</td></tr>
+  </table>
   <h4>Dual Custody &amp; Dual Control</h4>
   <ul>
-    <li><strong>Dual Custody:</strong> Angka kombinasi + anak kunci (dua mekanisme pengaman)</li>
-    <li><strong>Dual Control:</strong> Pemegang anak kunci ≠ pemegang kombinasi</li>
-    <li>Alternatif jika pejabat berhalangan: ada prosedur backup</li>
-    <li>Memo penunjukan: approval DH</li>
-    <li><strong>Kunci tidak boleh dibawa pulang!</strong></li>
-    <li>Register buku akreditasi kluis wajib diisi</li>
+    <li><strong>Dual Custody:</strong> Akses memerlukan anak kunci + angka kombinasi (dua mekanisme)</li>
+    <li><strong>Dual Control:</strong> Pemegang anak kunci ≠ pemegang kombinasi (staf Docust pegang kunci; pejabat pegang kombinasi)</li>
+    <li>Kunci brankas ada <strong>2</strong>: satu untuk pemegang utama, satu untuk alternatif/penyimpan</li>
+    <li>Angka kombinasi hanya <strong>1</strong>, ditulis di kertas, dipegang oleh alternatif (penyimpan)</li>
+    <li><strong>Kunci tidak boleh diduplikat!</strong> Jika rusak → ganti seluruh rumah kunci</li>
+    <li><strong>Kunci tidak boleh dibawa pulang</strong> — wajib disimpan di kantor</li>
+    <li>Alternatif tidak boleh pakai angka kombinasi + kunci kecuali ditunjuk via memo penunjukan</li>
+    <li>Memo penunjukan: approval DH Operation (jika pejabat + alternatif sama-sama berhalangan)</li>
+  </ul>
+  <h4>Punishment Kunci Hilang</h4>
+  <ul>
+    <li>Ganti kunci dengan uang pribadi</li>
+    <li>SP (tidak dapat bonus, tidak naik gaji)</li>
+  </ul>
+  <h4>Buku Akreditasi Kluis</h4>
+  <ul>
+    <li>Setiap buka/tutup brankas/kluis harus dicatat (jam berapa dibuka)</li>
+    <li>Jika ada orang lain yang masuk selain yang berhak → harus ada persetujuan tertulis</li>
+    <li>CCTV terpasang di Docust dan area kluis — jadi bukti jika register berbeda dengan rekaman</li>
+  </ul>
+  <h4>Prosedur Pergantian Pejabat / Staf</h4>
+  <ul>
+    <li>Pejabat (UH) resign/mutasi → reset angka kombinasi + serah terima jabatan (berita acara)</li>
+    <li>Staf pindah/resign → buat berita acara juga</li>
+    <li>Yang resign/mutasi <strong>tidak boleh tahu angka kombinasi lagi</strong></li>
+    <li>Cara reset password: ada panduan atau via pengajuan service ke GS dengan vendor</li>
+    <li>Pindah kantor → <strong>stock opname 2x</strong>: di kantor lama DAN di kantor baru</li>
   </ul>
   <h4>Pra Realisasi</h4>
   <ul>
-    <li>Cek asset registry via COFICO</li>
+    <li>Cek asset registry via COFICO — marketing cek, konfirmasi via Docust, Docust tindak lanjut ke leasing lain</li>
+    <li>Cek ada BPKB atau tidak untuk pengajuan refinancing (konfirmasi BPKB)</li>
     <li>FKB pembatalan refinancing (jika ada)</li>
+    <li>Pra-realisasi bisa via <strong>AKB</strong> (ref, top up, SHF↔reguler) atau <strong>manual</strong> (restruktur, overkredit)</li>
+    <li>AKB akan dihapus, diganti <strong>One ME</strong> (sedang uji coba)</li>
   </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Receive BPKB</div><div class="acc-body">
-  <h4>New Car (6 Langkah)</h4>
+  <h4>New Car — Alur Receive</h4>
   <div class="flow">
-    <div class="flow-step">Serah terima AS vs TL/UH BPKB Admin</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Amplop + segel TTD PIC+Pejabat</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Input Financore</div><div class="flow-arrow">→</div>
-    <div class="flow-step">QR Code dibuat</div><div class="flow-arrow">→</div>
-    <div class="flow-step">TAG sent to kluis</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Simpan di laci</div>
+    <div class="flow-step">Serah terima TL BPKB Admin ↔ AS Docust (Authorized Signer)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Cek kelengkapan dokumen</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Dokumen + BPKB dimasukkan amplop → disegel → TTD PIC + pejabat</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PIC Receive input di Financore</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PIC RFID tempel RFID ke amplop (KP) atau barcode (cabang)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PIC Kluis simpan di laci sesuai RFID</div>
   </div>
-  <h4>Used Car</h4>
-  <ul>
-    <li><strong>Manual:</strong> H+2 dari BPKB Admin, sama seperti New Car</li>
-    <li><strong>Aplikasi:</strong> H+1, ACA input "sent to kluis", nembak Financore H+1</li>
-  </ul>
+  <div class="note-blue">RFID hanya di KP — dari RFID bisa ditentukan BPKB disimpan di laci mana, barisan ke berapa. Cabang menggunakan barcode.</div>
+  <h4>Used Car — Alur Receive via Aplikasi ACA</h4>
+  <div class="flow">
+    <div class="flow-step">Marketing data entry di ACA → muncul APP ID</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB Admin download tanda terima dari ACA</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB di-scan oleh BPKB Admin (antisipasi jika BPKB hilang di jalan)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB diserahkan ke birojasa</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Hasil cek absah + blokir di-WA ke BPKB Admin</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB dikembalikan birojasa langsung ke Docust</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Docust receive di ACA (menu Receive — bukan Financore)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">H+1: BPKB Admin serahkan dokumen kelengkapan ke Docust</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PIC Receive "Send to Kluis" di ACA → otomatis nembak Financore H+1</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Pejabat Docust cek ceklist amplop + TTD</div><div class="flow-arrow">→</div>
+    <div class="flow-step">PIC Tag RFID → PIC Kluis simpan sesuai laci</div>
+  </div>
+  <div class="note">Used Car manual (konsumen ganti unit, ACA hanya bisa digunakan sekali per pengajuan): alur sama seperti New Car, H+2 dari BPKB Admin.</div>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Borrow BPKB — SLA Plan Return</div><div class="acc-body">
   <table>
     <tr><th>Keperluan Borrow</th><th>SLA Return</th></tr>
-    <tr><td>Perpanjangan STNK</td><td>1 bulan</td></tr>
+    <tr><td>Perpanjangan STNK / Blokir / Ubah nopol / Revisi</td><td>1 bulan</td></tr>
     <tr><td>BBN (Balik Nama)</td><td>2 bulan</td></tr>
     <tr><td>Mutasi</td><td>3 bulan</td></tr>
-    <tr><td>Revisi BPKB</td><td>1 bulan</td></tr>
-    <tr><td>Ubah nopol</td><td>1 bulan</td></tr>
-    <tr><td>Blokir</td><td>1 bulan</td></tr>
+    <tr><td>Lelang</td><td>3 bulan</td></tr>
+    <tr><td>Klaim Asuransi biasa</td><td>1 bulan</td></tr>
+    <tr><td>Klaim PPJGR</td><td>3 bulan</td></tr>
+    <tr><td>Reservasi cabang sendiri</td><td>15 hari</td></tr>
+    <tr><td>Reservasi konsumen luar kota</td><td>30 hari</td></tr>
+    <tr><td>Konfirmasi BPKB</td><td>1 bulan</td></tr>
+    <tr><td>BCA Prioritas</td><td>10 hari</td></tr>
   </table>
-  <h4>Alur Borrow STNK</h4>
+  <h4>Alur Borrow STNK/BBN</h4>
   <div class="flow">
-    <div class="flow-step">Konsumen walk-in</div><div class="flow-arrow">→</div>
-    <div class="flow-step">CS konfirmasi</div><div class="flow-arrow">→</div>
-    <div class="flow-step">DP biaya</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Report ke BPKB Admin</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Borrow via RPA</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Report borrow</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Birojasa proses</div><div class="flow-arrow">→</div>
-    <div class="flow-step">Return + report</div>
+    <div class="flow-step">Konsumen walk-in ke CS</div><div class="flow-arrow">→</div>
+    <div class="flow-step">CS konfirmasi kelengkapan + bayar DP</div><div class="flow-arrow">→</div>
+    <div class="flow-step">CS buat report kepengurusan → serahkan ke BPKB Admin</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB Admin cek → order borrow ke Docust via RPA</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Docust borrow → buat report borrow (tanda serah terima)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB Admin proses ke birojasa</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB + kelengkapan kembali ke BPKB Admin</div><div class="flow-arrow">→</div>
+    <div class="flow-step">BPKB Admin update Financore + scan → return ke Docust</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Docust return di Financore → segel ulang amplop → simpan ke kluis</div>
   </div>
-  <h4>Alur Borrow Lainnya</h4>
+  <h4>Konfirmasi BPKB</h4>
   <ul>
-    <li><strong>Lelang:</strong> CS credit settlement memo → borrow (belum closed) → status berubah setelah BAP+memo FSM, SLA 1 bulan</li>
-    <li><strong>Klaim TLO:</strong> Borrow karena belum closed, SLA 1 bulan / PPJGR 3 bulan</li>
-    <li><strong>Dijual OLX:</strong> Borrow purposes digital platform → released setelah memo FSM</li>
-    <li><strong>BCA Prioritas:</strong> SLA 10 hari, released setelah terima surat dari BCA</li>
-    <li><strong>Reservasi Cabang:</strong> Borrow 15 hari / 30 hari luar kota, perpanjangan approval DH OA + CS</li>
+    <li>Tujuan: mencegah BPKB dikeluarkan untuk dijaminkan lagi (refinancing, top up, restruktur)</li>
+    <li>SLA 1 bulan → jika tidak ada realisasi: return → set in progress → kembalikan ke laci</li>
+  </ul>
+  <h4>Reservasi di KP</h4>
+  <ul>
+    <li>Order max jam 12 → BPKB bisa diambil besok (ada kuota)</li>
+    <li>Order &gt;jam 12 → pengambilan H+2</li>
+    <li>Docust siapkan BPKB H-1, konsumen datang → cek KTP → release/close</li>
+    <li>Jika konsumen tidak datang → return ke lemari</li>
+    <li>Perpanjangan: approval DH OA + CS; hanya bisa perpanjang <strong>sekali</strong></li>
+  </ul>
+  <h4>Pengiriman BPKB ke Konsumen</h4>
+  <div class="flow">
+    <div class="flow-step">Konsumen order via FINA / ASTARI (bayar kewajiban + biaya pengiriman + biaya titip Rp 5.000/hari)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Masuk bucket Docust → Docust siapkan BPKB</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Kurir ambil sore hari (jika konsumen mau ambil besok)</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Kurir telepon konsumen dulu → kirim → foto konsumen pegang KTP + BPKB → upload di aplikasi kurir</div><div class="flow-arrow">→</div>
+    <div class="flow-step">FINA: langsung released · ASTARI: 6 jam baru released</div>
+  </div>
+  <div class="note">Gagal kirim → return ke Docust → input di aplikasi kurir → otomatis jadi return. Pengiriman BPKB maksimal hari Rabu agar tidak sampai di weekend.</div>
+  <h4>Alur Lelang</h4>
+  <ul>
+    <li>Credit settlement buat memo berisi konsumen yang laku lelang</li>
+    <li>Docust borrow BPKB (status Financore belum closed saat pengambilan oleh balai lelang)</li>
+    <li>Status berubah Released setelah ada BAP lelang + memo dari FSM</li>
+    <li>Buyback dengan BCA hanya sebulan sekali tanggal 10</li>
+  </ul>
+  <h4>Alur Klaim Asuransi</h4>
+  <ul>
+    <li>Klaim disetujui → maskapai ambil BPKB</li>
+    <li>Docust borrow (status belum closed; perlu buyback dulu, Accounting → FSM → close)</li>
+    <li>Released setelah ada memo penutupan dari Asuransi</li>
   </ul>
 </div></div>
 
 <div class="acc"><div class="acc-head" onclick="toggleAcc(this)">Released BPKB &amp; Stock Opname</div><div class="acc-body">
   <h4>Kondisi Released</h4>
   <ul>
-    <li><strong>Konsumen Lunas:</strong> Borrow 15 hari → H+1 tarik data → pencocokan → Return → Released → penyerahan ke CS</li>
-    <li><strong>WO (Write-Off):</strong> Remedial CS, cek SKL dari Recovery unit</li>
-    <li><strong>SHF:</strong> Ada cap BPKB, disimpan cabang saat realisasi</li>
+    <li><strong>Konsumen Lunas:</strong> Tarik data H-1 → borrow 15 hari → pencocokan data dengan Financore → Return → Released → penyerahan ke CS</li>
+    <li><strong>WO (Write-Off):</strong> Remedial koordinasi dengan CS; cek deskripsi Recovery di memo → ada SKL atau tidak</li>
+    <li><strong>SHF:</strong> Ada cap di BPKB; BPKB disimpan di cabang saat realisasi</li>
   </ul>
-  <div class="note-blue"><strong>⚠️ PENGIRIMAN BPKB MAKSIMAL HARI RABU</strong></div>
+  <div class="note-blue"><strong>⚠️ PENGIRIMAN BPKB MAKSIMAL HARI RABU</strong> — agar tidak sampai di konsumen pada akhir pekan</div>
+  <h4>ET (Early Termination)</h4>
+  <ul>
+    <li>Tidak ada perlakuan khusus untuk ET biasa</li>
+    <li>Pengecualian: nasabah prioritas, titipan BOD, dll</li>
+  </ul>
+  <h4>Penyimpanan Dokumen per Tipe</h4>
+  <table>
+    <tr><th>Tipe Dokumen</th><th>Urutan Penyimpanan</th></tr>
+    <tr><td>Polis asuransi</td><td>Sesuai tenor</td></tr>
+    <tr><td>BPKB (amplop + NIK + Faktur)</td><td>Sesuai cabang + no kontrak</td></tr>
+    <tr><td>Surat blokir</td><td>Sesuai tanggal receive + no rek nopol</td></tr>
+    <tr><td>Leasing</td><td>Sesuai no kontrak</td></tr>
+  </table>
   <h4>Stock Opname</h4>
   <ul>
-    <li><strong>S1 (Jan–Jun):</strong> SO DETAIL (dilakukan 2 tahun sekali)</li>
-    <li><strong>S2 (Jul–Des):</strong> SO FISIK menggunakan RF Id (KP) / barcode (cabang)</li>
+    <li><strong>S1 (Jan–Jun):</strong> SO DETAIL — cek Faktur, NIK, dll (dilakukan <strong>2 tahun sekali</strong>)</li>
+    <li><strong>S2 (Jul–Des):</strong> SO FISIK menggunakan RFID (KP) / barcode (cabang)</li>
+    <li>Jika ada pejabat resign dalam tahun tersebut → SO non-rutin sudah dilakukan → SO semester 1 tidak diperlukan lagi</li>
+    <li>Pindah kantor: SO dilakukan 2x (di kantor lama dan kantor baru)</li>
   </ul>
 </div></div>
 
